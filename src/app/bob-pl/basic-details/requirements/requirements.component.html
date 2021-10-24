@@ -1,0 +1,114 @@
+<div class="requirements-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval home-oval">
+          <img src="assets/images/landing-page-img.png" class="home-img" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-oval">
+        </div>
+
+        <div class="heading-content landing-text">
+          <h1>Digital Personal Loans</h1>
+          <p>Get money in your account within minutes.</p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <mat-card class="requirements-card">
+          <mat-card-content class="requirements-card-content">
+            <div class="radio-btns">
+              <mat-radio-group aria-label="Select an option" class="existing-loan-text">
+                <div class="check-box-field same-check">
+                  <mat-radio-button value="login" checked="salaried" class="add-text1" (click)="forSalaried()" >For Salaried</mat-radio-button>
+                </div>
+                <div class="check-box-field same-check">
+                  <mat-radio-button value="upload" class="add-text1" (click)="forSelfEmplied()">For Self Employed</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div>
+
+            <div class="sal-selfemployed" *ngIf="salaried">
+              <h2>Salaried</h2>
+              <h3>Following documents are needed to apply for Digital Personal Loan</h3>
+              <div class="req-text">
+                <span>*</span>
+                <p>Aadhaar Number connected with mobile number</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>PAN Number</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>Net Banking Credentials or Digital bank statement for 12 months</p>
+              </div>
+              <!-- <div class="req-text">
+                <span>*</span>
+                <p>ITR E-filing credentials or Digital ITR & Form 26AS for 2 years</p>
+              </div> -->
+              <div class="req-text">
+                <span>*</span>
+                <p>Correspondence Address Proof - any Utility Bill Customer Account No (Electricity, Gas, Water,
+                  Landline
+                  or
+                  Mobile Postpaid)</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>Web-camera for clicking picture and performing Video KYC</p>
+              </div>
+            </div>
+
+            <div class="sal-selfemployed" *ngIf="selfEmplied">
+              <h2>Self Employed</h2>
+              <h3>Following documents are needed to apply for Digital Personal Loan</h3>
+              <div class="req-text">
+                <span>*</span>
+                <p>Aadhaar Number connected with mobile number</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>PAN Number</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>Net Banking Credentials or Digital bank statement for 12 months</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>ITR E-filing credentials or Digital ITR & Form 26AS for 2 years</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>Correspondence Address Proof - any Utility Bill Customer Account No (Electricity, Gas, Water,
+                  Landline
+                  or
+                  Mobile Postpaid)</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>Web-camera for clicking picture and performing Video KYC</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>For Self-employed - GST Portal Credentials or Digital GST</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>Return for 1 year</p>
+              </div>
+              <div class="req-text">
+                <span>*</span>
+                <p>For Self-employed Professionals - Affiliation Number for professionals (like ICAI, ICSI, etc.)</p>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions class="requirements-btns">
+            <button mat-button class="primary-button" routerLink='/login'>Proceed</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

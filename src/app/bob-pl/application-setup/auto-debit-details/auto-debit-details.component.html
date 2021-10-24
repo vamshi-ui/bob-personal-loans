@@ -1,0 +1,124 @@
+<div class="autodebit-details-page">
+    <div class="mobile-step-wizard">
+        <app-step-wizard></app-step-wizard>
+    </div>
+
+    <div class="container">
+        <!-- <app-step-wizard></app-step-wizard> -->
+        <div class="row">
+            <div class="col-md-3 p-0">
+                <div class="sidebar-images">
+                    <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+                    <img src="assets/images/auto-debit-img.svg" class="vector-img1" alt="">
+                    <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <form [formGroup]="emandateDetailsForm">
+                    <div class="auto-debit-data">
+                        <div class="main-step-wizard">
+                            <app-step-wizard></app-step-wizard>
+                        </div>
+                        <h2>Your E-mandate registration is successful</h2>
+
+                        <div class="autodebit-details-info">
+                            <mat-card class="autodebit-details-card">
+                                <mat-card-content class="autodebit-details-card-content">
+                                    <div class="row">
+                                        <div class="col-md-3 col-7">
+                                            <div class="autodebit-info">
+                                                <p>Name</p>
+                                                <h4>{{ emandateDetailsForm.get('name').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-5">
+                                            <div class="autodebit-info">
+                                                <p>Bank Name</p>
+                                                <h4>{{ emandateDetailsForm.get('bankName').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-7">
+                                            <div class="autodebit-info">
+                                                <p>Account Number</p>
+                                                <h4>{{ emandateDetailsForm.get('accountNumber').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-5">
+                                            <div class="autodebit-info">
+                                                <p>Account Type</p>
+                                                <h4>{{ emandateDetailsForm.get('accountType').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-7">
+                                            <div class="autodebit-info">
+                                                <p>Loan Amount</p>
+                                                <h4>₹ {{ emandateDetailsForm.get('loanAmount').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-5">
+                                            <div class="autodebit-info">
+                                                <p>Start Date</p>
+                                                <h4>{{ emandateDetailsForm.get('startDate').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-7">
+                                            <div class="autodebit-info">
+                                                <p>End Date</p>
+                                                <h4>{{ emandateDetailsForm.get('endDate').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-5">
+                                            <div class="autodebit-info">
+                                                <p>Frequency</p>
+                                                <h4>{{ emandateDetailsForm.get('frequency').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-7">
+                                            <div class="autodebit-info">
+                                                <p>Purpose of E-mandate</p>
+                                                <h4>{{ emandateDetailsForm.get('purposeOfemandate').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-5">
+                                            <div class="autodebit-info">
+                                                <p>Reference No.</p>
+                                                <h4>{{ emandateDetailsForm.get('referenceNo').value }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-7">
+                                            <div class="autodebit-info">
+                                                <p>Monthly EMI Debit Date</p>
+                                                <h4>{{ emandateDetailsForm.get('emiDebitDate').value }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+
+                        <div class="autodebit-details-btns">
+                            <!-- <button mat-button class="secondary-button" (click)="back()" type="button">Back</button> -->
+                            <button mat-button class="primary-button" (click)="continue()">
+                                Continue
+                            </button>
+                        </div>
+
+                        <div class="autodebit-footer">
+                            <p>
+                                Your E-mandate registration is successfully completed. Your reference ID for e-mandate registration is
+                            </p>
+                            <p>{{ emandateDetailsForm.get('referenceNo').value }}</p>
+                            <!-- <p>
+                                In case of any issues/query related to e-mandate registration you may
+                            </p>
+                            <p>
+                                write to xxxx@xxxx.xx or call xxxxxxxxxxx
+                            </p> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,293 @@
+<div class="employment-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard>
+      <h3>Employment Details</h3> -->
+
+    <div class="row p-0">
+      <div class="col-md-2 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/customer-details-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <form [formGroup]="employmentForm" autocomplete="off" (ngSubmit)=" onSubmit()">
+          <div class="employment-details-info">
+            <div class="main-step-wizard">
+              <app-step-wizard></app-step-wizard>
+            </div>
+            <mat-card class="employment-details-card">
+              <mat-card-content class="employment-details-card-content">
+                <h4>Employment Details</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Employer Type*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Employer Type" formControlName="type">
+
+                          <mat-option *ngFor="let obj of employerTypeLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+
+                        </mat-select>
+                        <mat-error *ngIf="employmentForm.get('type').hasError('required')">Employer Type shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Name of Employer*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="name" placeholder="Enter Name of Employer" maxlength="75" [matAutocomplete]="autoDetailTwo"
+                          #detailPartnerVal (focusout)='employerNameError(detailPartnerVal.value)' (input)="nameOfEmployee($event.target.value)"
+                        />
+                        <mat-autocomplete (opened)="autocompleteScroll()" #autoDetailTwo="matAutocomplete" (optionSelected)='detailsOFEmployer($event.option.value)'>
+                          <mat-option class="overflow-text" *ngFor="let option of filteredOptionsForEmployer | async" [value]="option.value">
+                            {{option.value}}
+                          </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="employmentForm.get('name').hasError('required')">
+                          Name of the Employer shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Work Address Line 1*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="workAddress1" placeholder="Enter Work Address Line 1" maxlength="60">
+                        <mat-error *ngIf="employmentForm.get('workAddress1').hasError('required')">Work Address Line 1 shouldn't be empty</mat-error>
+                        <mat-error *ngIf="employmentForm.get('workAddress1').hasError('pattern')">Work Address Line 1 is Invalid
+                        </mat-error>
+                        <mat-error *ngIf="employmentForm.get('workAddress1').hasError('minlength') && !employmentForm.get('workAddress1').hasError('pattern')">
+                          Minimum 5 characters are required and special characters like .'\-/ are allowed</mat-error>
+                        <mat-error *ngIf="employmentForm.get('workAddress1').hasError('maxlength') && !employmentForm.get('workAddress1').hasError('pattern')">
+                          Work Address Line 1 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Work Address Line 2*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="workAddress2" placeholder="Enter Work Address Line 2" maxlength="60" />
+                        <mat-error *ngIf="employmentForm.get('workAddress2').hasError('required')">Work Address Line 2 shouldn't be empty</mat-error>
+                        <mat-error *ngIf="employmentForm.get('workAddress2').hasError('pattern')">Work Address Line 2 is Invalid
+                        </mat-error>
+                        <mat-error *ngIf="employmentForm.get('workAddress2').hasError('minlength') && !employmentForm.get('workAddress2').hasError('pattern')">
+                          Minimum 5 characters are required and special characters like .'\-/ are allowed</mat-error>
+                        <mat-error *ngIf="employmentForm.get('workAddress2').hasError('maxlength') && !employmentForm.get('workAddress2').hasError('pattern')">
+                          Work Address Line 2 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Pincode*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="pincode" maxlength="6" aria-label="Number" placeholder="Enter Pincode" appOnlyNumbers (focusout)="getPincodeDetails($event.target.value)"
+                        />
+                        <mat-error *ngIf="employmentForm.get('pincode').hasError('required')">Pincode shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-error *ngIf="pincodeErr === false && !employmentForm.get('pincode').hasError('required')">
+                        You have entered Invalid Pincode</mat-error>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">City*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select City" formControlName="city" [disabled]="!disableAction">
+                          <mat-option *ngFor="let obj of cityLkp" value={{obj.key}}> {{ obj.value }} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="employmentForm.get('city').hasError('required')">
+                          City shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">State*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select State" formControlName="state" [disabled]="!disableAction">
+                          <mat-option *ngFor="let obj of stateLkp" value={{obj.key}}> {{ obj.value }} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="employmentForm.get('state').hasError('required')">
+                          State shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Official Email Id</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="ofcEmailId" placeholder="Enter Official Email Id" (focusout)='emailApi()' (keyup)="verifyMail($event.valid)"
+                        />
+                        <button mat-icon-button class="tooltip-btn" type='button' matTooltip="A Verification link will be sent to your Official Emai Id, to help us verify your employemnt details.">
+                          <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                        </button>
+                        <mat-error *ngIf="employmentForm.get('ofcEmailId').hasError('required')">Official Email Id shouldn't be empty
+
+                        </mat-error>
+                        <mat-error *ngIf="employmentForm.get('ofcEmailId').hasError('pattern')">Please enter official Email Id
+                        </mat-error>
+                      </mat-form-field>
+
+                      <!-- <span
+                        *ngIf="isValid == true && ((!employmentForm.get('ofcEmailId').touched)) || (!employmentForm.get('ofcEmailId').hasError('required') && !employmentForm.get('ofcEmailId').hasError('pattern'))"
+                        class="input-text">A verification link will be sent to your official email id, to help us verify
+                        your employment details</span> -->
+
+                      <div *ngIf="isValid == false" class="hide">
+                        <span class="input-text">A verification link will be sent to your official email id, to help us verify your employment details</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Employment Status*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Employment Status" formControlName="status">
+                          <mat-option *ngFor="let obj of employmentStatusLkp" value={{obj.key}}> {{obj.value}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="employmentForm.get('status').hasError('required')">Employment Status shouldn't be empty</mat-error>
+                      </mat-form-field>
+                      <!-- <mat-error *ngIf='employementStatusInvalid'>You have selected contractual, You are not eligible for digital personal loan</mat-error> -->
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Net Monthly Income*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="netSalery" placeholder="Enter Net Monthly Income" [value]="employmentForm.get('netSalery').value | indianCurrency"
+                          (keypress)="allowNumbersOnly($event)" maxlength="26" />
+                        <button mat-icon-button class="tooltip-btn" type='button' matTooltip='Net Monthly Income (NMI) or the "take-home pay" is the monthly 
+                            amount credited to your bank account'>
+                          <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                        </button>
+                        <mat-error *ngIf="employmentForm.get('netSalery').hasError('required')">Net Monthly Income shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="employmentForm.get('netSalery').hasError('pattern')">Net Monthly Income is invalid
+                        </mat-error>
+                        <mat-error *ngIf="employmentForm.get('netSalery').hasError('minlength') && !employmentForm.get('netSalery').hasError('pattern')">
+                          Net Monthly Income is invalid</mat-error>
+                        <span matPrefix>₹</span>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Monthly EMI Obligation*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="obligation" placeholder="Enter Monthly EMI Obligation" [value]="employmentForm.get('obligation').value | indianCurrency"
+                          (input)="salary()" (keypress)="allowNumbersOnly($event)" maxlength="12" />
+                        <button mat-icon-button class="tooltip-btn" type='button' matTooltip='Monthly EMI (Equated Monthly Installment) is the sum of all monthly payments made by you towards existing loans.'>
+                          <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                        </button>
+                        <mat-error *ngIf="employmentForm.get('obligation').hasError('required')">Monthly EMI Obligation shouldn't be empty</mat-error>
+                        <mat-error *ngIf="employmentForm.get('obligation').hasError('pattern')">Monthly EMI Obligation is invalid
+                        </mat-error>
+                        <mat-error *ngIf="employmentForm.get('obligation').hasError('minlength') && !employmentForm.get('obligation').hasError('pattern')">
+                          Monthly EMI Obligation is invalid</mat-error>
+                        <span matPrefix>₹</span>
+                        <!-- <img src="assets/images/info.svg" alt="" (mouseover)="changeText = true"
+                          (mouseout)="changeText = false"> -->
+                      </mat-form-field>
+                      <!-- <mat-error class="monthly-text" *ngIf="error == true && !employmentForm.get('obligation').hasError('required') && !employmentForm.get('obligation').hasError('pattern')">
+                        Monthly EMI Obligation should be less than Net Monthly Income</mat-error> -->
+                      <mat-error class="monthly-text" *ngIf="validEmi === true && !employmentForm.get('obligation').hasError('required') && !employmentForm.get('obligation').hasError('pattern')">
+                        Monthly EMI Obligation is invalid</mat-error>
+                      <!-- <div class="credit-life-insurance" *ngIf="changeText">
+                        <p>
+                          " A personal loan is a financial commitment. In case the of unfortunate events such as job
+                          loss, accidental death or temporirly
+                          disability, a loan protection insurance plan payoff your outstanding loan. Your family will
+                          not
+                          be burdened with a sudden financial obligation to repay the loan."
+                        </p>
+                      </div> -->
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Retirement Age*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Retirement Age" />
+                      </mat-form-field>
+                    </div>
+                  </div> -->
+                </div>
+                <form [formGroup]="TermsAndConditionsForm" autocomplete="off">
+                  <div class="check-box-field employment-check">
+                    <mat-checkbox (change)="onCheck($event)" formControlName="checkBoxOne">I hereby declare that:
+                    </mat-checkbox>
+                    <ul type="disc">
+                      <li>I am not a director or specified near relation of a director of a banking company.</li>
+                      <li>I am not a specified near relation of any senior officer of the Bank of Baroda (individual),</li>
+                      <li>I am / was not interested as Proprietor / partner/ Director in any firm/ company whose name is listed
+                        in caution list of RBI/ ECGC.</li>
+                      <li>I am not defaulter in Bank loan.
+                      </li>
+                      <li>There is no litigation against me or my firm / company in which I am the proprietor / a partner/ a
+                        Director
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="check-box-field">
+                    <mat-checkbox (change)="onCheck($event)" formControlName="checkBoxTwo">I undertake to bear processing, service, documentation charges etc. stipulated by the bank from time
+                      to time.</mat-checkbox>
+                  </div>
+
+                  <div class="check-box-field">
+                    <mat-checkbox (change)="onCheck($event)" formControlName="checkBoxThree">I agree, note and understand that Bank of Baroda shall be entitled at its sole discretion to call back,
+                      the entire loan/advance whether due and payable or not at any time without assigning any reason and
+                      enforce its rights, remedies and securities.</mat-checkbox>
+                  </div>
+
+                  <div class="check-box-field">
+                    <mat-checkbox (change)="onCheck($event)" formControlName="checkBoxFour">I accept
+                      <a routerLink="/bureau-tnc" target="_blank">Terms & Conditions</a> for Bureau Check
+                    </mat-checkbox>
+                  </div>
+
+                  <div class="radio-field">
+                    <mat-radio-group aria-label="Select an option" formControlName="PepsOptions" class="existing-loan-text">
+                      <p>Are you Politically Exposed Person (PEPs)</p>
+                      <button mat-icon-button class="tooltip-btn" type='button' matTooltip="Politically Exposed Persons (PEPs) are individuals who are or have beenentrusted with
+                        prominent public functions in a foreign country, e.g., Heads of States/Governments, senior politicians, senior government/
+                        judicial/military officers, senior executives of state-owned corporations, important political party officials, etc.">
+                        <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                      </button>
+                      <div class="radio-select">
+                        <div class="check-box-field same-check">
+                          <mat-radio-button value="yes" class="add-text">Yes</mat-radio-button>
+                        </div>
+                        <div class="check-box-field same-check">
+                          <mat-radio-button value="no" class="add-text">No</mat-radio-button>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                  <mat-error *ngIf="validCheckBox === false">Please accept all the above conditions</mat-error>
+                </form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div class="employment-details-btns">
+            <button mat-button class="secondary-button" (click)="goBack()" type="button">Back</button>
+            <button mat-button class="primary-button" type="submit">Proceed</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,251 @@
+.disbursal-details-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+  //   .sidebar-images {
+  //     .vector-img1 {
+  //   @media (max-width: 575px){
+  //     width: 100px;
+  //   }
+  // }
+  //   }
+
+  .disbursal-details-info {
+    padding: 0 0 36px;
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      margin-top: 0;
+      padding: 0 0 36px 0;
+    }
+
+    .greetings-text {
+      padding-bottom: 40px;
+
+      @media (max-width: 767px) {
+        padding-bottom: 0;
+      }
+
+
+      h3 {
+        color: #000000;
+        font-size: 20px;
+        font-family: 'HelveticaNeue';
+        margin: 0;
+        font-weight: 600;
+        text-align: center;
+        padding-bottom: 10px;
+      }
+
+      p {
+        color: #565656;
+        font-size: 15px;
+        font-family: 'HelveticaNeue';
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        margin-bottom: 6px;
+
+        @media (min-width: 1920px) {
+          font-size: 23px !important;
+        }
+
+        @media (min-width: 1536px) {
+          font-size: 21px;
+        }
+
+        @media (max-width: 767px) {
+          font-size: 12px;
+        }
+      }
+
+      .toggle {
+        margin-left: 20px;
+      }
+
+      .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+        background-color: #fadbd3 !important;
+      }
+
+      .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+        //   color:#df5435 !important;
+        background-color: #ff5900 !important;
+      }
+    }
+
+    .disbursal-details-card {
+      padding: 0 36px;
+      margin-bottom: 36px;
+      box-shadow: none;
+
+      @media (max-width: 1200px) {
+        padding: 36px 100px;
+      }
+
+      @media (max-width: 1023px) {
+        padding: 36px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 12px;
+      }
+
+      .disbursal-details-card-content {
+        h6 {
+          color: #162c75;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 36px;
+          font-family: 'HelveticaNeue';
+
+          @media (min-width: 1920px) {
+            font-size: 20px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 17px;
+          }
+
+          @media (max-width: 767px) {
+            margin-top: 24px;
+            font-size: 12px;
+          }
+        }
+
+        span {
+          color: #ff5900;
+          font-weight: 500;
+          font-size: 30px;
+          font-family: 'HelveticaNeue';
+
+          @media (min-width: 1920px) {
+            font-size: 44px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 36px;
+          }
+
+          @media (max-width: 1023px) {
+            margin-top: 24px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 16px;
+          }
+        }
+
+        .fee-content {
+          // margin-top: 36px;
+          padding: 0 30px;
+
+          @media (max-width: 1023px) {
+            padding: 0px;
+          }
+
+          &.text-center {
+            text-align: center;
+
+            @media (max-width: 767px) {
+              text-align: left !important;
+            }
+          }
+        }
+      }
+    }
+
+    .disbursal-details-btns {
+      text-align: center;
+      margin: 72px 0 50px 0;
+
+      @media (max-width: 767px) {
+        margin: 45px 0 0;
+      }
+
+      button {
+        margin-bottom: 20px;
+      }
+
+      a {
+        color: #565656;
+        font-size: 16px;
+        display: block;
+        font-family: 'HelveticaNeue';
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+//dialog CSS
+.disbursal-dialogue {
+  padding: 48px 96px;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    padding: 16px 0 24px 0;
+  }
+
+  .disbursal-dialogue-heading {
+
+    // h3 {
+    //   color: #ff5900;
+    //   font-size: 34px;
+    //   font-family: 'HelveticaNeue';
+    //   margin: 0;
+    //   font-weight: 500;
+    //   text-align: center;
+    //   padding-bottom: 10px;
+    // }
+    h2 {
+      @media (max-width: 767px) {
+        font-size: 19px;
+        text-align: center;
+      }
+    }
+  }
+
+  .disbursal-dialogue-body {
+    padding: 14px 0 16px 0;
+
+    p {
+      color: #565656;
+      font-size: 16px;
+      font-family: 'HelveticaNeue';
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      margin-bottom: 6px;
+      text-align: center;
+
+      @media (max-width: 767px) {
+        font-size: 13px;
+        text-align: center;
+      }
+
+      strong {
+        display: block;
+        color: #162c75;
+        font-size: 18px;
+
+        @media (max-width: 767px) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .next-btns {
+    text-align: center;
+    justify-content: center;
+    margin-top: 24px;
+
+    @media (max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+
+    .primary-button {
+      @media (max-width: 767px) {
+        margin-right: 0px !important;
+        margin-bottom: 24px !important;
+      }
+    }
+  }
+}

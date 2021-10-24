@@ -1,0 +1,231 @@
+.employment-details-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  .employment-details-info {
+    margin-top: 136px;
+    // margin-bottom: 36px;
+
+    .employment-details-card {
+      padding: 24px 48px 10px;
+      // box-shadow: 0 0 8px 0 rgba(178, 178, 178, 0.4);
+      box-shadow: none;
+
+      @media(max-width: 1280px) {
+        padding: 24px;
+      }
+
+      @media(max-width: 1023px) {
+        padding: 24px;
+      }
+
+      @media(max-width: 767px) {
+        padding: 24px 10px;
+        margin: 0;
+      }
+
+      .employment-details-card-content {
+        h4 {
+          color: #162C75;
+          font-size: 18px;
+          font-weight: 500;
+          // padding-left: 14px;
+          padding-bottom: 12px;
+          font-family: 'HelveticaNeue';
+
+          @media (min-width: 1920px) {
+            font-size: 23px;
+          }
+        }
+
+        .branch-field {
+          margin-top: 36px;
+        }
+
+        .info-field {
+          min-height: 120px;
+          position: relative;
+
+          .credit-life-insurance {
+            margin-top: 5px;
+            position: absolute;
+            top: 92px;
+
+            p {
+              color: #565656;
+              font-size: 12px;
+              font-weight: 500;
+
+              @media(max-width: 767px) {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+
+        .check-box-field {
+          margin-top: 0px;
+
+          @media (max-width: 1280px) {
+            margin-top: 24px;
+          }
+
+          @media (max-width: 767px) {
+            margin-top: 0;
+          }
+
+          li {
+            color: #565656;
+            font-size: 13px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            margin-left: 4px;
+            font-family: 'HelveticaNeue';
+          }
+        }
+
+        .existing-loan-text {
+          display: flex;
+          // justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+          margin-top: 16px;
+
+          @media only screen and (max-width: 2560px) and (min-width: 1440px) {
+            justify-content: left;
+          }
+
+          @media (max-width: 767px) {
+            flex-wrap: wrap;
+          }
+
+          .same-check {
+            @media only screen and (max-width: 2560px) and (min-width: 1440px) {
+              margin-left: 70px;
+            }
+
+            @media (max-width: 1280px) {
+              margin-right: 10px;
+            }
+          }
+
+          p {
+            color: #000000;
+            font-size: 13px;
+            font-weight: 400;
+            margin: 0px 0 0 0;
+            font-family: 'HelveticaNeue';
+
+            @media (min-width: 1920px) {
+              font-size: 20px;
+            }
+
+            @media (max-width: 767px) {
+              font-size: 14px;
+            }
+          }
+
+          .tooltip-btn {
+            height: 14px !important;
+            margin-bottom: 30px;
+          
+            &:focus {
+              border: none;
+              outline: none;
+            }
+          }
+          
+          .tooltip-img {
+            top: -6px !important;
+            width: 28px;
+          }
+
+          .radio-select {
+            display: flex;
+            margin-left: 36px;
+
+            .check-box-field {
+              margin-top: 8px;
+
+              .mat-radio-button {
+                .mat-radio-label {
+                  .mat-radio-label-content {
+                    font-size: 14px;
+                    font-weight: 500;
+                    margin-right: 24px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .hide {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .employment-details-btns {
+    text-align: center;
+    margin: 24px 0 48px 0;
+
+    @media (max-width: 767px) {
+      margin: 40px 0;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+    }
+
+    .primary-button {
+      @media (max-width: 767px) {
+        margin: 0 auto;
+      }
+    }
+
+    .secondary-button {
+      @media (max-width: 767px) {
+        margin: 20px auto !important;
+      }
+    }
+  }
+}
+
+
+.tooltip-btn {
+  height: 14px !important;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.tooltip-img {
+  top: -6px !important;
+}
+
+
+//email-popup
+
+.email-popup {
+  text-align: center;
+  padding: 24px 36px;
+
+  p {
+    color: #565656;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .close-btns {
+    justify-content: center;
+    margin: 24px 0 0 0;
+
+    button {
+      min-width: 108px !important;
+    }
+  }
+}

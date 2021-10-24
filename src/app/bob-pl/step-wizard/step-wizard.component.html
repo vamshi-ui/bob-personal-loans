@@ -1,0 +1,95 @@
+<div class="step-wizard">
+  <div class="step-wizard-wrapper">
+    <div class="steps">
+      <div class="step1" *ngIf="loan"></div>
+      <div class="step" *ngIf="customer"></div>
+      <div class="step13" *ngIf="error"></div>
+      <div class="step2" *ngIf="offerForYou"></div>
+      <div class="step14" *ngIf="aip"></div>
+      <div class="step3" *ngIf="upload"></div>
+      <div class="step4" *ngIf="gst"></div>
+      <div class="step5" *ngIf="basic"></div>
+      <div class="step6" *ngIf="legal"></div>
+      <div class="step7" *ngIf="image"></div>
+      <div class="step8" *ngIf="e"></div>
+      <div class="step9" *ngIf="setup"></div>
+      <!-- <div class="step10" *ngIf="thankYou" ></div> -->
+      <div class="step11" *ngIf="thankYouOne"></div>
+      <div class="step12" *ngIf="disbursal"></div>
+    </div>
+
+
+    <div class="step-wizard-content">
+      <div *ngIf='loan' class="step-active">
+        <button class="active-button user-btn" [disabled]="true"></button>
+        <p class="step-wizard-details">Input Your Details</p>
+      </div>
+
+      <div *ngIf='!customer && !loan && !error' class="step-wizard-value step-completed ">
+        <p class="details">Input Your Details</p>
+      </div>
+
+      <div *ngIf='customer || error' class="step-active  ">
+        <mat-icon class="button-completed user-btn">done</mat-icon>
+        <p class="active-details">Input Your Details</p>
+      </div>
+
+
+
+
+      <div *ngIf='offerForYou || aip' class="step-active">
+        <mat-icon class="button-completed user-btn">done</mat-icon>
+        <p class="step-wizard-details">Best Offer for You</p>
+      </div>
+
+      <div *ngIf='customer || loan' class="step-wizard-value step-disabled">
+        <button class="disable-button user-btn" [disabled]="true"></button>
+        <p class="disabled-details">Best Offer for You</p>
+      </div>
+
+      <div *ngIf='disbursal || upload || gst || basic || legal || setup || image || e || thankYouOne || thankYou && !offerForYou && !aip && !loan && !customer'
+        class="step-completed">
+        <p class="details">Best Offer for You</p>
+      </div>
+
+
+
+      <div *ngIf='!aip && !disbursal && !payment && !offerForYou && !loan && !customer && !thankYou && !thankYouOne && !setup'
+        class="step-active">
+        <button class="active-button user-btn" [disabled]="true"></button>
+        <p class="step-wizard-details">Complete Application</p>
+      </div>
+
+      <div *ngIf='!disbursal && !gst && !basic && !upload && !legal && !e && !image && !setup && !thankYou && !thankYouOne' class="step-wizard-value step-disabled">
+        <button class="disable-button user-btn" [disabled]="true"></button>
+        <p class="disabled-details">Complete Application</p>
+      </div>
+
+      <div *ngIf='disbursal || setup' class="step-active">
+        <mat-icon class="button-completed user-btn">done</mat-icon>
+        <p class="step-wizard-details">Complete Application</p>
+      </div>
+
+      <div *ngIf='thankYou || thankYouOne' class="step-completed">
+        <p class="details">Complete Application</p>
+      </div>
+
+
+
+      <div *ngIf='thankYou' class="step-active">
+        <button class="active-button user-btn" [disabled]="true"></button>
+        <p class="step-wizard-details">Money in Account</p>
+      </div>
+
+      <div *ngIf='!thankYou && !thankYouOne' class="step-wizard-value step-disabled">
+        <button class="disable-button user-btn" [disabled]="true"></button>
+        <p class="disabled-details">Money in Account</p>
+      </div>
+
+      <div *ngIf='thankYouOne' class="step-active">
+        <mat-icon class="button-completed user-btn">done</mat-icon>
+        <p class="step-wizard-details"> Money in Account</p>
+      </div>
+    </div>
+  </div>
+</div>

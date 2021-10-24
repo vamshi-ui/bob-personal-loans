@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="117px" height="117px" viewBox="0 0 117 117" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>clock</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 0.349020 0 0 0 0 0.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g filter="url(#filter-1)" id="clock">
+            <g>
+                <path d="M58.5,0 C26.243669,0 0,26.243669 0,58.5 C0,90.756331 26.243669,117 58.5,117 C90.756331,117 117,90.756331 117,58.5 C117,26.243669 90.756331,0 58.5,0 Z M58.5,109.687467 C30.2747206,109.687467 7.31253299,86.7252794 7.31253299,58.5 C7.31253299,30.2747206 30.2747206,7.31253299 58.5,7.31253299 C86.7252794,7.31253299 109.687467,30.2747206 109.687467,58.5 C109.687467,86.7252794 86.7252794,109.687467 58.5,109.687467 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+                <polygon id="Path" fill="#000000" fill-rule="nonzero" transform="translate(57.000000, 46.500000) scale(-1, 1) rotate(-90.000000) translate(-57.000000, -46.500000) " points="77 17.6939148 71.2523388 12 37 50.6393715 59.7440636 81 66.368568 76.0721652 47.2497189 50.6393715"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

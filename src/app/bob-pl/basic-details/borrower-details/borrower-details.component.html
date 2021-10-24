@@ -1,0 +1,262 @@
+<div class="borrower-details-page">
+  <form [formGroup]="borrowerForm" autocomplete="off" (ngSubmit)="submit()">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 p-0">
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval home-oval1">
+            <img src="assets/images/landing-page-img.png" class="home-img" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-oval">
+          </div>
+
+          <div class="heading-content">
+            <h1>Digital Personal Loans</h1>
+            <p>Get money in your account within minutes.</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <mat-card class="borrower-details-card">
+            <mat-card-content class="borrower-details-card-content">
+              <h2>Please fill in basic details </h2>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="select-field">
+                    <mat-label class="select-label">Account holder of Bank of Baroda*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <mat-select placeholder="Select Account holder of Bank of Baroda"
+                        (selectionChange)="showSelectValue($event)" formControlName="accountHolder">
+                        <mat-option *ngFor="let obj of borrowerAccountResponse" value={{obj.value}}> {{obj.value}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="borrowerForm.get('accountHolder').hasError('required') && borrowerForm.get('accountHolder').touched">
+                        Account holder of Bank of Baroda shouldn't be empty</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="select-field">
+                    <mat-label class="select-label">Select Value*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <mat-select placeholder="Select Value" (selectionChange)="selectType($event)"
+                        formControlName="selectvalue">
+                        <mat-option *ngFor="let obj of borrowerSelectResponse" value={{obj.value}}> {{obj.value}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="borrowerForm.get('selectvalue').hasError('required') && borrowerForm.get('selectvalue').touched">
+                        Select Value shouldn't be empty
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-field" *ngIf="AadharNumber">
+                    <mat-label class="input-label">Aadhaar/VID Number*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Enter Aadhaar/VID Number" formControlName="aadharNumber"
+                        mask='0000-0000-0000-0000||0000-0000-0000' (input)="alignAadhar()"
+                        (focusout)="aadhaarValue($event.target.value)" appOnlyNumbers autocomplete="off" />
+                      <mat-error
+                        *ngIf="borrowerForm.get('aadharNumber').hasError('required') && borrowerForm.get('aadharNumber').touched">
+                        Aadhaar/VID Number shouldn't be empty</mat-error>
+                      <mat-error *ngIf="borrowerForm.get('aadharNumber').hasError('minlength')">
+                        Please enter valid 12 digits Aadhaar Number or 16 digits VID Number</mat-error>
+                    </mat-form-field>
+                    <mat-error *ngIf="validAadharLength === true && !borrowerForm.get('aadharNumber').hasError('required')
+                      && !borrowerForm.get('aadharNumber').hasError('minlength')">
+                      Please enter valid 12 digits Aadhaar Number or 16 digits VID Number</mat-error>
+                    <mat-error
+                      *ngIf="invalidAadhaar === false
+                      && !borrowerForm.get('aadharNumber').hasError('minlength') && !validAadharLength && !borrowerForm.get('aadharNumber').hasError('required')">
+                      Please enter valid 12 digits Aadhaar Number or 16 digits VID Number</mat-error>
+                  </div>
+
+                  <div class="input-field" *ngIf="AccountNumber">
+                    <mat-label class="input-label">Account Number*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Enter Account Number" formControlName="accountNumber"
+                        mask='0000 0000 0000 00' (input)="validAccount($event.target.value)"
+                        (focusout)="accountValue($event.target.value)" maxlength="17" />
+                      <mat-error
+                        *ngIf="borrowerForm.get('accountNumber').hasError('required') && borrowerForm.get('accountNumber').touched ">
+                        Account Number shouldn't be empty
+                      </mat-error>
+                      <mat-error *ngIf="borrowerForm.get('accountNumber').hasError('pattern')">Account Number is invalid
+                      </mat-error>
+                      <mat-error
+                        *ngIf="borrowerForm.get('accountNumber').hasError('minlength') && !borrowerForm.get('accountNumber').hasError('pattern')">
+                        Please enter valid 14 digits Account Number</mat-error>
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="invalidAccNum=== false && !borrowerForm.get('accountNumber').hasError('minlength') && !borrowerForm.get('accountNumber').hasError('pattern')">
+                      Please enter valid 14 digits Account Number</mat-error>
+                  </div>
+
+                  <div class="input-field" *ngIf="PanNumber">
+                    <mat-label class="input-label">PAN Number*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Enter PAN Number" #pan class="textuppercase"
+                        formControlName="panNumber"
+                        (input)="pan.value = pan.value.toUpperCase(); panValid($event.target.value)"
+                        (focusout)="panApiIntegrataion($event.target.value)" appAlphaNumeric maxlength="10" />
+                      <span *ngIf="verifyPan == false" class="verify-pan">
+                        <mat-icon class="pan-icon">check_circle</mat-icon>
+                      </span>
+                      <mat-error
+                        *ngIf="borrowerForm.get('panNumber').hasError('required') && borrowerForm.get('panNumber').touched ">
+                        PAN Number shouldn't be empty
+                      </mat-error>
+                      <mat-error *ngIf="borrowerForm.get('panNumber').hasError('pattern')">Please enter valid 10 digits
+                        PAN Number
+                      </mat-error>
+                      <mat-error
+                        *ngIf="borrowerForm.get('panNumber').hasError('maxlength') && !borrowerForm.get('panNumber').hasError('pattern')">
+                        Please enter valid 10 digits PAN Number
+                      </mat-error>
+                      <mat-error
+                        *ngIf="borrowerForm.get('panNumber').hasError('minlength') && !borrowerForm.get('panNumber').hasError('pattern')">
+                        Please enter valid 10 digits PAN Number</mat-error>
+                      <mat-error *ngIf="borrowerForm.get('panNumber').hasError('panName') &&
+                           !borrowerForm
+                            .get('panNumber')
+                            .hasError('minlength') &&  !borrowerForm
+                            .get('panNumber')
+                            .hasError('maxlength') &&  !borrowerForm
+                            .get('panNumber')
+                            .hasError('pattern') &&  !borrowerForm
+                            .get('panNumber')
+                            .hasError('required')
+                        ">
+                        Please enter valid 10 digits PAN number</mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="input-field" *ngIf="CustIdNumber">
+                    <mat-label class="input-label">Customer ID*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <!-- cust.value = cust.value.toUpperCase(); => custId uppercase removed temporary -->
+                      <input matInput placeholder="Enter Customer ID" #cust formControlName="custId"
+                        (input)="validCustId($event.target.value)" (focusout)="custValue($event.target.value)"
+                        maxlength="10" appAlphaNumeric />
+                      <mat-error
+                        *ngIf="borrowerForm.get('custId').hasError('required') && borrowerForm.get('custId').touched">
+                        Customer ID shouldn't be empty
+                      </mat-error>
+                      <mat-error *ngIf="borrowerForm.get('custId').hasError('maxlength')">
+                        Customer ID is invalid</mat-error>
+                      <mat-error *ngIf="borrowerForm.get('custId').hasError('minlength') && !validcustIdLength">
+                        Customer ID is invalid</mat-error>
+                    </mat-form-field>
+                    <mat-error *ngIf="validcustIdLength === true && !borrowerForm.get('custId').hasError('required')
+                    && borrowerForm.get('custId').touched">
+                      Customer ID is invalid
+                    </mat-error>
+                    <mat-error *ngIf="invalidCustId === false && !validcustIdLength && !borrowerForm.get('custId').hasError('required')
+                    && borrowerForm.get('custId').touched">
+                      Customer ID is invalid
+                    </mat-error>
+                  </div>
+                </div>
+
+                <div class="col-md-6" *ngIf="CustomerIds">
+                  <div class="select-field select-height" >
+                    <mat-label class="select-label">Select Customer ID*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <mat-select placeholder="Select Customer ID" (selectionChange)="selectCustId($event.value)"
+                        formControlName="customerIds">
+                        <mat-option *ngFor="let id of custIds" value={{id.custId}}> {{id.custId}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="borrowerForm.get('customerIds').hasError('required') && borrowerForm.get('customerIds').touched">
+                        Customer ID shouldn't be empty
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-md-6" *ngIf="enterOtp">
+                  <div class="otp-input-field">
+                    <div class="otp-form">
+                      <div class="otp-form-fields">
+                        <div class="input-field otp-field">
+                          <mat-label class="input-label otp-input-label">Enter OTP*</mat-label>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Enter OTP" [type]="hideOtp ? 'password' : 'text'"
+                              appOnlyNumbers maxlength="6" formControlName="otp"
+                              (input)="otpValidate($event.target.value)" autocomplete="off" />
+                            <mat-icon matSuffix (click)="hideOtp = !hideOtp" class="eye-icon">
+                              {{ hideOtp ? 'visibility_off' : 'visibility'}}
+                            </mat-icon>
+                          </mat-form-field>
+                          <mat-error
+                            *ngIf="borrowerForm.get('otp').hasError('required') && borrowerForm.get('otp').touched">
+                            Please enter 6 digit OTP</mat-error>
+                        </div>
+                      </div>
+                      <mat-error *ngIf="invalidOtp && !borrowerForm.get('otp').hasError('required')">
+                        The OTP entered is incorrect. Please enter correct OTP or try regenerating the OTP.
+                      </mat-error>
+                      <div class="resend-otp-btn">
+                        <div *ngIf="counter != 0" class="timer">
+                          {{ counter | timer }}
+                        </div>
+                        <button (click)="Resend($event)" mat-button class="resend-btn" type="button"
+                          *ngIf="counter == 0">
+                          Resend OTP
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="borrower-details-checkbox">
+                <div class="check-box-field error-check">
+                  <mat-checkbox formControlName="checkBox" (change)="onCheck($event)">I agree to
+                    <a routerLink='/privacy-policy' target="_blank">Privacy Policy</a>,
+                    <a routerLink='/terms-and-conditions' target="_blank">Terms & Conditions</a> and
+                    <a routerLink='/disclaimer' target="_blank">Disclaimers</a>
+                  </mat-checkbox>
+                  <mat-error *ngIf="validCheckBox === false">Please accept Privacy Policy, Terms & Conditions and
+                    Disclaimers</mat-error>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions class="borrower-details-btns">
+              <button mat-button class="primary-button" type="submit">
+                Submit OTP
+              </button>
+            </mat-card-actions>
+
+            <div class="no-aadhar">
+              <a routerLink='/revisit-loan-journey'>I do not have an Aadhaar/VID Number</a>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #myDialog>
+  <div class="email-popup">
+    <p>
+      Dear applicant, please enter one of the two types - Current/ Savings account number associated with your
+      business.
+      In case you do not have a current/ savings account with Bank of Baroda, kindly apply as a New to Bank customer
+      in
+      the previous
+      screen. If you already have a loan/ facility with Bank of Baroda, contact your branch with the loan request as
+      this application cannot be processed online.
+    </p>
+    <div class="close-btns">
+      <button mat-button class="primary-button" matDialogClose>ok</button>
+    </div>
+  </div>
+</ng-template>

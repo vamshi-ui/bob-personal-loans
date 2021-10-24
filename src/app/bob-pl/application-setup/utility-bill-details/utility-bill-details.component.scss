@@ -1,0 +1,50 @@
+.utility-bill-details-page {
+  .utility-bill-data {
+    margin-top: 136px;
+    @media (max-width: 767px) {
+      margin-top: 0;
+    }
+   
+    .utility-bill-details-card {
+      box-shadow: none;
+      padding: 0 24px 0 0;
+      @media (max-width: 767px) {
+        padding: 36px 12px;
+      }
+
+      h4 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #162c75;
+        margin-bottom: 24px;
+        font-family: 'HelveticaNeue';
+        @media (max-width: 767px) {
+          font-size: 13px;
+        }
+        
+      }
+    }
+
+    .utility-bill-buttons {
+      text-align: center;
+      margin: 72px 0;
+      @media (max-width: 767px) {
+        margin: 40px 0;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+      }
+      .primary-button {
+        @media (max-width: 767px) {
+          margin: 0 auto;
+        }
+      }
+  
+      .secondary-button {
+        @media (max-width: 767px) {
+          margin: 20px auto !important;
+        }
+      }
+    }
+  }
+}

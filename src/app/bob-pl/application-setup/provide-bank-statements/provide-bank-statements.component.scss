@@ -1,0 +1,209 @@
+.provide-bank-statement {
+  .provide-statement-data {
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      margin-top: 0;
+    }
+
+    h3 {
+      color: #565656;
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 36px;
+
+      @media (min-width: 1920px) {
+        font-size: 22px !important;
+      }
+
+      @media (min-width: 1536px) {
+        font-size: 20px;
+      }
+
+      @media (max-width: 767px) {
+        text-align: justify;
+        font-size: 12px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .provide-statement-card {
+      padding: 20px 90px 30px 10px;
+      text-align: justify;
+      box-shadow: none;
+      margin-bottom: 50px;
+
+      @media (max-width: 1023px) {
+        padding: 80px 20px 30px;
+      }
+
+      @media (max-width: 767px) {
+        text-align: center;
+        padding: 0 12px;
+      }
+
+      .provide-statement-buttons {
+        // margin: 30px 0;
+        // display: flex;
+        text-align: center;
+        justify-content: center;
+        // padding: 0 118px;
+
+        @media (max-width: 767px) {
+          flex-direction: column;
+        }
+
+        .login-bank {
+          margin: 5px;
+        }
+
+        .login-icon {
+          text-align: center;
+
+          @media (max-width: 767px) {
+            padding-top: 10px;
+          }
+
+          img {
+            padding: 12px 14px 12px 18px;
+            border: 2px solid#ff5900;
+            border-radius: 5px;
+
+            &:hover {
+              border: 2px solid #ff5900;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .upload-icon {
+          text-align: center;
+
+          img {
+            padding: 15px;
+            border: 2px solid #ff5900;
+            border-radius: 5px;
+
+            &:hover {
+              border: 2px solid #ff5900;
+              border-radius: 5px;
+
+              &:hover {
+                border: 2px solid #ff5900;
+                cursor: pointer;
+                outline: none;
+              }
+            }
+          }
+
+
+        }
+
+        .or {
+          padding: 10px 0;
+          color: #000000;
+          font-size: 15px;
+          font-weight: 400;
+          margin: 0;
+
+          @media (max-width: 767px) {
+            padding: 10px 0 0;
+            font-size: 12px;
+          }
+
+        }
+
+        a {
+          text-decoration: underline !important;
+          color: #162c75 !important;
+          font-size: 12px;
+          font-weight: 500;
+          font-family: 'HelveticaNeue';
+
+          @media (min-width: 1920px) {
+            font-size: 17px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 15px;
+          }
+
+
+          @media (max-width: 767px) {
+            font-size: 11px;
+          }
+        }
+      }
+
+      p {
+        color: #162c75;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 0 25px;
+
+        @media (min-width: 1920px) {
+          font-size: 17px !important;
+        }
+
+        @media (min-width: 1536px) {
+          font-size: 14px;
+        }
+
+        @media (max-width: 767px) {
+          padding: 0;
+          font-size: 11px;
+          text-align: center;
+        }
+      }
+
+      .footer {
+        color: #565656;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        margin-top: 36px;
+        padding: 0;
+        text-align: justify;
+
+        @media (min-width: 1920px) {
+          font-size: 20px !important;
+          line-height: 22px;
+        }
+
+        @media (min-width: 1536px) {
+          font-size: 17px;
+          line-height: 20px;
+        }
+
+        @media (max-width: 767px) {
+          padding: 0;
+          font-size: 11px;
+
+        }
+      }
+    }
+  }
+}
+
+.overview-table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.customer-details-btns {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.bank-btns {
+  display: flex;
+  justify-content: center;
+}

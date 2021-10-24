@@ -1,0 +1,105 @@
+<div class="provide-bank-statement">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/bank-statements-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9" [formGroup]="perfiosFormGroup">
+        <div class="provide-statement-data">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+
+          <h2 class="provide-heading-statement">Please provide your bank statements</h2>
+          <div *ngIf="accDtls && accDtls.length">
+            <mat-radio-group formControlName="accountType">
+              <table class="overview-table">
+                <thead>
+                  <tr>
+                    <th>Primary Account</th>
+                    <th>Account No.</th>
+                    <th>IFSC Code</th>
+                    <th>Applicant name</th>
+                    <th>Bank Name</th>
+                  </tr>
+                </thead>
+
+                <tbody *ngIf="accDtls && accDtls.length">
+                  <tr *ngFor="let item of accDtls; let i = index">
+                    <td>
+                      <mat-radio-button value="{{item.accountNo}}" (click)="saveAccountdetails(item, i)"
+                        [checked]="item.primaryAcc"></mat-radio-button>
+                    </td>
+                    <td>{{ item.accountNo }}</td>
+                    <td>{{ item.ifscCode }}</td>
+                    <td>{{ item.applicationName }}</td>
+                    <td>{{ item.bankName }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-radio-group>
+          </div>
+          <mat-card class="provide-statement-card">
+            <mat-card-content class="provide-statement-content">
+              <h3>
+                Your bank statement data and any personal data will be completely secure and undisclosed. Rest assured,
+                your passwords or
+                any access details are not stored.
+              </h3>
+              <div class="provide-statement-buttons">
+                <div>
+                  <p class="login-bank">Login to Bank Account</p>
+                  <!-- <button class="provide-button" mat-raised-button >
+                                        <mat-icon>login</mat-icon>
+                                    </button> -->
+                  <div class="login-icon">
+                    <a (click)="loginToBank()">
+                      <img src="assets/images/upload-icon-new.JPG" />
+                    </a>
+                  </div>
+                </div>
+                <!-- <div class="vertical-line"></div> -->
+                <div>
+                  <p class="or">OR</p>
+                </div>
+
+                <div>
+                  <a href="#" routerLink="/application-setup/upload-bank-statements">Upload bank statement</a>
+                </div>
+                <p class="footer">
+                  You will now be redirected to an external portal where you can upload your bank statement or allow
+                  access to your net banking
+                  account through a secure online statement retrieval process run by a third party as part
+                  of verfication process for your Personal Loan request.
+                </p>
+              </div>
+            </mat-card-content>
+
+            <div class="bank-btns">
+              <div class="customer-details-btns">
+                <button mat-button class="secondary-button" (click)="back()">Back</button>
+              </div>
+              <div *ngIf="saveaccDtls.accNo || accDtls" class="customer-details-btns">
+                <button mat-button class="primary-button" type="submit" (click)="proceedNext()">Proceed</button>
+              </div>
+            </div>
+
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<form #bankForm name='autoform' method='post' action='{{ bankFormValues.url }}'>
+  <input type='hidden' name='payload' value='{{ bankFormValues.payload }}'>
+  <input type='hidden' name='signature' value='{{ bankFormValues.signature }}'>
+</form>

@@ -1,0 +1,211 @@
+.provide-itr-statement {
+  .itr-statement {
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      margin-top: 0;
+    }
+
+
+    .provide-statement-heading {
+      color: #565656;
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 400;
+
+      @media (max-width: 767px) {
+        font-size: 17px;
+      }
+    }
+
+    .provide-statement-card {
+      // padding: 10px 220px 10px 60px;
+      padding: 20px 90px 30px 10px;
+      text-align: center;
+      margin-bottom: 50px;
+      box-shadow: none;
+
+      @media (max-width: 1023px) {
+        padding: 80px 20px 30px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 0 12px;
+      }
+
+      .provide-statement-content {
+        h3 {
+          color: #565656;
+          font-weight: 500;
+          font-size: 16px;
+          margin-bottom: 36px;
+          text-align: justify;
+
+          @media (min-width: 1920px) {
+            font-size: 22px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 20px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 12px;
+            text-align: justify;
+            line-height: 1.4;
+          }
+        }
+
+        .provide-statement-buttons {
+          margin: 30px 0;
+
+          // display: flex;
+          // justify-content: center;
+          @media (max-width: 767px) {
+            flex-direction: column;
+          }
+
+          p {
+            color: #162c75 !important;
+            font-size: 12px;
+            font-weight: 500;
+
+            @media (min-width: 1920px) {
+              font-size: 17px !important;
+            }
+
+            @media (min-width: 1536px) {
+              font-size: 14px;
+            }
+
+            @media (max-width: 767px) {
+              font-size: 11px;
+            }
+          }
+
+          // .primary-button {
+          //   @media (max-width: 767px) {
+          //     padding: 4px 12px !important;
+          //   }
+          // }
+
+          .or {
+            padding: 10px 0;
+            color: #000000;
+            font-size: 15px;
+            font-weight: 400;
+            margin: 0;
+
+            @media (max-width: 767px) {
+              padding: 10px 0 0;
+              font-size: 11px;
+            }
+          }
+
+          a {
+            text-decoration: underline !important;
+            color: #162c75 !important;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'HelveticaNeue';
+            cursor: pointer;
+
+            @media (min-width: 1920px) {
+              font-size: 17px !important;
+            }
+
+            @media (min-width: 1536px) {
+              font-size: 15px;
+            }
+
+            @media (max-width: 767px) {
+              font-size: 11px;
+            }
+          }
+
+          .login-icon {
+            text-align: center;
+
+            img {
+              padding: 12px 14px 12px 18px;
+              border: 2px solid#ff5900;
+              border-radius: 5px;
+
+              &:hover {
+                border: 2px solid #ff5900;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .footer {
+          color: #565656;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 18px;
+          margin-top: 36px;
+          padding: 0;
+          text-align: justify;
+
+          @media (min-width: 1920px) {
+            font-size: 20px !important;
+            line-height: 22px;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 17px;
+            line-height: 20px;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 18px;
+            line-height: 22px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//email-popup
+
+.email-popup {
+  text-align: center;
+  padding: 24px 72px 12px 72px;
+
+  p {
+    color: #565656;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .close-btns {
+    justify-content: center;
+    margin: 24px 0 0 0;
+
+    button {
+      min-width: 78px !important;
+    }
+
+    span {
+      padding: 0 16px;
+    }
+  }
+
+  .skip-btn {
+    text-align: center;
+    margin: 16px 0 0 0;
+    justify-content: center;
+
+    button {
+      min-width: 78px !important;
+    }
+  }
+}

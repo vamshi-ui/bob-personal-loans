@@ -1,0 +1,148 @@
+<div class="health-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/auto-debit-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="health-details-info">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+ 
+          <h2>Health Declaration for member</h2>
+          <form [formGroup]="healthForm">
+            <mat-card class="health-details-card">
+              <mat-card-content class="health-card-content">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Height Foot Inch*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Height Foot Inch" formControlName="height" maxlength="6" (keypress)="NumberquoteOnly($event)"/>
+                        <mat-error class="error-text"
+                          *ngIf="healthForm.get('height').hasError('required') && healthForm.get('height').touched">
+                          Height shouldn't be empty
+                        </mat-error>
+                        <mat-error class="error-text"
+                          *ngIf="healthForm.get('height').hasError('pattern') && healthForm.get('height').touched">
+                          Height is invalid
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Weight in KG*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Weight in KG" formControlName="weight" maxlength="6" (keypress)="weightquoteOnly($event)"/>
+                        <mat-error class="error-text"
+                          *ngIf="healthForm.get('weight').hasError('required') && healthForm.get('weight').touched">
+                          Weight shouldn't be empty
+                        </mat-error>
+                        <mat-error class="error-text"
+                          *ngIf="healthForm.get('weight').hasError('pattern') && healthForm.get('weight').touched">
+                          Weight is invalid
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox1">I am to the best of my knowledge and belief, in good
+                        health and free from all symptoms of illness and
+                        disease?</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox2">None of my family members been diagnosed with diabetes,
+                        heart disease, high blood pressure, elevated blood fats,
+                        cancer, mental illness, HIV, stroke or had hereditary
+                        disorder?</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox3">Do not intend to participate or participate in any
+                        hazardous sports or activities?
+                      </mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox4">I do not currently live or intend to live or travel
+                        outside India for more than six months in a financial
+                        year? If no, I will provide full details of countries to
+                        be visited along with purpose of visit and
+                        duration</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox5">I am not currently taking any medications/drugs, other
+                        than minor condition (eg cold and flu), either prescribed
+                        or not prescribed by a doctor, or have not suffered from
+                        any illness, disorder, disability, injury during past 15
+                        years which has required any form of medical or
+                        specialised examination (including chest, x-rays,
+                        gynaecology investigations, pap smear, or blood tests),
+                        consultation, hospitalisation, surgery or have any
+                        condition for which hospitalization / surgery has been
+                        advised or is contemplated?</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox6">I have no congential / birth defects, pain or problems
+                        in
+                        back, spine, muscles or joint, arthritis, gout, severe
+                        injury or other physical disability and have not been
+                        incapable of working / attending the office during the
+                        last two years for more than three consecutive days or I
+                        am not currently incapable of working/ attending
+                        office?<br />For females only- I have not ever suffered or
+                        are currently suffering any disease of breast / uterus /
+                        cervix, or presently pregnant?</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox7">I do not suffer from or ever had any medical ailments
+                        such as diabetes, high blood pressure, cancer, respiratory
+                        disease(including asthma),kidney or liver disease, stroke,
+                        paralysis, auto immune disorder, any blood disorder, heart
+                        problems, Hepatitis B or C, or tuberculosis, psychiatric
+                        disorder, depression, colitis, or any other stomach
+                        problems, have not undergone any transplants, thyroid
+                        disorders, reproductive organs, HIV AIDS or a related
+                        infection?</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox8">I have never ever taken drugs, or been advised to reduce
+                        alcohol consumption or recieved or have been counselled t
+                        recieve treatment for drug addiction or
+                        alcoholism?</mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox9">I have never been refused life insurance or offered
+                        insurance modified in anyway?
+                      </mat-checkbox>
+                    </div>
+                    <div class="check-box-field">
+                      <mat-checkbox formControlName="checkBox10">I am not suffering from disorder/ disease not mentioned
+                        above?</mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <div class="proceed-button">
+              <button mat-button class="primary-button" >
+                Home
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

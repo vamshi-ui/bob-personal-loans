@@ -1,0 +1,62 @@
+/*Font Family ()*/
+
+$font_roboto_black : 'Roboto-Black';
+$font_roboto_bold : 'Roboto-Bold';
+$font_roboto_light : 'Roboto-Light';
+$font_roboto_Medium : 'Roboto-Medium';
+$font_roboto_Regular : 'Roboto-Regular';
+$font_roboto_Thin : 'Roboto-Thin';
+
+$font_roboto_condensed_Bold : 'RobotoCondensed-Bold';
+$font_roboto_condensed_Light : 'RobotoCondensed-Light';
+$font_roboto_condensed_Regular : 'RobotoCondensed-Regular';
+
+// Font Sizes
+$font_extrasmall: 12px;
+$font_small: 14px;
+$font_base: 16px;
+$font_xbase: 18px;
+$font_large: 20px;
+$font_xlarge: 24px;
+$font_xxlarge: 30px;
+$font_xxxlarge: 32px;
+$font_xxxxlarge: 34px;
+$font_huge: 45px;
+$font_xhuge: 70px;
+
+$line_height: 2;
+
+// Font Weights
+$font_regular: 400;
+$font_medium: 500;
+$font_semibold: 600;
+$font_bold: 700;
+$font_extra_bold: 800;
+
+// Brand Colors (Keep it neat)
+
+$brand_primary : #ff6600;
+$brand_primary_opacity : rgba(255, 108, 10, 0.8);
+$brand_secondary : #6f009c;
+
+
+//content color
+$black : #000000;
+$primary-color: #ff5900;
+$secondary-color: #162c75;
+$text-color-disabled: #9c9b9c;
+$text-color: #565656;
+$input-background: #f2f3f3;
+$image-background: #fcd9cb;
+// $agreement-text: #979797;
+
+
+
+
+
+
+
+//Breakpoints (these should match bootstrap breakpoints)
+$screen-lg-max: 1440px;
+$screen-md-max: 991px;
+$screen-sm-max: 767px;

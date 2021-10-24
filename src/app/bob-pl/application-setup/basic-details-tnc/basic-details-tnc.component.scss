@@ -1,0 +1,193 @@
+.basic-details-tnc-page {
+  .basic-details-tnc-data {
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      margin-top: 0;
+    }
+
+
+    .basic-details-tnc-card {
+      box-shadow: none;
+      padding: 24px 40px 10px 10px;
+
+      @media (max-width: 767px) {
+        padding: 15px 10px 7px;
+
+      }
+
+
+      .basic-details-tnc-card-content {
+
+        .basic-details-tnc-card-info {
+          color: #8c8c8c;
+          font-weight: 500;
+          font-size: 14px;
+          box-shadow: 0 2px 8px 0 rgba(85, 12, 12, 0.24);
+          padding: 36px;
+
+          @media (min-width: 1920px) {
+            font-size: 20px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 17px;
+          }
+
+          @media (max-width: 767px) {
+            padding: 20px;
+            max-height: 400px;
+            overflow: scroll;
+            text-align: justify;
+            font-size: 13px
+          }
+
+          h3 {
+            color: #ff5900;
+            margin-bottom: 48px;
+            text-decoration: underline;
+            font-size: 24px;
+            font-family: 'HelveticaNeue';
+            text-align: center;
+          }
+
+          h4 {
+            color: #565656;
+            font-size: 18px;
+            font-family: 'HelveticaNeue';
+            margin-bottom: 16px;
+          }
+
+          p {
+            color: #565656;
+            font-size: 14px;
+            font-family: 'HelveticaNeue';
+            margin: 0;
+            font-weight: 300;
+          }
+
+          .date {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 36px;
+          }
+
+          .address-text {
+            margin-bottom: 24px;
+          }
+
+          b {
+            font-weight: 600;
+          }
+
+          .footer-text {
+            margin-top: 24px;
+          }
+
+          .table-data {
+            margin-top: 24px;
+
+            table {
+              tr {
+                td {
+                  color: #565656;
+                  font-weight: 300;
+                  font-size: 14px;
+                  font-family: 'HelveticaNeue';
+                  min-width: 200px;
+
+                  &.small-td {
+                    min-width: 48px;
+                    max-width: 80px;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .agree-to-tnc-card {
+      box-shadow: none;
+      padding: 0 40px;
+      margin-top: -10px;
+
+      @media (max-width: 767px) {
+        padding: 10px;
+      }
+
+      .check-box-field {
+        .mat-checkbox-inner-container {
+          margin-right: 11px !important;
+        }
+
+        .mat-checkbox {
+          .mat-checkbox-layout {
+            margin: 0 !important;
+          }
+        }
+
+        span {
+          color: #000000 !important;
+        }
+
+        .terms-conditions {
+          text-decoration: underline;
+          color: #000000 !important;
+        }
+      }
+    }
+  }
+
+  .basic-tnc-buttons {
+    margin: 80px 0;
+    text-align: center;
+
+    @media (max-width: 767px) {
+      margin: 40px 0;
+    }
+
+    .continue-button {
+      margin-top: 53px;
+    }
+  }
+
+  .download-button {
+    text-align: right;
+    margin-right: 25px;
+    text-decoration: underline;
+
+    @media (max-width: 767px) {
+      text-align: center;
+      margin-right: 0;
+      position: relative;
+      bottom: -130px;
+    }
+
+    .download-btn {
+      text-decoration: underline;
+      color: #ff5900;
+      font-size: 15px;
+      font-weight: 500;
+      box-shadow: none !important;
+
+      @media (min-width: 1920px) {
+        font-size: 19px !important;
+      }
+
+      @media (min-width: 1536px) {
+        font-size: 18px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      .mat-button-ripple {
+        display: none !important;
+      }
+    }
+  }
+}

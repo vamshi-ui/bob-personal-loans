@@ -1,0 +1,206 @@
+.aip-loan-details-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  h2 {
+
+    // color: $primary-color;
+    // font-size: 20px;
+    // font-weight: 400;
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+  }
+
+  .loan-details-card {
+    padding: 24px 80px 0 16px;
+    box-shadow: none !important;
+    margin-top: 108px;
+
+    @media (max-width: 1023px) {
+      padding: 44px 30px;
+    }
+
+    @media (max-width: 767px) {
+      padding: 0 10px 0;
+      margin-top: 0;
+    }
+
+    .main-step-wizard {
+      .step-wizard {
+        padding: 20px 16px 0 80px;
+      }
+    }
+
+    .loan-details-card-content {
+      .space-wrapper {
+        padding-bottom: 30px;
+
+        @media (max-width: 767px) {
+          padding-bottom: 20px;
+        }
+
+        .input-field {
+          margin: 12px 0px 18px 0;
+          padding-right: 40px;
+
+          @media (max-width: 767px) {
+            margin: 12px 15px 18px 0;
+            padding: 0;
+          }
+        }
+
+        .loan-input {
+          .mat-form-field-flex {
+            background-color: #fff !important;
+
+            .mat-form-field-infix {
+              background-color: #fff;
+            }
+          }
+
+          //   &.loan-value {
+          //     .mat-form-field-infix {
+          //       padding-left: 0;
+          //     }
+          //   }
+          .currency-icon {
+            font-size: 30px;
+            top: -44px !important;
+            position: absolute;
+            color: #f2652c;
+            margin-right: 15px;
+
+            @media (max-width: 767px) {
+              font-size: 18px;
+              top: -31px !important;
+            }
+          }
+
+          input {
+            font-size: 30px !important;
+            padding-left: 0 !important;
+
+            @media (max-width: 767px) {
+              font-size: 18px !important;
+            }
+          }
+
+          p {
+            padding: 10px 0;
+            color: #565656;
+            margin: 0;
+            font-weight: 500;
+            font-size: 30px;
+
+            @media (max-width: 767px) {
+              font-size: 18px !important;
+            }
+          }
+        }
+      }
+    }
+
+    .aip-loan-dropdown {
+      .select-field {
+        margin: 12px 75px 24px 0;
+
+        @media (max-width: 767px) {
+          margin: 0;
+        }
+      }
+    }
+
+    .aip-loan-data {
+      text-align: center;
+      margin-top: 30px;
+
+      @media (max-width: 767px) {
+        text-align: left;
+      }
+
+      h6 {
+        font-size: 14px;
+        color: #162c75;
+
+        @media (min-width: 1920px) {
+          font-size: 18px !important;
+        }
+
+        @media (max-width: 767px) {
+          margin-top: 28px;
+        }
+      }
+
+      span {
+        font-size: 32px;
+        font-weight: 500;
+        color: #ff5900;
+
+        @media (max-width: 767px) {
+          font-size: 18px;
+        }
+      }
+
+      .monthly-emi {
+        margin-top: 30px;
+
+        @media (max-width: 767px) {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+
+  .loan-details-footer {
+    text-align: center;
+    margin: 40px auto 0;
+
+    a {
+      color: #000;
+      text-decoration: underline;
+      font-weight: 400;
+      font-family: "HelveticaNeue";
+    }
+
+    .loan-details-btns {
+      padding: 20px 0px 10px;
+
+      @media (max-width: 767px) {
+        padding: 25px 20px 10px;
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+      }
+
+      .secondary-button {
+        @media (max-width: 767px) {
+          margin: 24px 0 15px !important;
+        }
+      }
+    }
+  }
+}
+
+.tooltip-btn {
+  height: 14px !important;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.tooltip-img {
+  top: -6px !important;
+}
+
+.selct-info {
+  .mat-form-field-wrapper {
+    .mat-form-field-flex {
+      .mat-form-field-infix {
+        display: flex;
+      }
+    }
+  }
+}

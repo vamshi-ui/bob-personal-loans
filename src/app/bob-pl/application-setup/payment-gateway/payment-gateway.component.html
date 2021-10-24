@@ -1,0 +1,55 @@
+<div class="payments-gateway-page">
+  <!-- <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div> -->
+  <div class="container" >
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div>
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+            <img src="assets/images/payment-gateway-img.svg" class="vector-img1" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <mat-card class="payments-gateway-card">
+          <!-- <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div> -->
+          <mat-card-title>
+            <h2 class="payment-gateway-heading">One last step!</h2>
+          </mat-card-title>
+          <mat-card-content class="payment-gateways-card-content">
+            <div class="row">
+              <div class="col">
+                <p>You will be redirected to your Payment Gateway</p>
+                <div class="fee-amount">
+                  <h5>Processing Fee</h5>
+                  <h3>₹ {{feeAmount}}</h3>
+                </div>
+
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions class="payments-gateway-buttons">
+            <!-- <button mat-button class="secondary-button" routerLink='/application-setup/disbursal'>Back</button> -->
+            <button mat-button class="primary-button" (click)="clickedPayment()">
+              Continue
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- <ngx-loading [show]="gatewayLoader" 
+  [config]="{ 
+    fullScreenBackdrop: true, 
+    backdropBackgroundColour: 'rgba(0, 0, 0, 0.6)',
+    primaryColour: 'rgb(255, 89, 0)',
+    secondaryColour: 'rgb(255, 89, 0)',
+    tertiaryColour: 'rgb(255, 89, 0)' 
+  }"></ngx-loading> -->
+  <!-- <ngx-loading [show]="gatewayLoader" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading> -->
+</div>

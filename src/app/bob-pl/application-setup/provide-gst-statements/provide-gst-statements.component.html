@@ -1,0 +1,39 @@
+<div class="provide-gst-statement">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+
+  <div class="container">
+    <div class="main-step-wizard">
+      <app-step-wizard></app-step-wizard>
+    </div>
+
+    <p class="provide-statement-heading">Please provide your GST Statements</p>
+    <mat-card class="provide-statement-card">
+      <mat-card-content class="provide-statement-content">
+        <h2>
+          Your GST statement data and any personal data will be completely secure and undisclosed. Rest assured, your
+          passwords or
+          any access details are not stored.
+        </h2>
+        <div class="provide-statement-buttons">
+          <button mat-raised-button class="primary-button">Login to Portal</button>
+          <span class="or"> Or </span>
+          <button mat-raised-button class="primary-button" routerLink="/application-setup/verify-gst">Upload GST
+            Statement</button>
+        </div>
+        <p>
+          You will now be redirected to an external portal where you can upload your GST statements or allow access to
+          your net banking
+          account through a secure online statement retrieval process run by a third party as part of verfication
+          process for your Personal Loan request.
+        </p>
+      </mat-card-content>
+
+      <div class="back-btn">
+        <!-- <button mat-button class="secondary-button" routerLink='/application-setup/upload-itr-statements'
+          type="button">Back</button> -->
+      </div>
+    </mat-card>
+  </div>
+</div>

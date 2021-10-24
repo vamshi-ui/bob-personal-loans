@@ -1,0 +1,58 @@
+<div class="primary-page">
+  <div class="container">
+    <div class="row p-0">
+      <div class="col-md-2 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/error-img.svg" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+      <!-- formControlName="accountType" -->
+      <div class="col-md-10">
+        <div class="primary-page-card">
+          <app-step-wizard></app-step-wizard>
+          <h4>Select your Primary Account</h4>
+          <div *ngIf='getPrimaryDetails != "Null"'>
+            <div *ngIf="getPrimaryDetails.accDtls.length != 0">
+              <mat-radio-group>
+                <table class="overview-table">
+                  <thead>
+                    <tr>
+                      <th>Primary Account</th>
+                      <th>Account Type</th>
+                      <th>Account Number</th>
+
+                    </tr>
+                  </thead>
+
+                  <tbody *ngIf=" getPrimaryDetails.accDtls.length != 0">
+                    <tr *ngFor="let item of getPrimaryDetails.accDtls; let i = index">
+                      <td>
+                        <mat-radio-button value="{{item.accountNumber}}" #val (click)="saveAccountdetails(item, i,val.value)" [checked]="getPrimaryDetails.accDtls.length == 1? checked: item.primary"></mat-radio-button>
+                      </td>
+
+                      <td>{{ item.accountType }}</td>
+                      <td>{{ item.accountNumber | mask: '0000 0000 0000 00'}}</td>
+
+
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <!-- <div *ngIf='getPrimaryDetails != "Null"'>
+                <div *ngIf=' getPrimaryDetails.accDtls.length == 0'>
+                    {{getPrimaryDetails.message}}
+                </div>
+            </div> -->
+          <div class="primary-page-btns">
+            <button mat-button class="primary-button" (click)='onSubmit()'>Proceed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

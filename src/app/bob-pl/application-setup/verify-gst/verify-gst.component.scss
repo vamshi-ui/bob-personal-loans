@@ -1,0 +1,223 @@
+.verify-gst-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  h3 {
+    color: #565656;
+    font-size: 20px;
+    font-weight: 400;
+
+    @media (min-width: 1920px) {
+      font-size: 26px;
+    }
+
+  }
+
+  .verify-gst-info {
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      margin-top: 0;
+    }
+
+    .verify-gst-card {
+      padding: 36px 120px;
+      margin-top: 16px;
+      margin-bottom: 36px;
+      box-shadow: none;
+
+      @media(max-width: 767px) {
+        padding: 20px 10px;
+      }
+
+      .verify-gst-card-content {
+        .existing-loan-text {
+          .same-check {
+            margin-right: 60px;
+          }
+        }
+
+        .send-btn {
+          margin-top: 16px;
+          margin-bottom: 24px;
+
+          @media(max-width: 767px) {
+            text-align: center;
+          }
+        }
+
+        .otp-content {
+          justify-content: center;
+        }
+
+        .upload-document-info {
+          #upload_button input[type="file"] {
+            display: none;
+          }
+
+          .upload-button {
+            margin-top: 20px;
+
+            .upload-file {
+              border: 1px dashed #bcbcbc;
+              border-radius: 4px;
+              display: block;
+              padding: 5px 0 5px 0;
+              position: relative;
+
+              @media (max-width: 767px) {
+                padding: 5px;
+              }
+
+              .upload-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @media (max-width: 767px) {
+                  justify-content: space-between;
+                }
+
+
+                span {
+                  font-size: 15px;
+                  font-weight: 500;
+                  color: #434343;
+                  cursor: pointer;
+
+                  @media (max-width: 480px) {
+                    font-size: 11px;
+                  }
+
+                  .upload {
+                    text-decoration: underline;
+                    color: #ff5900 !important;
+                    margin: 0px;
+                  }
+                }
+              }
+            }
+
+            .bank-close-icon {
+              top: 6px;
+              position: absolute;
+              right: 26px;
+              cursor: pointer;
+
+              @media (max-width: 480px) {
+                padding-right: 0;
+                font-size: 18px;
+                right: 16px;
+                top: 4px;
+              }
+            }
+
+            .file-remove-icons {
+              background-color: #ff5900;
+              padding: 8px 25px;
+              display: flex;
+              justify-content: space-between;
+              border-style: none;
+              border-radius: 3px;
+              align-items: center !important;
+              color: #ffffff;
+              cursor: pointer;
+
+              @media (max-width: 480px) {
+                padding: 5px 10px;
+              }
+
+              span {
+                font-size: 15px;
+                font-weight: 500;
+
+                @media (max-width: 480px) {
+                  font-size: 10px;
+                }
+              }
+            }
+          }
+
+          .continue-btns {
+            margin-top: 24px;
+
+            @media(max-width: 767px) {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    color: #565656;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 36px;
+    padding: 0;
+    text-align: justify;
+
+    @media (min-width: 1920px) {
+      font-size: 21px;
+      line-height: 24px;
+    }
+
+    @media (max-width: 767px) {
+      padding: 0;
+      font-size: 11px;
+
+    }
+  }
+
+  .verify-gst-btns {
+    text-align: center;
+    margin: 0 0 36px 0;
+  }
+
+  .resend-btn {
+    outline: none;
+  }
+
+  .uploaded-file {
+    margin: 5px 0;
+  }
+}
+
+//email-popup
+
+.email-popup {
+  text-align: center;
+  padding: 24px 72px 12px 72px;
+
+  p {
+    color: #565656;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .close-btns {
+    justify-content: center;
+    margin: 24px 0 0 0;
+
+    button {
+      min-width: 78px !important;
+    }
+
+    span {
+      padding: 0 16px;
+    }
+  }
+
+  .skip-btn {
+    text-align: center;
+    margin: 16px 0 0 0;
+    justify-content: center;
+
+    button {
+      min-width: 78px !important;
+    }
+  }
+}

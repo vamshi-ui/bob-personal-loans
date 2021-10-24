@@ -1,0 +1,53 @@
+<div class="e-contract-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div>
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+            <img src="assets/images/tnc-img.svg" class="vector-img1" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="e-contract-heading">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+          <h2>E- Contract Agreement</h2>
+        </div>
+
+        <div id="demo" style="height: 750px;" class="pdf-view"></div>
+        <!-- <pdf-viewer [src]="src" zoom="1"></pdf-viewer> -->
+        
+        <div class="econtract-agreement-card">
+          <!-- <div class="download-button">
+            <button mat-raised-button class="download-btn">
+              Download PDF
+            </button>
+          </div> -->
+          <div *ngIf="stageOneOne" class="e-contract-buttons">
+            <a routerLink='/revisit-loan-journey'>I do not want to proceed with to esign.</a>
+            <div mat-dialog-actions class="e-contract-buttons">
+              <button mat-raised-button class="primary-button" (click)='continueToESign()'>
+                Continue to e-sign
+              </button>
+            </div>
+          </div>
+          <div *ngIf="stageOneTwo" mat-dialog-actions class="e-contract-buttons">
+            <div>
+              <p>Please complete E-Sign, check your mail box for link.</p>
+            </div> <br>
+            <button mat-raised-button class="primary-button" (click)='continue()' [disabled]="">
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

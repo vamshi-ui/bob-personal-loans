@@ -1,0 +1,92 @@
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 12px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  z-index: 111;
+  width: 100%;
+
+  .logo {
+    width: 60%;
+
+    @media(max-width: 767px) {
+      width: 75%;
+    }
+
+    img {
+      margin-right: 16px;
+      width: 24%;
+
+      @media(min-width: 1024px) and (max-width: 1250px) {
+        width: 28%;
+      }
+
+      @media(max-width: 767px) {
+        width: 48%;
+      }
+
+      &.bob-world {
+        width: 14%;
+
+        @media(min-width: 1024px) and (max-width: 1250px) {
+          width: 16%;
+        }
+
+        @media(max-width: 767px) {
+          width: 27%;
+        }
+      }
+
+      &.logo-img {
+        width: 150px;
+      }
+    }
+  }
+
+  .track-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+
+    @media(max-width: 767px) {
+      width: 25%;
+    }
+
+    .person-icon {
+      margin-right: 6px;
+
+      @media(max-width: 767px) {
+        margin-right: 0;
+      }
+
+      .mat-icon {
+        font-size: 24px;
+        color: #989798;
+      }
+    }
+
+    .appID {
+      margin-right: 24px;
+
+      @media(max-width: 767px) {
+        margin-right: 0;
+      }
+
+      p {
+        font-size: 12px;
+        margin-bottom: 0px;
+        color: #162c75;
+        font-weight: 500;
+
+        @media(max-width: 767px) {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

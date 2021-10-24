@@ -1,0 +1,296 @@
+<div class="business-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <!-- <h3>Business Details</h3> -->
+
+    <div class="row p-0">
+      <div class="col-md-2 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/customer-details-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <form [formGroup]="businessForm" autocomplete="off" (ngSubmit)="onSubmit()">
+          <div class="business-details-info">
+            <div class="main-step-wizard">
+              <app-step-wizard></app-step-wizard>
+            </div>
+            <mat-card class="business-details-card">
+              <mat-card-content class="business-details-card-content">
+                <div class="mobile-headings">
+                  <h2>Please fill your details </h2>
+                </div>
+                <h4>Business Details</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Occupation*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Occupation" formControlName="occupation">
+                          <mat-option *ngFor="let occupation of occupations" value={{occupation.key}}>
+                            {{occupation.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="businessForm.get('occupation').hasError('required')">Occupation shouldn't be
+                          empty
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- <div class="input-field">
+                        <mat-label class="input-label">Occupation*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput formControlName="occupation" placeholder="Enter Occupation"
+                            [ngClass]="{ 'is-invalid': submitted && f.occupation.errors }" />
+                        </mat-form-field>
+                        <mat-error clas="error-text" *ngIf="submitted && f.occupation.errors">
+                          Enter Occupation
+                        </mat-error>
+                      </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Address Line 1*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="addressLine1" placeholder="Enter Address Line 1"
+                          maxlength="60" />
+                        <mat-error *ngIf="businessForm.get('addressLine1').hasError('required')">Address Line 1
+                          shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="businessForm.get('addressLine1').hasError('pattern')">Address Line 1 is
+                          Invalid
+                        </mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('addressLine1').hasError('minlength') && !businessForm.get('addressLine1').hasError('pattern')">
+                          Address Line 1 is Invalid</mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('addressLine1').hasError('maxlength') && !businessForm.get('addressLine1').hasError('pattern')">
+                          Address Line 1 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Address Line 2*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="addressLine2" placeholder="Enter Address Line 2"
+                          maxlength="60" />
+                        <mat-error *ngIf="businessForm.get('addressLine2').hasError('required')">Address Line 2
+                          shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="businessForm.get('addressLine2').hasError('pattern')">Address Line 2 is
+                          Invalid
+                        </mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('addressLine2').hasError('minlength') && !businessForm.get('addressLine2').hasError('pattern')">
+                          Address Line 2 is Invalid</mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('addressLine2').hasError('maxlength') && !businessForm.get('addressLine2').hasError('pattern')">
+                          Address Line 2 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Pincode*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="pincode" maxlength="6" placeholder="Enter Pincode"
+                          appOnlyNumbers (focusout)="getPincodeDetails($event.target.value)" />
+                        <mat-error *ngIf="businessForm.get('pincode').hasError('required')">Pincode shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-error *ngIf="pincodeErr === false && !businessForm.get('pincode').hasError('required')">
+                        You have entered Invalid Pincode</mat-error>
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">City*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select City" formControlName="city" [disabled]="disableAction">
+                          <mat-option *ngFor="let city of cities" value={{city.key}}>{{city.value}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="businessForm.get('city').hasError('required')">
+                          City shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">District*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select District" formControlName="district" [disabled]="disableAction">
+                          <mat-option *ngFor="let dist of districts" value={{dist.key}}> {{dist.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="businessForm.get('district').hasError('required')">
+                          District shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">State*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select State" formControlName="state" [disabled]="disableAction">
+                          <mat-option *ngFor="let state of states" value={{state.key}}>{{state.value}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="businessForm.get('state').hasError('required')">
+                          State shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Country*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Country" formControlName="country" [disabled]="disableAction">
+                          <mat-option *ngFor="let country of countries" value={{country.key}}>{{country.value}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="businessForm.get('country').hasError('required')">
+                          Country shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Affiliation Selection</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select (selectionChange)="enableId($event.value)" formControlName="affiliation"
+                          placeholder="Select Affiliation Selection">
+                          <mat-option *ngFor="let affiliation of affiliations" value={{affiliation.key}}>
+                            {{affiliation.value}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="businessForm.get('affiliation').hasError('required')">Affiliation Selection shouldn't be empty</mat-error> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4" *ngIf="showAffliation === true">
+                    <div class="input-field">
+                      <mat-label class="input-label">Affiliation Identification Id*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput (focusout)="employIdValid($event.target.value)" formControlName="affiliationId"
+                          placeholder="Enter Affiliation Identification Id" appAlphaNumeric maxlength="16" />
+                        <mat-error *ngIf="businessForm.get('affiliationId').hasError('required')">Affiliation
+                          Identification Id shouldn't be empty</mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('affiliationId').hasError('minlength') && !businessForm.get('affiliationId').hasError('pattern')">
+                          Affiliation Identification Id is invalid
+                        </mat-error>
+                        <mat-error *ngIf="businessForm.get('affiliationId').hasError('pattern')">Affiliation
+                          Identification Id is invalid
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Gross Annual Income*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="annualIncome" placeholder="Enter Gross Annual Income"
+                          (input)="salary()" maxlength="26"
+                          [value]="businessForm.get('annualIncome').value | indianCurrency"
+                          (keypress)="keyPressIncome($event)" />
+                        <span matPrefix>₹</span>
+                        <button mat-icon-button class="tooltip-btn" type='button' matTooltip="Gross Annual Income (GMI) is the average of declared annual income for the
+                          last 02 years as per ITR.">
+                          <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                        </button>
+                        <mat-error *ngIf="businessForm.get('annualIncome').hasError('required')">Gross Annual Income
+                          shouldn't be empty</mat-error>
+                        <mat-error *ngIf="businessForm.get('annualIncome').hasError('pattern')">Gross Annual Income is
+                          invalid
+                        </mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('annualIncome').hasError('minlength') && !businessForm.get('annualIncome').hasError('pattern')">
+                          Gross Annual Income is invalid</mat-error>
+                      </mat-form-field>
+                      <!-- <span
+                        *ngIf="isValid == true && ((!businessForm.get('annualIncome').touched)) || (!businessForm.get('annualIncome').hasError('required') && !businessForm.get('annualIncome').hasError('pattern'))"
+                        class="input-text">Gross Annual Income (GMI) is the average of declared annual income for the
+                        last 02 years as per ITR.</span> -->
+                      <!-- <div *ngIf="isValid == false" class="hide">
+                        <span class="input-text">Gross Annual Income (GMI) is the average of declared annual income for
+                          the last 02 years as per ITR.</span>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Nature of Business*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select formControlName="businessNature" placeholder="Select Nature of Business">
+                          <mat-option *ngFor="let bus of businessNatureLkp" value={{bus.key}}> {{bus.value}}
+                          </mat-option>
+                          <!-- <mat-option value="Manufacturing"> Manufacturing </mat-option>
+                            <mat-option value="Trading"> Trading </mat-option>
+                            <mat-option value="Services"> Services </mat-option> -->
+                        </mat-select>
+                        <mat-error *ngIf="businessForm.get('businessNature').hasError('required')">Nature of Business
+                          shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field">
+                      <mat-label class="input-label">Monthly Obligation*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput formControlName="obligation"
+                          [value]="businessForm.get('obligation').value |indianCurrency" (input)="salary()"
+                          placeholder="Enter Monthly Obligation" (keypress)="keyPressIncome($event)" maxlength="12" />
+                        <button mat-icon-button class="tooltip-btn" type='button'
+                          matTooltip="Monthly EMI (Equated Monthly Installment) is the sum of all monthly payments made by you towards existing loans.">
+                          <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                        </button>
+                        <span matPrefix>₹</span>
+                        <!-- <img src="assets/images/info.svg" alt="" (mouseover)="changeText = true" (mouseout)="changeText = false"> -->
+                        <mat-error *ngIf="businessForm.get('obligation').hasError('required')">Monthly Obligation
+                          shouldn't be empty</mat-error>
+                        <mat-error *ngIf="businessForm.get('obligation').hasError('pattern')">Monthly Obligation is
+                          invalid
+                        </mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('obligation').hasError('minlength') && !businessForm.get('obligation').hasError('pattern')">
+                          Monthly Obligation is invalid</mat-error>
+                        <mat-error
+                          *ngIf="businessForm.get('obligation').hasError('maxlength') && !businessForm.get('obligation').hasError('pattern')">
+                          Monthly Obligation is invalid</mat-error>
+                      </mat-form-field>
+                      <mat-error class="monthly-text"
+                        *ngIf="validEmi === true && !businessForm.get('obligation').hasError('required') && !businessForm.get('obligation').hasError('pattern')">
+                        Monthly Obligation is invalid</mat-error>
+                      <!-- <div class="credit-life-insurance" *ngIf="changeText">
+                          <p>
+                            " A personal loan is a financial commitment. In case the of unfortunate events such as job loss, accidental death or temporirly
+                            disability, a loan protection insurance plan payoff your outstanding loan. Your family will not
+                            be burdened with a sudden financial obligation to repay the loan."
+                          </p>
+                        </div> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="check-box-field text-center error-check">
+                  <mat-checkbox (change)="onCheck($event)" formControlName="checkBox">I accept
+                    <a routerLink="/bureau-tnc" target="_blank">Terms & Conditions</a> for Bureau Check
+                  </mat-checkbox>
+                  <mat-error *ngIf="validCheckBox === false">Please accept Terms & Conditions for Bureau Check
+                  </mat-error>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div class="business-details-btns">
+            <button mat-button class="secondary-button" (click)="goBack()" type="button">Back</button>
+            <button mat-button class="primary-button" type="submit">Proceed</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

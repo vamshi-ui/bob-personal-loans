@@ -1,0 +1,163 @@
+.borrower-details-page {
+  background-color: #ffffff;
+  padding: 0;
+
+  @media (max-width: 1023px) {
+    padding: 60px 0;
+  }
+
+  @media (max-width: 767px) {
+    padding: 36px 0;
+  }
+
+  // h1 {
+  //   color: #ffffff;
+  //   font-size: 48px;
+  //   margin-left: 60px;
+
+  //   @media(max-width: 767px) {
+  //     margin-left: 24px;
+  //     font-size: 42px;
+  //   }
+  // }
+
+  // h2 {
+  //   color: #ffffff;
+  //   font-size: 30px;
+  //   font-weight: 400;
+  //   margin: 12px 60px;
+
+  //   @media(max-width: 767px) {
+  //     margin-left: 24px;
+  //     font-size: 24px;
+  //     margin-right: 0;
+  //   }
+  // }
+
+  .borrower-details-img {
+    img {
+      min-height: 100vh;
+    }
+  }
+
+  .borrower-details-card {
+    padding: 42px;
+    margin-top: 112px;
+    margin-left: 116px;
+    box-shadow: none;
+
+    @media (max-width: 1280px) {
+      margin-left: 54px;
+    }
+
+    @media (max-width: 1023px) {
+      padding: 48px 27%;
+    }
+
+    @media(max-width: 767px) {
+      margin: 20px 0 0;
+      padding: 36px 0 12px;
+    }
+
+    @media(max-width: 480px) {
+      margin: 0;
+      padding: 36px 0 12px;
+    }
+
+    .borrower-details-card-content {
+      margin-bottom: 0;
+
+      h2 {
+        color: #ff5900;
+        font-size: 34px;
+        font-weight: 500;
+        padding-bottom: 36px;
+
+        @media(max-width: 767px) {
+          color: #FF5900;
+          left: 135px;
+          position: absolute;
+          top: -64px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      .borrower-details-checkbox {
+        margin-top: 16px;
+        text-align: center;
+
+        @media (max-width: 767px) {
+          margin-top: 35px;
+        }
+
+        .check-box-field {
+          margin: 0;
+        }
+
+        .mat-checkbox-label {
+          @media (max-width: 767px) {
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    .borrower-details-btns {
+      text-align: center;
+    }
+
+    .no-aadhar {
+      text-align: center;
+
+      a {
+        color: #000000;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: underline;
+        font-family: 'HelveticaNeue';
+
+        @media (min-width: 1920px) {
+          font-size: 21px !important;
+        }
+
+        @media (min-width: 1536px) {
+          font-size: 17px;
+        }
+
+        @media (max-width: 767px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+//popup css
+
+// .mat-dialog-container {
+//   width: 85% !important;
+//   margin: 0 auto;
+// }
+
+.email-popup {
+  text-align: center;
+  padding: 16px 24px;
+
+  p {
+    color: #565656;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-family: 'HelveticaNeue';
+  }
+
+  .close-btns {
+    justify-content: center;
+    margin: 36px 0 0 0;
+
+    button {
+      min-width: 108px !important;
+    }
+  }
+}

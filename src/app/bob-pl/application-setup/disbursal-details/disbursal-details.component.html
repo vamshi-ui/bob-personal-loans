@@ -1,0 +1,77 @@
+<div class="disbursal-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/disbursal-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="disbursal-details-info">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+
+          <div class="greetings-text">
+            <h2 class="disbursal-heading">One last step!</h2>
+            <!-- <p>Net-off from the total disbursement amount -->
+              <!-- <mat-slide-toggle [checked]="true" readOnly class="toggle">
+              </mat-slide-toggle> -->
+            <!-- </p> -->
+          </div>
+
+          <mat-card class="disbursal-details-card">
+            <mat-card-content class="disbursal-details-card-content">
+              <div class="row">
+                <div class="col-md-3 col-6">
+                  <h6>Approved Loan Amount</h6>
+                  <span>₹ {{gettingDisbursalInfirmantion?.approvalLoan | indianCurrency}}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>Loan Tenure</h6>
+                  <span>{{loanTenure}} Months</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>Interest Rate</h6>
+                  <span>{{rateOfInterest}} %</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>Loan Monthly EMI</h6>
+                  <span>₹ {{totalEmi | indianCurrency}}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>Processing Fee</h6>
+                  <span>₹ {{gettingDisbursalInfirmantion?.processingFee | indianCurrency}}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>GST</h6>
+                  <span>₹ {{gettingDisbursalInfirmantion?.gst | indianCurrency}}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>Stamp Duty</h6>
+                  <span>₹ {{gettingDisbursalInfirmantion?.stampduty | indianCurrency}}</span>
+                </div>
+                <div class="col-md-3 col-6">
+                  <h6>Net Loan Amount</h6>
+                  <span>₹ {{gettingDisbursalInfirmantion?.netLoanAmount | indianCurrency}}</span>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+         
+
+          <div class="disbursal-details-btns">
+            <button mat-button class="primary-button" (click)="openDialog()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

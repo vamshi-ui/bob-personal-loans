@@ -1,0 +1,100 @@
+<div class="utility-bill-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/customer-details-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="utility-bill-data">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+          <form [formGroup]="utilityForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <h2 class="utility-bill-heading">Few more steps to go..</h2>
+            <mat-card class="utility-bill-details-card">
+              <h4>
+                Additional details on Utility Bill for Correspondence address
+              </h4>
+              <mat-card-content class="utility-bill-details-card-content">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">State*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select State" formControlName="state" (selectionChange)="stateSelction($event.value)">
+                          <mat-option *ngFor="let obj of stateLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="utilityForm.get('state').hasError('required')">
+                          State shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4" *ngIf='utilityProviderTypeHide == true'>
+                    <div class="select-field">
+                      <mat-label class="select-label">Utility Provider Type*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Provider Type" formControlName="utilityType">
+                          <mat-option *ngFor="let obj of utilityProviderTypeLkp" (focusout)="disableutiltyProvide(obj.value)" value={{obj.key}}>{{ obj.value }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="utilityForm.get('utilityType').hasError('required')">
+                          Utility Provider Type shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4" *ngIf="utilitydisabled && stateSelection">
+                    <div class="select-field">
+                      <mat-label class="select-label">Utility Provider Name*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Provider Name" formControlName="utilityName" [disabled]="!utilitydisabled">
+                          <mat-option *ngFor="let obj of stateLkps" (focusout)="utilityName(obj.value)" value={{obj.key}}>{{ obj.value }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="utilityForm.get('utilityName').hasError('required') && utilityForm.get('utilityName').touched">
+                          Utility Provider Name shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-field" *ngIf="displayId && stateSelection && stateSelections">
+                      <mat-label class="input-label">Identifier Number*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput appAlphaNumeric [maxlength]="25" placeholder="Enter Identifier Number" formControlName="idNumber" maxlength="20"
+                          appAlphaNumeric (focusout)="verifyIdNumber()" />
+                        <span *ngIf="enable" class="verify-pan">
+                          <mat-icon class="pan-icon">check_circle</mat-icon>
+                        </span>
+                        <mat-error *ngIf="utilityForm.get('idNumber').hasError('minlength')">
+                          Identifier Number is invalid</mat-error>
+                        <mat-error *ngIf="utilityForm.get('idNumber').hasError('required')">
+                          Identifier Number shouldn't be empty</mat-error>
+                      </mat-form-field>
+                      <mat-error *ngIf="invalidIdNumber && !utilityForm.get('idNumber').hasError('required') && !utilityForm.get('idNumber').hasError('minlength')">
+                        Identifier Number is invalid</mat-error>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <div class="utility-bill-buttons">
+              <button mat-button class="secondary-button" (click)='skipProcess()' type="button">
+                Skip
+              </button>
+              <button mat-button class="primary-button" type="submit">
+                Proceed
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

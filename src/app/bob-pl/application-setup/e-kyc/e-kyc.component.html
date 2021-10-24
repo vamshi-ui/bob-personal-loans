@@ -1,0 +1,165 @@
+<div class="e-kyc-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <form [formGroup]="ekycForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <!-- <app-step-wizard></app-step-wizard> -->
+      <div class="row">
+        <div class="col-md-3 p-0">
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+            <img src="assets/images/video-kyc-img.svg" class="vector-img1" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="ekyc-info">
+            <div class="main-step-wizard">
+              <app-step-wizard></app-step-wizard>
+            </div>
+            <h2>E KYC</h2>
+
+            <mat-card class="ekyc-card">
+              <mat-card-content class="ekyc-card-content">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-field">
+                      <mat-label class="input-label">Aadhaar Number*</mat-label>
+                      <mat-form-field name="aadhar" appearance="outline">
+                        <input formControlName="aadhar" matInput placeholder="Enter Aadhaar Number" (input)="alignAadhar($event.target.value)" (focusout)="getOtp($event.target.value)"
+                          mask="0000-0000-0000" appOnlyNumbers />
+                        <mat-error *ngIf="ekycForm.get('aadhar').hasError('required')">Aadhaar Number shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="ekycForm.get('aadhar').hasError('pattern')">Please enter valid 12 digits Aadhaar Number
+                        </mat-error>
+                        <mat-error *ngIf="ekycForm.get('aadhar').hasError('minlength') && !ekycForm.get('aadhar').hasError('pattern')">
+                          Please enter valid 12 digits Aadhaar Number</mat-error>
+                      </mat-form-field>
+                      <mat-error *ngIf="invalidAadhaar === false && !ekycForm.get('aadhar').hasError('pattern') && !ekycForm.get('aadhar').hasError('minlength') && !ekycForm.get('aadhar').hasError('required')">
+                        Please enter valid 12 digits Aadhaar Number</mat-error>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="otp-input-field">
+                      <div class="otp-form">
+                        <div class="otp-form-fields">
+                          <div class="input-field otp-field">
+                            <mat-label class="input-label otp-input-label">Enter OTP*</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Enter OTP" [type]="hideOtp ? 'password' : 'text'" appOnlyNumbers maxlength="6" formControlName="otp1"
+                                class="error-box" (input)="otpNumber($event.target.value)" autocomplete="off" />
+                              <mat-icon matSuffix (click)="ekycForm.get('aadhar').valid ? hideOtp = !hideOtp : hideOtp" class="eye-icon">
+                                {{ hideOtp ? 'visibility_off' : 'visibility'}}
+                              </mat-icon>
+                            </mat-form-field>
+                            <mat-error *ngIf="ekycForm.get('otp1').hasError('required') && ekycForm.get('otp1').touched">Please enter 6 digit OTP
+
+                            </mat-error>
+                            <mat-error class="error-text" *ngIf="error && !ekycForm.get('otp1').hasError('required') && ekycForm.get('otp1').touched">
+                              The OTP entered is incorrect. Please enter correct OTP or try regenerating the OTP
+                            </mat-error>
+                          </div>
+                        </div>
+                        <div class="resend-otp-btn">
+                          <div *ngIf="counter != 0" class="timer">
+                            {{ counter | timer }}
+                          </div>
+                          <button (click)="openOtp($event)" *ngIf="counter == 0 && resend" mat-button class="resend-btn">
+                            Resend OTP
+                          </button>
+                        </div>
+                        <!-- <p class="expire-time" *ngIf="!valid">{{ message }}</p> -->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="check-box-field">
+                  <mat-checkbox class="terms-conditions" (change)="onCheck($event)" formControlName="checkBox">I agree to
+                    <a routerLink='/terms-and-conditions' target="_blank">Terms & Conditions</a>
+                  </mat-checkbox>
+                  <mat-error *ngIf="validCheckBox === false">Please accept Terms & Conditions</mat-error>
+                </div>
+
+                <!-- <div class="otp-content">
+  <mat-label class="enter-otp">Enter OTP sent to Registered Mobile No:</mat-label>
+  <form class="otp-form" [formGroup]="verifyOTP">
+  <div class="otp-form-fields">
+  <mat-form-field>
+  <input matInput #input1 minlength="1" maxlength="1" formControlName="otp1" class="error-box"
+  [appAutoTab]="input2" [ngClass]="{ 'error-box': valid }" />
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput #input2 minlength="1" maxlength="1" formControlName="otp2" class="error-box"
+  [appAutoTab]="input3" [ngClass]="{ 'error-box': valid }" />
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput #input3 minlength="1" maxlength="1" formControlName="otp3" class="error-box"
+  [appAutoTab]="input4" [ngClass]="{ 'error-box': valid }" />
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput #input4 minlength="1" maxlength="1" formControlName="otp4" class="error-box"
+  [appAutoTab]="input5" [ngClass]="{ 'error-box': valid }" />
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput #input5 minlength="1" maxlength="1" formControlName="otp5" class="error-box"
+  [appAutoTab]="input6" [ngClass]="{ 'error-box': valid }" />
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput #input6 minlength="1" maxlength="1" formControlName="otp6" class="error-box"
+  [ngClass]="{ 'error-box': valid }" />
+  </mat-form-field>
+  </div>
+  <span>
+  <small class="enter-otp" *ngIf="
+  verifyOTP.controls['otp1'].touched ||
+  verifyOTP.controls['otp2'].touched ||
+  verifyOTP.controls['otp3'].touched ||
+  verifyOTP.controls['otp4'].touched ||
+  verifyOTP.controls['otp5'].touched ||
+  verifyOTP.controls['otp6'].touched
+  ">
+  <small class="otp-error-msg" *ngIf="
+  verifyOTP.controls['otp1'].hasError('required') ||
+  verifyOTP.controls['otp2'].hasError('required') ||
+  verifyOTP.controls['otp3'].hasError('required') ||
+  verifyOTP.controls['otp4'].hasError('required') ||
+  verifyOTP.controls['otp5'].hasError('required') ||
+  verifyOTP.controls['otp6'].hasError('required')
+  ">
+  Please enter OTP
+  </small>
+  </small>
+  </span>
+  <p *ngIf="valid" class="error-text">
+  Invalid OTP. Please enter the correct OTP
+  </p>
+  <p class="expire-time" *ngIf="!valid">{{ message }}</p>
+  </form>
+  
+  <div *ngIf="enterOtp && counter != 0">
+  {{ counter | timer }}
+  </div>
+  <button *ngIf="counter == 0" (click)="getOtp()" mat-button>
+  Resend OTP
+  </button>
+  </div> -->
+              </mat-card-content>
+              <mat-card-actions class="requirements-btns"> </mat-card-actions>
+            </mat-card>
+            <div class="ekyc-btns">
+              <!-- <button mat-button class="secondary-button" routerLink='/application-setup/video-kyc'>Back</button> -->
+              <button mat-button class="primary-button text-center" type="submit">
+                Submit OTP
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

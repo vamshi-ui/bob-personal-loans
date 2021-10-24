@@ -1,0 +1,474 @@
+<div class="legal-heir-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <div class="row">
+      <div class="col-md-2 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/customer-details-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <div class="legal-heir-data">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+          <h2 class="legal-heir-heading">Few more steps to go..</h2>
+
+          <div class="legal-heir-details-info">
+            <mat-card class="legal-heir-details-card">
+              <mat-card-content class="legal-heir-details-card-content">
+                <form [formGroup]="legalHeirForm" autocomplete="off">
+                  <div formArrayName="arr" *ngFor="let a of arrControl; let i = index">
+                    <div [formGroupName]="i">
+                      <div class="legal-heir-details">
+                        <div class="legal-heading">
+                          <h4>Legal Heir Details</h4>
+                          <div class="add-more-btn">
+                            <button *ngIf="deleteBtn" class="primary-button delete-btn" mat-mini-fab
+                              (click)="deleteItem(i)" type="submit">
+                              <!-- <mat-icon>delete_outline</mat-icon> -->DELETE
+                            </button>
+                            <!-- &nbsp;<span *ngIf="deleteBtn">DELETE</span> -->
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 col-lg-1 col-3 pr-0">
+                            <div class="select-field">
+                              <mat-label class="select-label">Salutation*</mat-label>
+                              <mat-form-field appearance="outline">
+                                <mat-select placeholder="Select" formControlName="salutation">
+                                  <mat-option *ngFor="let salutation of salutation" value="{{salutation.key}}">
+                                    {{salutation.value}} </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="arrControl[i].get('salutation').hasError('required')">
+                                  Salutation shouldn't be empty</mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="col-md-4 col-lg-3 col-9">
+                            <div class="input-field">
+                              <mat-label class="input-label">First Name*</mat-label>
+                              <mat-form-field appearance="outline">
+                                <input matInput placeholder="Enter First Name" formControlName="firstName"
+                                  maxlength="50" />
+                                <mat-error *ngIf="arrControl[i].get('firstName').hasError('required')">
+                                  First Name shouldn't be empty</mat-error>
+                                <mat-error *ngIf="arrControl[i].get('firstName').hasError('pattern')">
+                                  First Name is Invalid</mat-error>
+                                <mat-error
+                                  *ngIf="arrControl[i].get('firstName').hasError('minlength') && !arrControl[i].get('firstName').hasError('pattern')">
+                                  First Name is Invalid</mat-error>
+                                <mat-error
+                                  *ngIf="arrControl[i].get('firstName').hasError('maxlength') && !arrControl[i].get('firstName').hasError('pattern')">
+                                  First Name is Invalid</mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-field">
+                              <mat-label class="input-label">Middle Name</mat-label>
+                              <mat-form-field appearance="outline">
+                                <input matInput placeholder="Enter Middle Name" formControlName="middleName" maxlength="50"/>
+                                <mat-error *ngIf="arrControl[i].get('middleName').hasError('pattern')">
+                                  Middle Name is invalid
+                                </mat-error>
+                                <mat-error
+                                  *ngIf="arrControl[i].get('middleName').hasError('minlength') && !arrControl[i].get('middleName').hasError('pattern')">
+                                  Middle Name must be atleast one character</mat-error>
+                                <mat-error
+                                  *ngIf="arrControl[i].get('middleName').hasError('maxlength') && !arrControl[i].get('middleName').hasError('pattern')">
+                                  Middle Name is invalid</mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-field">
+                              <mat-label class="input-label">Last Name*</mat-label>
+                              <mat-form-field appearance="outline">
+                                <input matInput placeholder="Enter Last Name" formControlName="lastName" maxlength="50"/>
+                                <mat-error *ngIf="arrControl[i].get('lastName').hasError('required')">Last
+                                  Name shouldn't be empty</mat-error>
+                                <mat-error *ngIf="arrControl[i].get('lastName').hasError('pattern')">Last
+                                  Name is invalid
+                                </mat-error>
+                                <mat-error
+                                  *ngIf="arrControl[i].get('lastName').hasError('minlength') && !arrControl[i].get('lastName').hasError('pattern')">
+                                  Last Name must be atleast one character</mat-error>
+                                <mat-error
+                                  *ngIf="arrControl[i].get('lastName').hasError('maxlength') && !arrControl[i].get('lastName').hasError('pattern')">
+                                  Last Name is invalid</mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="select-field">
+                              <mat-label class="select-label">Relation*</mat-label>
+                              <mat-form-field appearance="outline">
+                                <mat-select placeholder="Select Relation" formControlName="relation">
+                                  <mat-option *ngFor="let relation of relation" value="{{relation.key}}" (focusout)="resetAge(i)">
+                                    {{relation.value}} </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="arrControl[i].get('relation').hasError('required')">
+                                  Relation shouldn't be empty</mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-field">
+                              <mat-label class="input-label">Age*</mat-label>
+                              <mat-form-field appearance="outline">
+                                <input matInput placeholder="Enter Age" maxlength="2" formControlName="age" appOnlyNumbers />
+                                <mat-error *ngIf="arrControl[i].get('age').hasError('required')">
+                                  Age shouldn't be empty</mat-error>
+                                <!-- <mat-error *ngIf="arrControl[i].get('age').hasError('pattern')">
+                                  Age is Invalid</mat-error> -->
+                              </mat-form-field>
+                              <mat-error *ngIf="invalidAge && !arrControl[i].get('age').hasError('required')">Age is
+                                Invalid</mat-error>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="select-field">
+                              <mat-label class="select-label">Occupation*</mat-label>
+                              <mat-form-field appearance="outline">
+                                <mat-select placeholder="Select Occupation" formControlName="occupation">
+                                  <mat-option *ngFor="let occupation of occupation" value="{{occupation.key}}">
+                                    {{occupation.value}} </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="arrControl[i].get('occupation').hasError('required')">
+                                  Occupation shouldn't be empty</mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="address-details">
+                          <h4 class="address">Address Details</h4>
+
+                          <div class="row">
+                            <div class="col">
+                              <div class="check-box-field">
+                                <mat-checkbox class="add-text mr-5" #checkOne (change)="ApplicantAddress($event,i,checkTwo.checked)"
+                                  formControlName='checkbox'>Same as applicant's Permanent Address 
+                                </mat-checkbox>
+
+                                <mat-checkbox class="add-text" #checkTwo (change)="ApplicantCorrespondenceAddress($event,i,checkOne.checked)"
+                                formControlName='checkboxCorrespondenceAddress'>Same as applicant's Correspondence Address
+                              </mat-checkbox>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="input-field">
+                                <mat-label class="input-label">Address Line 1*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Enter Address Line 1" formControlName="addressLine1"
+                                    maxlength="60" [readOnly]="disableAction" />
+                                  <mat-error
+                                    *ngIf="arrControl[i].get('addressLine1').hasError('required')  || disableAction">
+                                    Address Line 1 shouldn't be empty</mat-error>
+                                  <mat-error *ngIf="arrControl[i].get('addressLine1').hasError('pattern')">
+                                    Address Line 1 is Invalid</mat-error>
+                                  <mat-error *ngIf="arrControl[i].get('addressLine1').hasError('minlength')">
+                                    Address Line 1 is Invalid
+                                  </mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="input-field">
+                                <mat-label class="input-label">Address Line 2*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Enter Address Line 2" formControlName="addressLine2"
+                                    maxlength="60" [readOnly]="disableAction" />
+                                  <mat-error
+                                    *ngIf="arrControl[i].get('addressLine2').hasError('required') || disableAction">
+                                    Address Line 2 shouldn't be empty</mat-error>
+                                  <mat-error *ngIf="arrControl[i].get('addressLine2').hasError('pattern')">
+                                    Address Line 2 is Invalid</mat-error>
+                                  <mat-error *ngIf="arrControl[i].get('addressLine2').hasError('minlength')">
+                                    Address Line 1 is Invalid
+                                  </mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="input-field">
+                                <mat-label class="input-label">Pincode*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Enter Pincode" formControlName="pincode" maxlength="6"
+                                    appOnlyNumbers autocomplete="off" [readOnly]="disableAction"
+                                    (focusout)="stateAndCityByPincode($event.target.value, i)" />
+                                  <mat-error *ngIf="arrControl[i].get('pincode').hasError('required')">
+                                    Pincode shouldn't be empty</mat-error>
+                                </mat-form-field>
+                                <mat-error
+                                  *ngIf="isPincode === false && !arrControl[i].get('pincode').hasError('required')">
+                                  You have entered Invalid PIN code</mat-error>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="select-field">
+                                <mat-label class="select-label">City*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <mat-select placeholder="Select City" formControlName="city"
+                                    [disabled]="disableField">
+                                    <mat-option *ngFor="let city of city" value="{{city.key}}"> {{city.value}}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="arrControl[i].get('city').hasError('required')">
+                                    City shouldn't be empty</mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="select-field">
+                                <mat-label class="select-label">District*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <mat-select placeholder="Select District" formControlName="district"
+                                    [disabled]="disableField">
+                                    <mat-option *ngFor="let dist of district" value={{dist.key}}> {{dist.value}}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="arrControl[i].get('district').hasError('required')">
+                                    District shouldn't be empty</mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="select-field">
+                                <mat-label class="select-label">State*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <mat-select placeholder="Select State" formControlName="state"
+                                    [disabled]="disableField">
+                                    <mat-option *ngFor="let state of state" value="{{state.key}}"> {{state.value}}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="arrControl[i].get('state').hasError('required')">
+                                    State shouldn't be empty</mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="select-field">
+                                <mat-label class="select-label">Country*</mat-label>
+                                <mat-form-field appearance="outline">
+                                  <mat-select placeholder="Select Country" formControlName="country"
+                                    [disabled]="disableField">
+                                    <mat-option *ngFor="let country of country" value="{{country.key}}">
+                                      {{country.value}} </mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="arrControl[i].get('country').hasError('required')">
+                                    Country shouldn't be empty</mat-error>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="add-more-btn">
+                        <button mat-mini-fab (click)="addItem()" class="primary-button"
+                          [disabled]="legalHeirForm.invalid" type="submit">
+                          <!-- <mat-icon>add</mat-icon> -->ADD MORE
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="legal-heir-details-card">
+              <mat-card-content class="legal-heir-details-card-content">
+                <form [formGroup]="fatcaDetailsForm" autocomplete="off">
+                  <h4>FATCA Declaration (Applicant)</h4>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="select-field">
+                        <mat-label class="select-label">Country of Birth*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Country of Birth" formControlName="fatcaCountry">
+                            <mat-option *ngFor="let country of country" value="{{country.key}}"> {{country.value}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaCountry').hasError('required')">Country of Birth
+                            shouldn't be empty
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-field">
+                        <mat-label class="input-label">City of Birth*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <!-- <mat-select placeholder="Select City of Birth" formControlName="fatcaCity">
+                            <mat-option *ngFor="let city of city" value="{{city.key}}"> {{city.value}} </mat-option>
+                          </mat-select> -->
+
+                          <input type="text"  placeholder="Select City of Birth" matInput formControlName="fatcaCity"
+                          [matAutocomplete]="autoDetail" #cityValue (focusout)='cityValidation(cityValue.value)'>
+                        <mat-autocomplete #autoDetail="matAutocomplete" (optionSelected)='getCityDetails($event.option.value)'>
+                          <mat-option class="overflow-text" *ngFor="let option of filteredOptionsDetailActivity | async" [value]="option.value">
+                            {{option.value}}
+                          </mat-option>
+                        </mat-autocomplete>
+
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaCity').hasError('required')">City of Birth
+                            shouldn't be empty
+                          </mat-error>
+                        </mat-form-field>
+                        <mat-error *ngIf="cityError == true && !fatcaDetailsForm.get('fatcaCity').hasError('required')">City of Birth is Invalid</mat-error>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="select-field">
+                        <mat-label class="select-label">Nationality*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Nationality" formControlName="fatcaNationality" [disabled]='true'>
+                            <mat-option *ngFor="let nationality of nationality" value="{{nationality.key}}">
+                              {{nationality.value}}</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaNationality').hasError('required')">Nationality
+                            shouldn't be empty</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-4">
+                      <div class="input-field">
+                        <mat-label class="input-label">Father Name*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Enter Father Name" formControlName="fatcaFatherName"
+                            maxlength="26" />
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaFatherName').hasError('required')">Father Name
+                            shouldn't be empty</mat-error>
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaFatherName').hasError('pattern')">Father Name is
+                            invalid
+                          </mat-error>
+                          <mat-error
+                            *ngIf="fatcaDetailsForm.get('fatcaFatherName').hasError('minlength') && !fatcaDetailsForm.get('fatcaFatherName').hasError('pattern')">
+                            Father Name is invalid</mat-error>
+                          <mat-error
+                            *ngIf="fatcaDetailsForm.get('fatcaFatherName').hasError('maxlength') && !fatcaDetailsForm.get('fatcaFatherName').hasError('pattern')">
+                            Father Name is invalid</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-4">
+                      <div class="input-field">
+                        <mat-label class="input-label">Mother Name*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Enter Mother Name" formControlName="fatcaMotherName"
+                            maxlength="26" />
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaMotherName').hasError('required')">Mother Name
+                            shouldn't be empty</mat-error>
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaMotherName').hasError('pattern')">Mother Name is
+                            invalid
+                          </mat-error>
+                          <mat-error
+                            *ngIf="fatcaDetailsForm.get('fatcaMotherName').hasError('minlength') && !fatcaDetailsForm.get('fatcaMotherName').hasError('pattern')">
+                            Mother Name is invalid</mat-error>
+                          <mat-error
+                            *ngIf="fatcaDetailsForm.get('fatcaMotherName').hasError('maxlength') && !fatcaDetailsForm.get('fatcaMotherName').hasError('pattern')">
+                            Mother Name is invalid</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-4">
+                      <div class="select-field">
+                        <mat-label class="select-label">Residence Address for Tax Purposes*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Residence Address for Tax Purposes"
+                            formControlName="fatcaResidenceAddress">
+                            <mat-option *ngFor="let addressforTax of addressforTax" value="{{addressforTax.key}}">
+                              {{addressforTax.value}} </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaResidenceAddress').hasError('required')">
+                            Residence Address for Tax Purposes shouldn't be empty</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-4">
+                      <div class="select-field">
+                        <mat-label class="select-label">Address Type for Selected Address*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Address Type for Selected Address"
+                            formControlName="fatcaAddressType">
+                            <mat-option *ngFor="let addressType of addressType" value="{{addressType.key}}">
+                              {{addressType.value}} </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="fatcaDetailsForm.get('fatcaAddressType').hasError('required')">Address type
+                            for Selected Address shouldn't be empty</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-4">
+                        <div class="select-field">
+                          <mat-label class="select-label">Document Name</mat-label>
+                          <mat-form-field appearance="outline">
+                            <mat-select placeholder="Select">
+                              <mat-option value="aadhaar"> Aadhaar </mat-option>
+                              <mat-option value="ration-card"> Ration card </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-field">
+                          <mat-label class="input-label">Identifier Number</mat-label>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Enter Identifier Number" />
+                          </mat-form-field>
+                        </div>
+                      </div> -->
+                  </div>
+                  <div class="check-box-field">
+                    <mat-checkbox  (change)="onCheck($event)" formControlName="residenceCheckBox" class="add-text">I am
+                      tax resident of India and
+                      not resident of any other country</mat-checkbox>
+                  </div>
+                  <div class="check-box-field error-check1">
+                    <mat-checkbox  (change)="onCheckEvent($event)" formControlName="declarationCheckBox"
+                      class="add-text">I have understood the
+                      information requirements of this Form (read along with the <a routerLink="/facta-crs"
+                        target="_blank">FATCA-CRS</a> Instructions)
+                      and hereby confirm that the information provided by me on this Form is true, correct, and
+                      complete.
+                      I also confirm that I have read and understood the
+                      <a routerLink="/facta-crs" target="_blank">FATCA-CRS</a>
+                      Terms and Conditions and hereby
+                      accept
+                      the same
+                    </mat-checkbox>
+                    <mat-error *ngIf="validCheckBox === false || validCheckBoxTwo === false">Please accept above
+                      conditions</mat-error>
+
+                  </div>
+                </form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <!-- <mat-error *ngIf="isValid == true">Fill the mandatory fields *</mat-error> -->
+          <div class="legal-heir-details-btns">
+            <div class="proceed-btn">
+              <!-- <button mat-button class="secondary-button" (click)="goBack()" type="button">Back</button> -->
+              <button mat-button class="primary-button" (click)="submit()">Proceed</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

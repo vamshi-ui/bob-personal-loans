@@ -1,0 +1,26 @@
+@import '~material-icons/iconfont/material-icons.css';
+
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'HelveticaNeue';
+}
+
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.spinner-bar {
+  .overlay {
+    .la-line-scale.la-2x {
+      div {
+        color: #ff5900 !important;
+      }
+    }
+  }
+}
+

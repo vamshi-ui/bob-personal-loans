@@ -1,0 +1,82 @@
+<div class="approved-loan-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/offers-for-u-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="approved-loan-data">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+          <div class="greeting-text">
+            <h2>Congratulations {{ applicantName }} !</h2>
+            <p>Your loan has been approved</p>
+          </div>
+
+          <mat-card class="approved-loan-card">
+            <mat-card-content class="approved-loan-card-content">
+              <div class="row">
+                <div class="col-lg-3 col-md-5 col-6">
+                  <h5>Approval Loan Amount</h5>
+                  <p class="app-amt">₹ {{ loanAmount | indianCurrency }}</p>
+                </div>
+
+                <div class="col-lg-3 col-md-7 col-6">
+                  <h5>Loan Tenure</h5>
+                  <p class="app-amt">{{ tenure }} Months</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-6">
+                  <h6>Interest Rate</h6>
+                  <p>{{ interestRate }}%</p>
+                </div>
+
+                <div class="col-md-3 col-6">
+                  <h6>Loan Monthly EMI</h6>
+                  <p>₹ {{ emi  | indianCurrency}}</p>
+                </div>
+
+                <div class="col-md-6 col-6">
+                  <h6>Processing Fee</h6>
+                  <p>₹ {{ processingFee | indianCurrency }}</p>
+                </div>
+
+                <div class="col-md-3 col-6">
+                  <h6>GST</h6>
+                  <p>₹ {{ gst | indianCurrency }}</p>
+                </div>
+
+                <div class="col-md-3 col-6">
+                  <h6>Stamp Duty</h6>
+                  <p>₹ {{ stampduty | indianCurrency }}</p>
+                </div>
+
+                <!-- <div class="col-md-3 col-6">
+                  <h6>Insurance Premium</h6>
+                  <p>₹ 1,000</p>
+                </div> -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="approved-button">
+            <!-- <button mat-button class="secondary-button" (click)="goBack()" type="button">Back</button> -->
+            <button mat-button class="primary-button" routerLink='/application-setup/basic-tnc'>Proceed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

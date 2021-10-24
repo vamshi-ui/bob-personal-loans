@@ -1,0 +1,31 @@
+<!-- <app-header></app-header> -->
+
+<div class="header-section">
+  <div class="logo">
+    <img src="assets/images/BOB-Group-logo.svg" alt="bob-logo">
+    <img src="assets/images/BOB-World.svg" class="bob-world" alt="">
+   
+  </div>
+ 
+  <div class="track-btn" *ngIf="displayApplication">
+    <div class="person-icon">
+      <img src="assets/images/user-icon.PNG" alt="">
+    </div>
+    <div class="appID">
+      <p>BOB {{loginDetails}}</p>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" class="spinner-bar" size="medium" color="#fff" type="none">
+  <!-- <p class="spinner-text" style="color: white"> -->
+  <div class="rotate-spinner">
+    <img src="assets/images/loading.png" class="rotate-img">
+  </div>
+
+  <p class="spinner-text" *ngIf="showContents1">Checking against bank records...,</p>
+  <p class="spinner-text" *ngIf="showContents2">Checking your bureau score...</p>
+  <p class="spinner-text" *ngIf="showContents3">Checking eligibility...</p>
+
+</ngx-spinner>
+<router-outlet></router-outlet>

@@ -1,0 +1,29 @@
+.money-in-account {
+
+    .moneyin-account-card {
+        text-align: center;
+        padding: 45px 190px;
+        box-shadow: 0 0 8px 0 rgba(178, 178, 178, 0.4);
+        h1 {
+            color: #565656;
+            font-size: 38px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .request-amount {
+            padding: 0 100px;
+        }
+        .please-contact {
+            padding: 0 108px;
+        }
+        p{
+            font-size: 16px;
+            font-weight: 500;
+            color: #3d3d3d;
+        }
+    }
+    .home-button {
+        margin: 50px 0;
+        text-align: center;
+    }
+}

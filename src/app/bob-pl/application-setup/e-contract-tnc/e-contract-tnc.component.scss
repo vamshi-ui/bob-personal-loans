@@ -1,0 +1,305 @@
+.e-contract-page {
+  .e-contract-heading {
+    margin-bottom: 16px;
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 0;
+    }
+  }
+
+  .econtract-agreement-card {
+    padding-right: 40px;
+
+    @media (max-width: 767px) {
+      padding: 0 15px;
+    }
+
+    .e-contract-card {
+      padding: 20px 30px;
+      max-height: 450px;
+      overflow-y: scroll;
+      box-shadow: 0 0 8px 0 rgba(178, 178, 178, 0.4);
+
+      @media (max-width: 767px) {
+        padding: 20px 15px;
+        text-align: justify;
+
+      }
+
+      .logo {
+        margin-bottom: 15px;
+
+        img {
+          width: 10%;
+
+          &.bob-logo {
+            width: 18%;
+            margin-right: 18px;
+          }
+        }
+      }
+
+
+      .e-contract-card-content {
+        .logo1 {
+          margin-bottom: 24px;
+
+          img {
+            width: 10%;
+
+            &.bob-logo {
+              width: 18%;
+              margin-right: 24px;
+            }
+          }
+        }
+
+        p {
+          color: #8f8f8f;
+          font-size: 16px;
+          font-weight: 400;
+
+          @media (min-width: 1920px) {
+            font-size: 22px !important;
+            line-height: 30px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 18px;
+            line-height: 25px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 14px;
+          }
+        }
+
+        .e-contract-details-card-info {
+          color: #8c8c8c;
+          font-weight: 500;
+          font-size: 14px;
+
+          @media (min-width: 1920px) {
+            font-size: 20px !important;
+            line-height: 30px !important;
+          }
+
+          @media (min-width: 1536px) {
+            font-size: 18px;
+            line-height: 25px;
+          }
+        }
+
+        .content {
+          display: none;
+        }
+
+        .ecode {
+          display: block;
+        }
+
+        .ecode1 {
+
+          display: none
+        }
+      }
+
+      .signed-section {
+        float: right;
+        margin: 0 0 10px;
+
+        @media (min-width: 1920px) {
+          font-size: 20px !important;
+          line-height: 26px !important;
+        }
+
+        @media (min-width: 1536px) {
+          font-size: 18px;
+          line-height: 24px;
+        }
+
+        p {
+          color: #4b4b4b;
+
+          font-weight: 500;
+          margin: 0 50px 0 0;
+          font-size: 16px;
+
+
+          @media (max-width: 767px) {
+            color: #000000;
+            margin: 0 5px 0 0;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .econtract-agreement-info {
+      padding: 0 !important;
+      box-shadow: 0 0 8px 0 rgba(178, 178, 178, 0.4);
+
+      .econtract-agreement-content {
+        border-bottom-left-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+        background-color: #ffac80;
+        padding: 15px 0;
+        text-align: center;
+        margin-top: -5px;
+
+        @media (min-width: 1920px) {
+          padding: 25px 0;
+        }
+
+        p {
+          color: #000000;
+          font-weight: 500;
+          font-size: 15px;
+
+          @media (min-width: 1920px) {
+            font-size: 22px;
+          }
+
+          @media (max-width: 767px) {
+            padding: 0 9px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .e-contract-buttons {
+      text-align: center;
+      margin: 24px 0;
+      // justify-content: center;
+      display: block;
+
+      @media (max-width: 767px) {
+        margin: 30px 0 60px;
+      }
+
+      a {
+        color: #565656;
+        text-decoration: underline;
+        font-family: 'HelveticaNeue';
+        font-size: 15px;
+        font-weight: 400;
+
+        @media (min-width: 1920px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 767px) {
+          font-size: 13px;
+        }
+      }
+
+      p {
+        color: red;
+        margin: 0;
+      }
+
+      .e-contract-btns {
+        margin-top: 40px;
+      }
+
+      .download-btn {
+        margin: 0 40px;
+      }
+    }
+  }
+
+  .download-button {
+    text-align: right;
+    text-decoration: underline;
+    padding-top: 5px;
+
+    .download-btn {
+      text-decoration: underline;
+      color: #ff5900;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: none !important;
+
+      @media (min-width: 1920px) {
+        font-size: 20px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      .mat-button-ripple {
+        display: none !important;
+      }
+    }
+  }
+
+  .e-contract-otp-card {
+    margin: 0 0 100px;
+    box-shadow: none;
+    padding: 0;
+
+    @media (max-width: 767px) {
+      padding: 25px 10px 40px;
+    }
+
+    .check-box-field {
+      margin-left: 40px;
+
+      @media (max-width: 767px) {
+        margin-left: 0;
+      }
+
+      .mat-checkbox {
+        .mat-checkbox-layout {
+          margin: 0 !important;
+        }
+      }
+    }
+
+    .otp-input-field {
+      margin-top: 30px;
+
+      .otp-form {
+        width: 32%;
+
+        @media (max-width: 1280px) {
+          width: 40%;
+        }
+
+        @media (max-width: 767px) {
+          width: 100%;
+        }
+
+        .otp-form-fields {
+          justify-content: start !important;
+        }
+      }
+
+      .e-contract-buttons {
+        text-align: center;
+        margin: 36px 0;
+        // justify-content: center;
+        display: block;
+      }
+    }
+
+    .resend-otp-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0 !important;
+    }
+  }
+}
+
+.pdf-view {
+  box-shadow: 0 2px 8px 0 rgba(85, 12, 12, 0.24);
+  padding: 36px;
+  margin: 24px 40px 12px 6px;
+}

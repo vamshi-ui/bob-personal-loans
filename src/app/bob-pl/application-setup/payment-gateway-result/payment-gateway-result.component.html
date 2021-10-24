@@ -1,0 +1,15 @@
+<div class="result-data">
+  <div>
+    <h2>Your Payment completed Successfully!</h2>
+
+    <h4>Transaction Amount: <span>Rs. {{paymentDetails.transactionAmout}}</span></h4>
+    <h4>Transaction ID: <span>{{paymentDetails.transactionId}}</span></h4>
+    <h4>Transaction Date: <span>{{paymentDetails.transactionDate | date:'medium'}}</span></h4>
+  </div>
+  <div class="note">
+    <p>Note: Please note Transaction ID for future reference.</p>
+  </div>
+  <div>
+    <button mat-button class="primary-button" (click)='proceed()'>Proceed</button>
+  </div>
+</div>

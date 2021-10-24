@@ -1,0 +1,134 @@
+.money-in-account {
+
+  .moneyin-account-card {
+    text-align: center;
+    // padding: 45px 0px 35px;
+    padding: 0 0  36px;
+    box-shadow: none;
+    margin-top: 136px;
+
+    @media (max-width: 1023px) {
+      padding: 45px 90px;
+    }
+
+    @media (max-width: 767px) {
+      padding: 0 20px 45px;
+      text-align: center;
+      margin-top: 0;
+    }
+    .greeting-text{
+      @media (max-width: 767px) {
+    position: absolute;
+    top: -177px;
+    left: 41%;
+      }
+
+    h1 {
+      color: #ff5900;
+      font-size: 38px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      @media (max-width: 767px) {
+        text-align: center;
+        font-size:24px;
+      }
+    }
+
+    .request-amount {
+      padding: 0 100px;
+
+      @media (max-width: 1023px) {
+        padding: 0 10px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 0;
+      }
+
+      p {
+        padding: 0 60px;
+        color: #6d6d6d;
+        font-weight: 400;
+        font-size: 15px;
+        @media (min-width: 1920px) {
+          font-size: 20px;
+        }
+        @media (max-width: 767px) {
+          padding: 0 30px;
+        }
+
+        span {
+          font-size: 28px;
+          font-weight: 600;
+          display: block;
+          color: #ff5900;
+          @media (max-width: 767px) {
+            font-size: 18px;
+          }
+          
+        }
+      }
+    }
+  }
+
+    .customer-details {
+      padding: 13px 0;
+
+      p {
+        color: #162c75;
+        font-weight: 600;
+        font-size: 15px;
+        @media (min-width: 1920px) {
+          font-size: 20px;
+        }
+        @media (max-width: 767px) {
+          font-size: 14px;
+        }
+
+        .customer-id {
+          font-weight: 600;
+          font-size: 22px;
+          padding-left: 4px;
+          @media (max-width: 767px) {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    .please-contact {
+      padding: 10px;
+
+      @media (max-width: 1023px) {
+        padding: 0 10px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 0;
+      }
+
+      p {
+
+        color: #6d6d6d;
+        font-weight: 400;
+        font-size: 15px;
+        @media (min-width: 1920px) {
+          font-size: 20px;
+        }
+        @media (max-width: 767px) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+
+    }
+  }
+
+  .home-button {
+    margin: 0 0 50px;
+    text-align: center;
+  }
+}

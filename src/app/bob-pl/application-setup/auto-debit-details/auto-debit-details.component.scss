@@ -1,0 +1,114 @@
+.autodebit-details-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  .auto-debit-data {
+    padding: 0 0 36px 0;
+    margin-top: 136px;
+ @media (max-width: 767px) {
+   padding: 0 ;
+   margin-top: 0;
+ }
+ h2 {
+  @media (max-width: 767px) {
+    top: -31%;
+    left: 37%;
+  }
+  }
+    .autodebit-details-info {
+      padding: 16px 36px;
+      @media (max-width: 767px) {
+        padding: 16px 0;
+      }
+
+      .autodebit-details-card {
+        padding: 0 36px;
+        margin-top: 16px;
+        margin-bottom: 36px;
+        box-shadow: none;
+
+
+        @media(max-width: 1023px) {
+          padding: 36px;
+        }
+        @media (max-width: 767px) {
+          padding: 0 12px;
+          margin-bottom: 0;
+        }
+
+        .autodebit-details-card-content {
+          .autodebit-info {
+            margin-bottom: 36px;
+            
+            @media (max-width: 767px) {
+              margin-bottom: 20px;
+           
+            }
+            p {
+              color: #162c75;
+              font-size: 14px;
+              font-family: 'HelveticaNeue';
+              font-weight: 400;
+              letter-spacing: 0.2px;
+              margin-bottom: 6px;
+              @media (min-width: 1920px) {
+                font-size: 20px !important;
+              }
+              @media (min-width: 1536px) {
+                font-size: 17px;
+              }
+            }
+
+            h4 {
+              color: #ff5900;
+              font-size: 15px;
+              font-family: 'HelveticaNeue';
+              margin: 0;
+              font-weight: 500;
+              letter-spacing: 0.2px;
+              @media (min-width: 1920px) {
+                font-size: 20px !important;
+              }
+              @media (min-width: 1536px) {
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .autodebit-details-btns {
+      text-align: center;
+      margin: 24px 0;
+      @media (max-width: 767px) {
+       margin: 0;
+      }
+    }
+
+    .autodebit-footer {
+      text-align: center;
+      padding: 16px;
+      margin-bottom: 48px;
+      @media (max-width: 767px) {
+        margin-bottom: 0;
+        padding: 16px 0;
+     
+      }
+
+      p {
+        color: #000000;
+        margin-bottom: 2px;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+        font-weight: 400;
+        @media (min-width: 1920px) {
+          font-size: 18px !important;
+        }
+        @media (min-width: 1536px) {
+          font-size: 16px ;
+        }
+      }
+    }
+  }
+}

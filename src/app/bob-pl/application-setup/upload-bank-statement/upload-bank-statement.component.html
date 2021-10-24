@@ -1,0 +1,159 @@
+<div class="upload-bank-statement">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 p-0">
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval" />
+            <img src="assets/images/bank-statements-img.svg" class="vector-img1" alt="" />
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval" />
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <!-- <app-step-wizard></app-step-wizard> -->
+          <div class="upload-bank-data">
+            <div class="main-step-wizard">
+              <app-step-wizard></app-step-wizard>
+            </div>
+
+            <h2 class="upload-bank-statement">Upload Your Bank Statements</h2>
+            <h4 class="statement-date">
+              Please upload the Bank Statement from {{ uploadFromDate }} to {{ uploadToDate }}
+            </h4>
+
+            <mat-card class="upload-statement-card">
+              <mat-card-content class="upload-statement-content">
+                <div class="row">
+                  <div class="col">
+                    <div *ngFor="let fileName of FilepushArray; index as i">
+                      <div class="upload-form-content">
+                        <div class="row upload-form-info">
+                          <div class="col-md-3 col-5">
+                            <p class="label">Bank Statement</p>
+                          </div>
+                          <div class="col-md-6">
+                            <div id="upload_button" class="upload-button">
+                              <div class="file-remove-icons">
+                                <span>{{ fileName.file.name }}</span>
+                                <mat-icon class="bank-close-icon" (click)="removeFirstFile(i)">close</mat-icon>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="input-field upload-field">
+                              <mat-form-field appearance="outline">
+                                <input class="input-password" matInput type="{{fileName.text}}" #val
+                                  placeholder="Enter Password" maxlength="10" (keydown.space)="$event.preventDefault();"
+                                  value={{fileName.password}} (focusout)='passwordInput($event.target.value,i)' />
+                                <button mat-icon-button matSuffix (click)="hidePasswordFunction(i)"
+                                  *ngIf='fileName.text == "password"'>
+                                  <mat-icon>{{fileName.visibility}}</mat-icon>
+                                </button>
+                                <button mat-icon-button matSuffix (click)="hidetextFunction(i)"
+                                  *ngIf='fileName.text == "text"'>
+                                  <mat-icon>{{fileName.visibility}}</mat-icon>
+                                </button>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="upload-form-content" *ngIf="formVisible">
+                      <div class="row upload-form-info">
+                        <div class="col-md-3 col-5">
+                          <p class="label">Bank Statement</p>
+                        </div>
+                        <div class="col-md-6 col-7">
+                          <div id="upload_button" class="upload-button">
+                            <label class="upload-file">
+                              <input type="file" id="uploadOne" (change)="handleFileInputOne($event)" [hidden]="true"
+                                formControlName="file" />
+                              <div class="upload-icon">
+                                <span>Click here to
+                                  <span class="upload">Upload</span> file</span>
+                              </div>
+                            </label>
+                            <mat-icon class="bank-close-icon" (click)="HideForm()" *ngIf="closeVisible">close</mat-icon>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="password-field" *ngIf="formVisible">
+                            <div class="password-content-info">
+                              <div class="input-field upload-field">
+                                <mat-form-field appearance="outline">
+                                  <input class="input-password" matInput [type]="hide ? 'password' : 'text'"
+                                    placeholder="Enter Password" maxlength="10"
+                                    (keydown.space)="$event.preventDefault();" value={{password}}
+                                    (focusout)='passwordfile($event.target.value)' />
+                                  <button mat-icon-button matSuffix (click)="hide = !hide" class="eye-btn">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                  </button>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="upload-statement-buttons">
+                      <button type="button" (click)="addItem()" [disabled]="formVisible" mat-mini-fab
+                        class="primary-button">
+                        <!-- <mat-icon>add</mat-icon> -->
+                        Add More
+                      </button>
+                      <!-- &nbsp;MORE -->
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <div *ngIf="accDtls && accDtls.length">
+              <mat-radio-group formControlName="accountType">
+                <table class="overview-table">
+                  <thead>
+                    <tr>
+                      <th>Primary Account</th>
+                      <th>Account No.</th>
+                      <th>IFSC Code</th>
+                      <th>Applicant Name</th>
+                      <th>Banks Name</th>
+                    </tr>
+                  </thead>
+
+                  <tbody *ngIf="accDtls && accDtls.length">
+                    <tr *ngFor="let item of accDtls; let i = index">
+                      <td>
+                        <mat-radio-button value="{{item.accountNo}}" (click)="saveAccountdetails(item, i)"
+                          [checked]="item.primaryAcc"></mat-radio-button>
+                      </td>
+                      <td>{{ item.accountNo }}</td>
+                      <td>{{ item.ifscCode }}</td>
+                      <td>{{ item.applicationName }}</td>
+                      <td>{{ item.bankName }}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-radio-group>
+            </div>
+            <div class="upload-continue-buttons">
+              <button mat-button class="secondary-button" (click)="goBack()" type="button">Back</button>
+              <button mat-raised-button class="primary-button" type="submit">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

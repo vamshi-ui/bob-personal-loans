@@ -1,0 +1,98 @@
+<div class="video-kyc-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <!-- video kyc version-1 starts -->
+
+    <!-- <div class="customer-details-info">
+        <mat-card class="basic-details-card">
+          <mat-card-content class="basic-details-card-content">
+            <h4>Video KYC</h4>
+                <h5>1.Join video call</h5>
+                <h5>2.Follow few instructions</h5>
+                <h5>3.Schedule video KYC as per availability</h5>
+            <div class="row">
+   
+              <div class="col-md-4">
+                <div class="date-field">
+                    <mat-label class="input-label">Preferred V-KYC Date</mat-label>
+                    <mat-form-field appearance="fill">
+                      <input matInput [matDatepicker]="picker" placeholder="">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-field">
+                    <mat-label class="input-label">Preferred V-KYC Time</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Enter" value="14:20"/>
+                      <mat-icon matSuffix>access_time</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+            </mat-card>
+            </div>
+      
+        
+    </div>
+      <div class="customer-details-btns">
+        <button mat-button class="secondary-button" routerLink="/application-setup/e-kyc">Do not wish to do KYC</button>
+        <button mat-button class="primary-button" routerLink="/application-setup/e-kyc">Schedule V-KYC</button>
+      </div> -->
+
+    <!-- video kyc version-1 ends -->
+
+    <!-- video kyc version-2 starts -->
+
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/video-kyc-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="video-kyc-data">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+
+          </div>
+          <h2 class="video-kyc-heading">Video KYC</h2>
+          <p>Do your video KYC</p>
+
+          <mat-card class="video-kyc-card">
+            <mat-card-content class="video-kyc-card-content">
+              <div class="video-kyc-btns">
+                <button mat-button class="secondary-button" (click)="openVkyc()">
+                  Later
+                </button>
+
+                <button mat-button class="primary-button" (click)="now()">
+                  Now
+                </button>
+              </div>
+
+              <div class="back-btn">
+                <!-- <button mat-button class="secondary-button" routerLink='/application-setup/image-kyc'>Back</button> -->
+              </div>
+
+              <div class="no-kyc">
+                <a href="#">Do not wish to do Video KYC</a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- video kyc version-2 ends -->
+</div>

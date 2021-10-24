@@ -1,0 +1,156 @@
+<div class="offers-for-you-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <form [formGroup]="offerForyouForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="container-fluid">
+      <div class="row p-0">
+        <div class="col-md-3 p-0">
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+            <img src="assets/images/offers-for-u-img.svg" class="vector-img1" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+          <div class="greeting-content">
+            <h2>Congratulations!</h2>
+            <p class="eligibilty-note">
+              You're eligible for a personal loan of Rs {{maxloan | indianCurrency}} at {{ interestRate }}% for
+              {{minRangeValue}} months against application
+              <span>BOB {{loginDetails}}</span>
+            </p>
+          </div>
+          <mat-card class="offers-for-you-card">
+            <mat-card-content class="offers-for-you-card-content">
+              <div class="row space-wrapper">
+                <div class="col-md-5">
+                  <div class="input-field">
+                    <mat-label class="input-label">Loan Amount*</mat-label>
+                    <mat-form-field class="loan-input" appearance="outline">
+                      <input class="currency-input" formControlName="loanAmount" matInput
+                        value="{{ rangeValue | indianCurrency }}" (keypress)="numberOnly($event)" maxlength="9"
+                        (input)="Change($event.target.value)" />
+                      <span matPrefix class="offer-sign">₹</span>
+                    </mat-form-field>
+                    <mat-error *ngIf="offerForyouForm.get('loanAmount').hasError('pattern')">Eligible Amount is
+                      Invalid</mat-error>
+                    <mat-error *ngIf="gross && !offerForyouForm.get('loanAmount').hasError('pattern')">Eligible
+                      Amount shouldn't be empty</mat-error>
+                    <mat-error *ngIf="grossIncome && !offerForyouForm.get('loanAmount').hasError('pattern') && !gross">
+                      Minimum 50,000 and Maximum {{maxloan|indianCurrency}} are allowed</mat-error>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="slider letter-spacing">
+                    <mat-slider thumbLabel [displayWith]="formatThumbLabel" input #amount
+                      (input)="sliderValue(amount.value)" id="amount" [min]="min" [step]="1000" [max]="maxloan"
+                      value="{{ offerForyouForm.get('loanAmount').hasError('pattern') || grossIncome ? min: rangeValue }}">
+                    </mat-slider>
+                    <div class="range-value">
+                      <span class="start-value">₹ 50,000</span>
+                      <span class="end-value">₹ {{maxloan |indianCurrency }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row space-wrapper">
+                <div class="col-md-5">
+                  <div class="input-field loan-tenor">
+                    <mat-label class="input-label">Loan Tenure*</mat-label>
+                    <mat-form-field class="loan-input" appearance="outline">
+                      <input matInput value="{{ minRangeValue }} Months" readonly />
+
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="slider">
+                    <mat-slider thumbLabel input #time [displayWith]="formatLabel"
+                      (input)="monthsliderValue(time.value)" id="time" [min]="minMonths" [step]="1" [max]="maxMonths"
+                      value="{{ minRangeValue }}">
+                    </mat-slider>
+                    <div class="range-value">
+                      <span class="start-value">12 Months</span>
+                      <span class="end-value">{{maxMonths}} Months</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="loan-calculations">
+                <div class="row">
+                  <div class="interest-rate col-md-3 col-6">
+                    <span>Interest Rate</span>
+                    <p>{{ interestRate }}%</p>
+                  </div>
+                  <div class="emi col-md-3 col-6">
+                    <span>EMI</span>
+                    <p>
+                      <span>₹</span>{{ totalEmi | indianCurrency }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row secure-loan">
+                <div class="col-md-6">
+                  <div class="select-field info-field">
+                    <mat-label class="select-label">Secure your loan?* </mat-label>
+                    <mat-form-field appearance="outline">
+                      <mat-select placeholder="Select secure your loan" formControlName="loanSecure"
+                        (selectionChange)="showSelectValue($event.value)">
+                        <mat-option *ngFor="let obj of optionsLkp" value="{{obj.value}}">{{obj.value}}</mat-option>
+                      </mat-select>
+                      <button mat-icon-button class="tooltip-btn" type='button'
+                        matTooltip="A personal loan is a financial commitment. In case the of unfortunate events such death or permanent disability due to accident, a loan protection insurance plan payoff your outstanding loan. Your family will not be burdened with a sudden financial obligation to repay the loan.">
+                        <img src="assets/images/info.svg" alt="" class="tooltip-img">
+                      </button>
+                      <!-- <img src="assets/images/info.svg" alt="" (mouseover)="changeText = true"
+                        (mouseout)="changeText = false"> -->
+                      <mat-error *ngIf="offerForyouForm.get('loanSecure').hasError('required')">Secure your loan
+                        shouldn't be empty
+                      </mat-error>
+                    </mat-form-field>
+                    <!-- <div class="credit-life-insurance" *ngIf="changeText">
+                      <p>
+                        " A personal loan is a financial commitment. In case the of unfortunate events such as job loss,
+                        accidental death or temporirly
+                        disability, a loan protection insurance plan payoff your outstanding loan. Your family will not
+                        be
+                        burdened with a sudden financial obligation to repay the loan."
+                      </p>
+                    </div> -->
+
+                    <div class="credit-life-insurance">
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-5 offset-md-1 col-12" *ngIf="insuranceValue">
+                  <div class="input-field include-gst">
+                    <mat-label class="input-label">Insurance Premium (Incl. GST)*</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput type="text" placeholder="Enter Insurance Premium" [value]="offerForyouForm.get('insurance').value | indianCurrency" formControlName="insurance"
+                        appOnlyNumbers maxlength="12" (input)="insuranceAmount($event.target.value)"
+                      />
+                      <span matPrefix>₹</span>
+                      <mat-error *ngIf="offerForyouForm.get('insurance').hasError('required')">Insurance Premium shouldn't be empty</mat-error>
+                      <mat-error *ngIf="offerForyouForm.get('insurance').hasError('pattern')">Insurance Premium is Invalid</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div> -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="offer-for-you-btns">
+            <!-- <button mat-button class="secondary-button" (click)="goBack()" type="button">Back</button> -->
+            <button mat-button class="primary-button" type="submit">
+              Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

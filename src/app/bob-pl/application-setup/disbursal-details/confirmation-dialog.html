@@ -1,0 +1,16 @@
+<div class="disbursal-dialogue">
+  <div class="disbursal-dialogue-heading">
+    <h2>Disbursement Confirmation</h2>
+  </div>
+
+  <div class="disbursal-dialogue-body">
+    <p [innerHTML]="gettingDisbursalNumbers"></p>
+  </div>
+
+  <div mat-dialog-actions class="next-btns">
+    <button mat-button mat-dialog-close class="secondary-button">Cancel</button>
+    <button mat-button class="primary-button" mat-dialog-close (click)="confirmDisbursalNumber()">Confirm</button>
+
+  </div>
+</div>
+<!-- routerLink="/money-in-account" -->

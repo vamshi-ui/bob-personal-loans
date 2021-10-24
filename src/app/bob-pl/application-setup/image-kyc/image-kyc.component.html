@@ -1,0 +1,65 @@
+<div class="image-kyc-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/selfie-kyc-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="image-kyc-data">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+          <h2 class="image-kyc-heading">Selfie Please!</h2>
+
+          <mat-card class="image-kyc-card">
+            <mat-card-content class="image-kyc-card-content">
+              <div *ngIf="sampleImage" class="image-bg">
+                <img src="assets/images/user-img-disable.svg" alt="image-kyc" class="img img-fluid" />
+              </div>
+              <div *ngIf="showWebcam">
+                <h3>Please take a selfie to continue</h3>
+                <webcam [height]="320" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                  [imageQuality]="1" (initError)="handleInitError($event)"></webcam>
+              </div>
+              <div *ngIf="previewImage">
+                <h3>Preview Image</h3>
+                <img class="preview-image" style="height:300; width:400px" [src]="_DomSanitizer.bypassSecurityTrustUrl(previewImage)">
+              </div>
+
+              <div class="img-kyc-trip">
+                <button mat-fab *ngIf="showWebcam" (click)="triggerSnapshot()" class="camera-btn">
+                  <img src="assets/images/camera-disable.svg" alt="">
+                </button>
+                <button mat-fab *ngIf="sampleImage" (click)="toggleWebcam()" class="camera-btn">
+                  <img src="assets/images/camera-disable.svg" alt="">
+                </button>
+                <mat-card-actions class="retake-btns">
+                  <button mat-button class="secondary-button" *ngIf="previewImage" (click)="toggleWebcam()">
+                    Retake
+                  </button>
+
+                  <button mat-button *ngIf="previewImage" class="primary-button" (click)="continue()">
+                    Continue
+                  </button>
+                  <div class="image-kyc-btns">
+                    <button mat-button *ngIf="!previewImage" class="secondary-button back-btn" (click)="back()"
+                      type="button">Back</button>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

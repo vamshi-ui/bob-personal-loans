@@ -1,0 +1,136 @@
+.requirements-page {
+  background-color: #ffffff;
+
+  .sidebar-images {
+    margin-top: 30px;
+  }
+
+  .heading-content {
+
+    @media (max-width: 767px) {
+      left: 40%;
+      top: 35%;
+    }
+  }
+
+  .requirements-card {
+    padding: 36px 96px;
+    margin-top: 96px;
+    box-shadow: none;
+
+    @media(max-width: 1023px) {
+      padding: 48px;
+    }
+
+    @media(max-width: 767px) {
+      padding: 0 10px;
+      margin-top: 0;
+    }
+
+    .requirements-card-content {
+
+      .radio-btns {
+        margin-bottom: 16px;
+
+        .mat-radio-group {
+          .check-box-field {
+            margin-right: 72px;
+
+            .mat-radio-button {
+              .mat-radio-label {
+                .mat-radio-label-content {
+                  color: #ff5900;
+                  font-size: 24px !important;
+                  font-weight: 500 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .sal-selfemployed {
+        margin-bottom: 36px;
+
+        h2 {
+          font-size: 24px;
+          
+          @media (max-width: 767px) {
+            color: #ff5900;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            padding-bottom: 16px !important;
+            position: static;
+            text-align: left;
+          }
+        }
+
+        h3 {
+          color: #162C75;
+          font-size: 18px;
+          font-weight: 500;
+          // padding-left: 14px;
+          padding-bottom: 12px;
+          font-family: 'HelveticaNeue';
+
+          @media (min-width: 1920px) {
+            font-size: 22px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 14px;
+          }
+        }
+
+        h4 {
+          color: #565656;
+          font-size: 14px;
+          margin-bottom: 16px;
+          font-weight: 500;
+        }
+
+        .req-text {
+          display: flex;
+
+          span {
+            color: #565656;
+            font-size: 14px;
+            margin-right: 16px;
+            font-weight: 400;
+            vertical-align: middle;
+
+            @media (min-width: 1920px) {
+              font-size: 18px;
+            }
+          }
+
+          p {
+            font-size: 14px;
+            font-weight: 400;
+            color: #565656;
+            font-family: 'HelveticaNeue';
+
+            @media (min-width: 1920px) {
+              font-size: 20px !important;
+            }
+            @media (min-width: 1536px) {
+              font-size: 16px;
+            }
+
+            @media (max-width: 767px) {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+
+    .requirements-btns {
+      text-align: center;
+
+      @media (max-width: 767px) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

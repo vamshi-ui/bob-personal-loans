@@ -1,0 +1,61 @@
+<div class="video-kyc-info">
+  <form [formGroup]="vedioKYCForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="video-kyc-card">
+      <div class="video-kyc-card-content">
+        <div class="schedule-pop">
+          <p>
+            Schedule Video KYC <span mat-dialog-close class="close-icon">X</span>
+          </p>
+        </div>
+
+        <div class="row schedule-input-fields">
+
+          <div class="col-md-6">
+            <div class="date-field">
+              <mat-label class="input-label">Preferred V-KYC Date</mat-label>
+              <mat-form-field appearance="fill">
+                <!-- <input matInput [value]="currentDateNew" (click)="picker.open()"  placeholder="" readonly />
+              <input matInput [matDatepicker]="picker" min="{{currentDate | date:'yyyy-MM-dd'}}"  placeholder="" (dateChange)="currentDayChanged($event.value)" readonly [ngStyle]="{display:'none'}"/>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker  #picker ></mat-datepicker> -->
+                <input matInput [matDatepicker]="dp" formControlName="date" readonly
+                  min="{{currentDate|date:'yyyy-MM-dd'}}" (click)="dp.open()" (focus)="TimeValue()">
+                <mat-datepicker-toggle [disableRipple]="true" matSuffix [for]="dp" class="video-date">
+                  <mat-icon matDatepickerToggleIcon  (click)="dp.open()">
+                      <img src="assets/images/calendar.png" class="active-img" alt="" />
+                  </mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #dp class="date-picker"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-field">
+              <mat-label class="input-label">Preferred V-KYC Time</mat-label>
+              <mat-form-field appearance="outline">
+                <!-- <input formControlName="time" matTimepicker placeholder="{{CurrentTime}}" readonly>
+                <mat-icon matSuffix class="access-time">access_time</mat-icon> -->
+                <input matTimepicker #t2="matTimepicker" class="time-picker" mode="12h" formControlName="time" [minDate]="minValue" readonly
+                 placeholder="{{timeString}}" [ngStyle]="{textTransform: 'uppercase'}" (change)="onSelectTime()">
+                <mat-icon matSuffix (click)="t2.showDialog()" class="access-time" (change)="onSelectTime()">
+                  <img src="assets/images/clock.svg" alt="">
+                </mat-icon>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div mat-dialog-actions class="schedule-btn">
+      <button mat-button class="primary-button" routerLink="/application-setup/e-kyc" mat-dialog-close type="submit">
+        Schedule V-KYC
+      </button>
+    </div>
+  </form>
+</div>

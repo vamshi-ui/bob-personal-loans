@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="147px" height="147px" viewBox="0 0 147 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 4</title>
+    <defs>
+        <linearGradient x1="111.869273%" y1="-15.5994118%" x2="-36.7033352%" y2="148.595282%" id="linearGradient-1">
+            <stop stop-color="#FF9E00" offset="0%"></stop>
+            <stop stop-color="#FF5900" offset="46.7038597%"></stop>
+            <stop stop-color="#D50001" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Personal-Loans-Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4">
+            <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="147" height="147" rx="73.5"></rect>
+            <g id="Group-3" transform="translate(30.000000, 44.000000)">
+                <path d="M40.3333333,51.8 L29.3333333,70.3 L18.3333333,51.8 L40.3333333,51.8 Z M83,0 C85.7614237,-6.97699784e-15 88,2.23857625 88,5 L88,46.8 C88,49.5614237 85.7614237,51.8 83,51.8 L8.66666667,51.8 C5.90524292,51.8 3.66666667,49.5614237 3.66666667,46.8 L3.66666667,5 C3.66666667,2.23857625 5.90524292,1.39544373e-15 8.66666667,0 L83,0 Z" id="Combined-Shape" fill="#FFC09E"></path>
+                <path d="M36.6666667,55.5 L25.6666667,74 L14.6666667,55.5 L36.6666667,55.5 Z M79.3333333,3.7 C82.0947571,3.7 84.3333333,5.93857625 84.3333333,8.7 L84.3333333,50.5 C84.3333333,53.2614237 82.0947571,55.5 79.3333333,55.5 L5,55.5 C2.23857625,55.5 1.2263553e-15,53.2614237 0,50.5 L0,8.7 C5.50001544e-16,5.93857625 2.23857625,3.7 5,3.7 L79.3333333,3.7 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

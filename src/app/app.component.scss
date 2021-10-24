@@ -1,0 +1,24 @@
+.rotate-spinner {
+  text-align: center;
+}
+
+.rotate-img {
+  animation: rotateimg 2s infinite;
+  margin-bottom: 24px;
+}
+
+@keyframes rotateimg {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.spinner-text {
+  color: #ffffff;
+}

@@ -1,0 +1,96 @@
+<div class="login-page">
+  <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 p-0">
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval home-oval1">
+            <img src="assets/images/landing-page-img.png" class="home-img" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-oval">
+          </div>
+
+          <div class="heading-content">
+            <h1>Digital Personal Loans</h1>
+            <p>Get money in your account within minutes.</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <mat-card class="login-card">
+            <mat-card-content class="login-card-content">
+              <h2>Let's get started!</h2>
+
+              <div class="row row-height">
+                <div class="col-md-6">
+
+                  <div class="input-field">
+                    <mat-label class="input-label">Mobile Number*</mat-label>
+                    <mat-form-field name="mobileNumber" appearance="outline">
+                      <input formControlName="mobileNumber" matInput placeholder="Enter Mobile Number" appOnlyNumbers maxlength="10" (focusout)="otpService($event.target.value)"
+                      />
+                      <mat-error clas="error-text" *ngIf="loginForm.get('mobileNumber').hasError('required')">Mobile Number shouldn't be empty
+                      </mat-error>
+                      <mat-error clas="error-text" *ngIf="loginForm.get('mobileNumber').hasError('pattern')">Please enter valid 10 digit Mobile Number
+                      </mat-error>
+                      <mat-error clas="error-text" *ngIf="loginForm.get('mobileNumber').hasError('misMatch') && !loginForm.get('mobileNumber').hasError('pattern') &&!loginForm.get('mobileNumber').hasError('required')">
+                        Please enter valid 10 digit Mobile Number
+                      </mat-error>
+                    </mat-form-field>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="otp-input-field">
+                    <div class="otp-form">
+                      <div class="otp-form-fields">
+                        <div class="input-field otp-field">
+                          <mat-label *ngIf="!mobilenumber" class="input-label otp-input-label">Enter OTP</mat-label>
+                          <mat-label *ngIf="mobilenumber" class="input-label otp-input-label">Enter OTP sent on {{ mobilenumber }}*</mat-label>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Enter OTP" [type]="hideOtp ? 'password' : 'text'" appOnlyNumbers maxlength="6" formControlName="otp"
+                              class="error-box" (input)="otpValidate($event.target.value)" autocomplete="off" />
+                            <mat-icon matSuffix (click)="loginForm.get('mobileNumber').valid ? hideOtp = !hideOtp : hideOtp" class="eye-icon">
+                              {{ hideOtp ? 'visibility_off' : 'visibility'}}
+                            </mat-icon>
+                          </mat-form-field>
+                          <mat-error *ngIf="loginForm.get('otp').hasError('required') && loginForm.get('otp').touched">Please enter 6 digit OTP
+                          </mat-error>
+                          <mat-error *ngIf="error && !loginForm.get('otp').hasError('required') && loginForm.get('otp').touched">
+                            The OTP entered is incorrect. Please enter correct OTP or try regenerating the OTP </mat-error>
+                        </div>
+                      </div>
+                      <div class="resend-otp-btn">
+                        <div *ngIf="counter != 0" class="timer">
+                          {{ counter | timer }}
+                        </div>
+                        <button (click)="resendOtp($event)" mat-button class="resend-btn" *ngIf="counter == 0 && resend">
+                          Resend OTP
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="login-checkbox">
+                <div class="check-box-field error-check">
+                  <mat-checkbox formControlName="checkBox" (change)="onCheck($event)">I agree to
+                    <a routerLink="/privacy-policy" target="_blank">Privacy Policy</a>,
+                    <a routerLink="/terms-and-conditions" target="_blank">Terms & Conditions</a> and
+                    <a routerLink="/disclaimer" target="_blank">Disclaimers</a>
+                  </mat-checkbox>
+                  <mat-error *ngIf="validCheckBox === false">Please accept Privacy Policy, Terms & Conditions and Disclaimers</mat-error>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions class="login-btns">
+              <button mat-button class="primary-button" type="submit">
+                Submit OTP
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,274 @@
+.upload-itr-statement {
+  .itr-statement {
+    margin-top: 150px;
+    @media (max-width: 767px) {
+      margin: 0;
+    }
+    // h2{
+    //   @media (max-width: 576px) {
+    //     top: -43%;
+    //     left: 33%;
+    //     font-size: 18px;
+    //   }
+  //  }
+    .upload-statement-card {
+      padding: 10px 220px 10px 30px;
+      box-shadow: none;
+
+      @media (max-width: 767px) {
+        padding: 10px 10px;
+      }
+
+      .upload-statement-content {
+        p {
+          font-size: 17px;
+          font-weight: 500;
+        }
+
+        .upload-form-content {
+
+          .upload-form-info {
+            padding: 15px 40px;
+            align-items: center;
+
+            @media (max-width: 480px) {
+              padding: 10px 0;
+            }
+
+            .label {
+              font-size: 17px;
+              font-weight: 500;
+              margin: 0 !important;
+              color: #565656;
+              @media (min-width: 1920px) {
+                font-size: 24px;
+              }
+              @media (max-width: 480px) {
+                text-align: left;
+                margin-bottom: 10px !important;
+                font-size: 12px;
+              }
+            }
+
+            #upload_button input[type="file"] {
+              display: none;
+            }
+
+            .upload-button {
+              word-break: break-all;
+              .upload-file {
+                border: 1px dashed #bcbcbc;
+                border-radius: 4px;
+                display: block;
+                padding: 5px 0 5px;
+                position: relative;
+                cursor: pointer;
+                @media (min-width: 1920px) {
+                  padding: 5px 0;
+                  border: 2px dashed #bcbcbc;
+
+                }
+                @media (max-width: 1280px) {
+                  padding: 5px 20px;
+                }
+
+                @media (max-width: 767px) {
+                  padding: 5px 0 5px 15px;
+                }
+
+                .upload-icon {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  // padding: 8px 25px;
+                  @media (max-width: 767px) {
+                    justify-content: space-between;
+                  }
+                 
+                  img {
+                    height: 22px;
+                    width: 25px;
+                  }
+
+                  span {
+                    font-size: 15px;
+                    margin: 4px 0 0 4px;
+                    font-weight: 400;
+                    color: #434343;
+                    cursor: pointer;
+                   @media (min-width: 1920px) {
+                     font-size: 20px;
+                   }
+                    @media (max-width: 767px) {
+
+                      font-size: 12px;
+                    }
+
+                    span {
+                      text-decoration: underline;
+                      color: #ff5900 !important;
+                      margin: 0px;
+                    }
+                  }
+                }
+              }
+
+              .file-remove-icons {
+                background-color: #ff5900;
+                padding: 8px 16px;
+                display: flex;
+                justify-content: space-between;
+                border-style: none;
+                align-items: center !important;
+                color: #ffffff;
+                cursor: pointer;
+                @media (max-width: 480px) {
+                  padding: 5px 5px;
+                }
+
+                span {
+                  font-size: 15px;
+                  font-weight: 500;
+                  @media (max-width: 480px) {
+                    font-size: 11px;
+                  }
+                }
+              }
+            }
+          }
+          .itr-close-icon {
+            position: absolute;
+            top: 6px;
+            right: 29px;
+            cursor: pointer;
+            @media (max-width: 480px) {
+              top: 7px;
+              right: 20px;
+            }
+          }
+        }
+
+        .upload-statement-buttons {
+          padding: 15px 40px;
+          @media (max-width: 480px) {
+            padding: 15px 10px;
+          }
+
+          .add-more-button {
+            background: linear-gradient(222.14deg,
+                #ff9e00 0%,
+                #ff5900 46.7%,
+                #d50001 100%) !important;
+            color: #ffffff !important;
+            outline: none !important;
+            margin-right: 8px;
+            box-shadow: none;
+
+          }
+        }
+      }
+    }
+  }
+
+  .upload-statement-button {
+    margin: 50px 0;
+    text-align: center;
+  }
+  .bank-close-icon {
+    @media (max-width: 767px) {
+    padding-right: 0;
+    font-size: 18px;
+    right: 16px;
+    }
+
+}
+}
+
+// .mat-mini-fab {
+//   background: linear-gradient(222.14deg, #FF9E00 0%, #FF5900 46.7%, #D50001 100%) !important;
+//   color: #ffffff !important;
+//   outline: none !important;
+//   margin-right: 8px;
+// }
+
+.itr-statement-popup {
+  padding: 20px 0 0;
+
+  @media (max-width: 767px) {
+    padding: 0;
+  }
+
+  .itr-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      margin: 0 !important;
+
+      @media (max-width: 767px) {
+        font-size: 17px;
+      }
+    }
+
+    .close-icon {
+      background: none !important;
+
+      @media (max-width: 767px) {
+        margin-top: 5px;
+      }
+
+      &:focus,
+      &:active,
+      &:hover {
+        outline: none !important;
+        background: none !important;
+      }
+    }
+  }
+
+  .itr-popup-content {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 0;
+
+    @media (max-width: 767px) {
+      margin: 0;
+      flex-direction: column;
+    }
+
+    button {
+      @media (max-width: 480px) {
+        margin: 20px 0 0;
+      }
+    }
+    .disable-btn {
+      background: #fadbd3 !important;
+      color: #FF5900 !important;
+      font-weight: 500;
+      border: 1px solid #FF5900 !important;
+      padding: 1px 28px !important;
+      border-radius: 20px !important;
+      min-width: 180px !important;
+      }
+
+    .mat-button-base {
+      @media (max-width: 767px) {
+        margin-left: 0 !important;
+      }
+    }
+
+  }
+  .bank-close-icon {
+    @media (max-width: 767px) {
+    padding-right: 0;
+    font-size: 18px;
+    right: 16px;
+    }
+
+}
+}
+.mat-raised-button[disabled] {
+  padding: 0 8px !important;
+  }
+

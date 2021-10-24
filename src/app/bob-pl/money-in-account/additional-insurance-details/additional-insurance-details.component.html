@@ -1,0 +1,233 @@
+<div class="additional-insurance-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/loan-details-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="additional-details">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+
+
+          <h2>Additional Insurance Details</h2>
+          <div class="additional-insurance-info">
+            <form [formGroup]="nomineeDetailForm" (ngSubmit)="onSubmit()">
+              <mat-card class="nominee-details-card">
+                <mat-card-content class="nominee-details-card-content">
+
+
+                  <div formArrayName="itemRows">
+                    <div *ngFor="
+                  let itemrow of arrControl;
+                  let i = index
+                " [formGroupName]="i">
+                      <h4>Nominee / Appointee details</h4>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="input-field">
+                            <mat-label class="input-label">Nominee Name</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Enter Nominee Name" formControlName="nomineeName"
+                                maxlength="26" />
+                              <mat-error
+                                *ngIf="arrControl[i].get('nomineeName').hasError('required')">
+                                Nominee name shouldn't be empty.</mat-error>
+                              <mat-error
+                                *ngIf="arrControl[i].get('nomineeName').hasError('minlength') && !arrControl[i].get('nomineeName').hasError('pattern')">
+                                You have entered Invalid nominee name</mat-error>
+                              <mat-error
+                                *ngIf="arrControl[i].get('nomineeName').hasError('maxlength') && !arrControl[i].get('nomineeName').hasError('pattern')">
+                                You have entered Invalid nominee name</mat-error>
+                              <mat-error
+                                *ngIf="arrControl[i].get('nomineeName').hasError('pattern')">
+                                You have entered Invalid nominee name</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="input-field">
+                            <mat-label class="input-label">% Share</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Please enter share" formControlName="share" maxlength="3"
+                                appOnlyNumbers />
+                              <mat-error
+                                *ngIf="arrControl[i].get('share').hasError('required')">
+                                Share shouldn't be empty.</mat-error>
+                              <mat-error
+                                *ngIf="arrControl[i].get('share').hasError('pattern')">
+                                Share is invalid</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="date-field">
+                            <mat-label class="input-label">DOB of Nominee</mat-label>
+                            <mat-form-field appearance="fill">
+                              <input matInput [matDatepicker]="picker1" placeholder="Please select DOB of Nominee"
+                                (mousedown)="picker1.open(); $event.preventDefault" formControlName="dobNominee" [max]="maxDate" [min]="minDate"
+                                autocomplete="off" readonly />
+                              <mat-datepicker-toggle [disableRipple]="true" matSuffix [for]="picker1">
+                                <mat-icon matDatepickerToggleIcon (mousedown)="picker1.open(); $event.preventDefault">
+                                  <img src="assets/images/calendar.png" class="active-img" alt="" />
+                                </mat-icon>
+                              </mat-datepicker-toggle>
+                              <mat-datepicker #picker1
+                                (closed)="arrControl[i].get('dobNominee').markAsTouched()">
+                              </mat-datepicker>
+                              <mat-error
+                                *ngIf="arrControl[i].get('dobNominee').hasError('required')">
+                                DOB shouldn't be empty.</mat-error>
+                              <mat-error
+                                *ngIf="arrControl[i].get('dobNominee').hasError('ageValid')">
+                                DOB is invalid.</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="select-field">
+                            <mat-label class="select-label">Relationship With Life Assured</mat-label>
+                            <mat-form-field appearance="outline">
+                              <mat-select placeholder="Select Relationship With Life Assured" formControlName="relWithLifeAssured">
+                                <mat-option value="Mother"> Mother </mat-option>
+                                <mat-option value="Father"> Father </mat-option>
+                                <mat-option value="Spouse"> Spouse </mat-option>
+                                <mat-option value="Son"> Son </mat-option>
+                                <mat-option value="Daughter"> Daughter </mat-option>
+                              </mat-select>
+                              <mat-error
+                                *ngIf="arrControl[i].get('relWithLifeAssured').hasError('required')">
+                                Relationship With Life Assured cannot be blank</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="input-field">
+                            <mat-label class="input-label">Appointee Name (If applicable)</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Enter Appointee Name" formControlName="appointeeName"
+                                (input)="appointeeDOB($event.target.value, i)" maxlength="26" />
+                              <mat-error
+                                *ngIf="arrControl[i].get('appointeeName').hasError('pattern')">
+                                Appointee Name is invalid</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4" *ngIf="appointeeValue">
+                          <div class="date-field form-group">
+                            <mat-label class="input-label">DOB of Appointee</mat-label>
+                            <mat-form-field appearance="fill">
+                              <input matInput [matDatepicker]="picker2" placeholder="Select DOB of Appointee"
+                                formControlName="dobAppointee" (click)="picker2.open()" autocomplete="off" readonly [max]="maxDate" [min]="minDate"/>
+                              <mat-datepicker-toggle [disableRipple]="true" matSuffix [for]="picker2">
+                                <mat-icon matDatepickerToggleIcon (click)="picker2.open()">
+                                  <img src="assets/images/calendar.png" class="active-img" alt="" />
+                                </mat-icon>
+                              </mat-datepicker-toggle>
+                              <mat-datepicker #picker2></mat-datepicker>
+                              <mat-error
+                                *ngIf="arrControl[i].get('dobAppointee').hasError('required')">
+                                DOB shouldn't be empty.</mat-error>
+                              <mat-error
+                                *ngIf="arrControl[i].get('dobAppointee').hasError('ageValid')">
+                                DOB is invalid.</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="select-field">
+                            <mat-label class="select-label">Relationship With Nominee</mat-label>
+                            <mat-form-field appearance="outline">
+                              <mat-select placeholder="Select Relationship With Nominee" formControlName="relWithLifeNominee">
+                                <mat-option value="BROTHER IN LAW"> BROTHER IN LAW </mat-option>
+                                <mat-option value="BROTHER"> BROTHER </mat-option>
+                                <mat-option value="JOINT OWNER"> JOINT OWNER </mat-option>
+                                <mat-option value="COUSIN"> COUSIN </mat-option>
+                                <mat-option value="DAUGHTER"> DAUGHTER </mat-option>
+                                <mat-option value="DAUGHTER IN LAW"> DAUGHTER IN LAW </mat-option>
+                                <mat-option value="FATHER"> FATHER </mat-option>
+                                <mat-option value="FATHER IN LAW"> FATHER IN LAW </mat-option>
+                                <mat-option value="FRIEND"> FRIEND </mat-option>
+                                <mat-option value="GRAND DAUGHTER"> GRAND DAUGHTER </mat-option>
+                                <mat-option value="GRAND FATHER"> GRAND FATHER </mat-option>
+                                <mat-option value="GRAND MOTHER"> GRAND MOTHER </mat-option>
+                                <mat-option value="GRAND SON"> GRAND SON </mat-option>
+                                <mat-option value="HUSBAND"> HUSBAND </mat-option>
+                                <mat-option value="LEGAL GUARDIAN"> LEGAL GUARDIAN </mat-option>
+                                <mat-option value="MOTHER IN LAW"> MOTHER IN LAW </mat-option>
+                                <mat-option value="MOTHER"> MOTHER </mat-option>
+                                <mat-option value="NIECE"> NIECE </mat-option>
+                                <mat-option value="NEPHEW"> NEPHEW </mat-option>
+                                <mat-option value="NO RELATION"> NO RELATION </mat-option>
+                                <mat-option value="SON IN LAW"> SON IN LAW </mat-option>
+                                <mat-option value="SISTER"> SISTER </mat-option>
+                                <mat-option value="SON"> SON </mat-option>
+                                <mat-option value="SISTER IN LAW"> SISTER IN LAW </mat-option>
+                                <mat-option value="UNCLE"> UNCLE </mat-option>
+                                <mat-option value="WIFE"> WIFE </mat-option>
+                                <mat-option value="SELF"> SELF </mat-option>
+                                <mat-option value="AUNT"> AUNT </mat-option>
+                                <mat-option value="KARTA"> KARTA </mat-option>
+                                <mat-option value="DIRECTOR"> DIRECTOR </mat-option>
+                                <mat-option value="PROPRIETOR"> PROPRIETOR </mat-option>
+                                <mat-option value="PARTNER"> PARTNER </mat-option>
+                                <mat-option value="TRUSTEE"> TRUSTEE </mat-option>
+                                <mat-option value="PROPRIETOR_GUARANTOR"> PROPRIETOR_GUARANTOR </mat-option>
+                                <mat-option value="PARTNER_GUARANTOR"> PARTNER_GUARANTOR </mat-option>
+                                <mat-option value="DIRECTOR_GUARANTOR"> DIRECTOR_GUARANTOR </mat-option>
+                                <mat-option value="INDEPENDENT DIRECTOR"> INDEPENDENT DIRECTOR </mat-option>
+                                <mat-option value="PROMOTER DIRECTOR"> PROMOTER DIRECTOR </mat-option>
+                                <mat-option value="POWER OF ATTORNEY HOLDER"> POWER OF ATTORNEY HOLDER </mat-option>
+                                <mat-option value="Others"> Others </mat-option>
+                              </mat-select>
+                              <mat-error
+                                *ngIf="arrControl[i].get('relWithLifeNominee').hasError('required')">
+                                Nominee relation shouldn't beempty</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <mat-card-actions>
+                    <button mat-button class="primary-button" (click)="addNewRow()" [disabled]="nomineeDetailForm.invalid">
+                      Add More
+                    </button>
+                    <!-- <button
+          mat-button
+          class="secondary-button"
+          *ngIf="nomineeDetailForm.controls.itemRows['length'] > 1"
+          (click)="deleteRow(i)"
+        >
+          Delete
+        </button> -->
+                  </mat-card-actions>
+                </mat-card-content>
+              </mat-card>
+              <div class="additional-insurance-btns">
+                <button mat-button class="primary-button" type="submit">
+                  Proceed
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

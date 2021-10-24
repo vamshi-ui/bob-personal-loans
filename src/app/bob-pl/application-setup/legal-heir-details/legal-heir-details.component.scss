@@ -1,0 +1,97 @@
+.legal-heir-details-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  .legal-heir-data {
+    // padding: 36px 48px;
+    padding: 0 48px 36px;
+    margin-top: 136px;
+
+    @media (max-width: 1280px) {
+      padding: 24px 20px;
+    }
+
+    @media (max-width: 1023px) {
+      padding: 24px;
+    }
+
+    @media (max-width: 767px) {
+      padding: 12px 9px;
+      margin: 0;
+    }
+
+    .legal-heir-details-info {
+      margin-top: 36px;
+
+      .legal-heir-details-card {
+        padding: 0;
+        // margin-top: 16px;
+        margin-bottom: 36px;
+        box-shadow: none;
+
+        .legal-heir-details-card-content {
+          .legal-heading {
+            display: flex;
+            justify-content: space-between;
+          }
+          h4 {
+            color: #162c75;
+            font-size: 18px;
+            font-weight: 500;
+            // padding-left: 14px;
+            padding-bottom: 12px;
+            font-family: 'HelveticaNeue';
+
+            @media (min-width: 1920px) {
+              font-size: 26px !important;
+            }
+            @media (min-width: 1536px) {
+              font-size: 22px;
+            }
+
+            @media (max-width: 767px) {
+              font-size: 14px;
+            }
+          }
+
+          .address-details {
+            margin-top: 36px;
+          }
+        }
+      }
+    }
+
+    .legal-heir-details-btns {
+      margin: 48px 0;
+
+      .check-box-field {
+        margin-top: 4px;
+
+        .mat-checkbox {
+          a {
+            color: #162C75;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'HelveticaNeue';
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .proceed-btn {
+        text-align: center;
+        margin-top: 48px;
+      }
+    }
+  }
+}
+
+.mat-mini-fab {
+  background: linear-gradient(222.14deg,
+      #ff9e00 0%,
+      #ff5900 46.7%,
+      #d50001 100%) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  margin-right: 8px;
+}

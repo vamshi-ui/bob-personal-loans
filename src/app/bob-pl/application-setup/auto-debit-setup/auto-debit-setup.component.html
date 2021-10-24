@@ -1,0 +1,125 @@
+<div class="autodebit-setup-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+
+  <div class="container">
+    <!-- <app-step-wizard></app-step-wizard> -->
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/auto-debit-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <form [formGroup]="autoDebitForm" autocomplete="off">
+          <div class="autodebit-setup-info">
+            <div class="main-step-wizard">
+              <app-step-wizard></app-step-wizard>
+            </div>
+            <div class="autodebit-heading" *ngIf="accountHolder === 'No'">
+              <h2>Mandate Registration</h2>
+              <P>"Loan will be disbursed in the primary account."</P>
+            </div>
+
+            <div class="autodebit-heading" *ngIf="accountHolder === 'Yes'">
+              <h2>SI Mandate</h2>
+              <P>"Loan will be disbursed in the primary account."</P>
+            </div>
+
+            <mat-card class="autodebit-setup-card">
+              <mat-card-content class="autodebit-setup-card-content">
+                <div class="autodebit-card-info">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="select-field">
+                        <mat-label class="select-label">Bank Account</mat-label>
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Bank Account" formControlName="bankAccount">
+                            <mat-option *ngFor="let bankAccount of bankAccounts" value={{bankAccount.accountNumber}} (focusout)="needSetup(bankAccount)">
+                              {{bankAccount.bankName}} - {{bankAccount.accountNumber}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="autoDebitForm.get('bankAccount').errors && autoDebitForm.get('bankAccount').errors.required">
+                            Please select the Bank Account
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="input-field input-debit">
+                        <mat-label class="input-label">EMI Amount</mat-label>
+                        <mat-form-field appearance="outline">
+                          <span matPrefix class="offer-sign">₹</span>
+                          <input matInput placeholder="Enter Amount" [value]="autoDebitForm.get('emiAmount').value | indianCurrency" formControlName="emiAmount"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="input-field input-debit">
+                        <mat-label class="input-label">Tenure (Months)</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="0" [value]="autoDebitForm.get('tenure').value === null ? '0' + ' ' + 'Months' : autoDebitForm.get('tenure').value + ' ' + 'Months' "
+                            formControlName="tenure" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="emi-field">
+                        <p>Choose EMI Date</p>
+                        <div class="emi-dates-buttons">
+                          <button type="button" mat-raised-button id="date-btn" (click)="emiDates(04)" class="date-btn" [ngClass]="{'date-btn-active': dateOne,'date-btn-inactive': !dateOne}">
+                            04
+                          </button>
+                          <button type="button" mat-raised-button class="date-btn" (click)="emiDates(10)" [ngClass]="{'date-btn-active': dateTwo,'date-btn-inactive': !dateTwo}">
+                            10
+                          </button>
+                          <!-- <button type="button" mat-raised-button class="date-btn" (click)="emiDates(16)" [ngClass]="{'date-btn-active': dateThree,'date-btn-inactive': !dateThree}">
+                            16
+                          </button>
+                          <button type="button" mat-raised-button class="date-btn" (click)="emiDates(24)" [ngClass]="{'date-btn-active': dateFour,'date-btn-inactive': !dateFour}">
+                            24
+                          </button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <div class="autodebit-setup-btns">
+              <!-- <button mat-button class="secondary-button" (click)="back()" type="button">Back</button> -->
+              <div *ngIf="accountHolder === 'No'">
+                <button *ngIf="needSetUp" mat-raised-button class="primary-button " (click)="setUp()">
+                  Set Up
+                </button>
+                <button *ngIf="!needSetUp" mat-raised-button class="primary-button " (click)="continueToNext()">
+                  Continue
+                </button>
+              </div>
+
+              <div *ngIf="accountHolder === 'Yes'">
+                <button mat-raised-button class="primary-button " (click)="continueToNext()">
+                  Continue
+                </button>
+              </div>
+
+              <div *ngIf="accountHolder === 'No'">
+                <a routerLink='/revisit-loan-journey'>I want to set-up a Physical Mandate</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form #mandateForm name='autoform' method='post' action='{{ initiateResponse }}'></form>

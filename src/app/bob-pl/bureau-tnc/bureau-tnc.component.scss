@@ -1,0 +1,89 @@
+.basic-details-tnc-page {
+  .basic-details-tnc-data {
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      margin-top: 0;
+    }
+
+    // h2 {
+    //   @media (max-width: 767px) {
+    //     top: -26%;
+    //   }
+    // }
+
+    .basic-details-tnc-card {
+      box-shadow: none;
+      padding: 24px 40px 10px 10px;
+
+      @media (max-width: 767px) {
+        padding: 33px 10px 7px;
+
+      }
+
+      .basic-details-tnc-card-content {
+        margin-bottom: 48px;
+
+        h4 {
+          color: #162C75;
+          font-size: 18px;
+          font-weight: 500;
+          margin-bottom: 16px;
+          // padding-left: 14px;
+          padding-bottom: 0px;
+          font-family: 'HelveticaNeue';
+        }
+
+        ol {
+          li {
+            font-size: 15px;
+            font-weight: 400;
+            color: #565656;
+            font-family: 'HelveticaNeue';
+
+            @media (min-width: 1920px) {
+              font-size: 23px !important;
+              line-height: 30px !important;
+            }
+
+            @media (min-width: 1536px) {
+              font-size: 20px;
+              line-height: 25px;
+            }
+
+            @media (max-width: 767px) {
+              font-size: 14px;
+            }
+
+            a {
+              color: #162C75;
+              font-size: 15px;
+              font-weight: 500;
+              font-family: 'HelveticaNeue';
+              text-decoration: underline;
+
+              @media (min-width: 1920px) {
+                font-size: 23px !important;
+              }
+
+              @media (min-width: 1536px) {
+                font-size: 20px;
+              }
+
+              @media (max-width: 767px) {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        p {
+          font-size: 15px;
+          font-weight: 400;
+          color: #565656;
+          font-family: 'HelveticaNeue';
+        }
+      }
+    }
+  }
+}

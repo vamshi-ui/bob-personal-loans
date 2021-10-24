@@ -1,0 +1,64 @@
+.provide-gst-statement {
+  .provide-statement-heading {
+    color: #565656;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .provide-statement-card {
+    padding: 80px 140px 30px;
+    text-align: center;
+    box-shadow: 0 0 8px 0 rgba(178, 178, 178, 0.4);
+    @media (max-width: 767px) {
+      padding: 80px 10px 30px;
+    }
+    .provide-statement-content {
+      h2 {
+        font-size: 20px;
+        color: #565656;
+      }
+
+      .provide-statement-buttons {
+        margin: 30px 0;
+
+        .or {
+          padding: 0 70px;
+          color: #565656;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    p {
+      color: #707070;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.8;
+      padding: 0 45px;
+    }
+
+    .mat-checkbox {
+      margin-top: 20px;
+
+      .mat-checkbox-layout {
+        .mat-checkbox-inner-container {
+          width: 12px !important;
+          height: 12px !important;
+        }
+
+        .mat-checkbox-frame {
+          border-width: 1px;
+        }
+      }
+    }
+
+    .terms-conditions {
+      font-size: 10px !important;
+      padding-left: 5px;
+      color: #000000;
+      font-weight: 500;
+    }
+  }
+}

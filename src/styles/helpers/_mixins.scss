@@ -1,0 +1,83 @@
+/* Mixins */
+
+@mixin trans($val...) {
+    -webkit-transition: $val;
+    -moz-transition: $val;
+    -o-transition: $val;
+    transition: $val;
+}
+
+// Text Shadow
+@mixin text-shadow($horizOffset, $vertOffset, $blur, $color) {
+    -webkit-text-shadow: $horizOffset $vertOffset $blur $color;
+    -moz-text-shadow: $horizOffset $vertOffset $blur $color;
+    -ms-text-shadow: $horizOffset $vertOffset $blur $color;
+    /* IE 10+ */
+    -o-text-shadow: $horizOffset $vertOffset $blur $color;
+    text-shadow: $horizOffset $vertOffset $blur $color;
+}
+
+// Border Radius
+@mixin border-radius($topLeft, $topRight, $bottomRight, $bottomLeft) {
+    -webkit-border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+    -moz-border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+    -ms-border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+    -o-border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+    border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+}
+
+// Box Shadow
+@mixin box-shadow($horizontal, $vertical, $blur, $color) {
+    -webkit-box-shadow: $horizontal $vertical $blur $color;
+    -moz-box-shadow: $horizontal $vertical $blur $color;
+    box-shadow: $horizontal $vertical $blur $color;
+}
+
+// Box Shadow Inset
+@mixin bottom-box-shadow($top, $left, $blur, $color) {
+  -webkit-box-shadow:$top $left $blur $color;
+  -moz-box-shadow:$top $left $blur $color;
+  -ms-box-shadow:$top $left $blur $color;
+  box-shadow:$top $left $blur $color;
+}
+
+@mixin inset-box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
+
+@mixin border-radius($radius) {
+-webkit-border-radius: $radius;
+-moz-border-radius: $radius;
+-ms-border-radius: $radius;
+ border-radius: $radius;
+}
+
+@mixin transition($what, $time, $how) {
+    transition:         $what $time $how;
+    -webkit-transition: $what $time $how;
+    -moz-transition:    $what $time $how;
+    -ms-transition:     $what $time $how;
+    -o-transition:      $what $time $how;
+}
+@mixin scale($value) {
+    transform: scale($value);
+    -webkit-transform: scale($value);
+    -moz-transform: scale($value);
+    -ms-transform: scale($value);
+    -o-transform: scale($value);      
+}
+@mixin rotate($value) {
+    transform: rotate($value);
+    -webkit-transform: rotate($value);
+    -moz-transform: rotate($value);
+    -ms-transform: rotate($value);
+    -o-transform: rotate($value);      
+}
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}

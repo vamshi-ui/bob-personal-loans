@@ -1,0 +1,586 @@
+<div class="customer-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <form [formGroup]="customerDetailsForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="container">
+
+      <div class="row p-0">
+        <div class="col-md-2 p-0 ">
+          <div class="sidebar-images">
+            <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+            <img src="assets/images/customer-details-img.svg" class="vector-img1" alt="">
+            <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+          </div>
+        </div>
+
+        <div class="col-md-10">
+          <div class="customer-details-info">
+            <div class="main-step-wizard">
+              <app-step-wizard></app-step-wizard>
+            </div>
+            <mat-card class="basic-details-card">
+              <mat-card-content class="basic-details-card-content">
+                <div class="mobile-headings">
+                  <h2>Please fill your details </h2>
+                </div>
+                <h4>Basic Details</h4>
+
+                <div class="row">
+                  <div class="col-md-4 col-lg-1 col-3 pr-0">
+                    <div class="select-field">
+                      <mat-label class="select-label">Salutation*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select" formControlName="prefix">
+                          <mat-option *ngFor="let obj of salutationLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('prefix').hasError('required')">Salutation shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-lg-3 col-9">
+                    <div [ngClass]="{'input-field input-disabled': getcustomerDetails?.firstName, 'input-field': !getcustomerDetails?.firstName}">
+                      <mat-label class="input-label">First Name*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter First Name" formControlName="firstName" maxlength="50" [readOnly]="getcustomerDetails?.firstName"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('firstName').hasError('required')">First Name shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('firstName').hasError('pattern')">First Name is invalid
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('firstName').hasError('minlength') && !customerDetailsForm.get('firstName').hasError('pattern')">
+                          First Name must be atleast one character</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('firstName').hasError('maxlength') && !customerDetailsForm.get('firstName').hasError('pattern')">
+                          First Name is invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': getcustomerDetails?.middleName, 'input-field': !getcustomerDetails?.middleName}">
+                      <mat-label class="input-label">Middle Name</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Middle Name" formControlName="middleName" maxlength="50" [readOnly]="getcustomerDetails?.middleName"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('middleName').hasError('pattern')">Middle Name is Invalid
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('middleName').hasError('minlength') && !customerDetailsForm.get('middleName').hasError('pattern')">
+                          Middle Name must be atleast one character</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('middleName').hasError('maxlength') && !customerDetailsForm.get('middleName').hasError('pattern')">
+                          Middle Name is invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': getcustomerDetails?.lastName, 'input-field': !getcustomerDetails?.lastName}">
+                      <mat-label class="input-label">Last Name*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Last Name" formControlName="lastName" maxlength="50" [readonly]="getcustomerDetails?.lastName"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('lastName').hasError('required')">Last Name shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('lastName').hasError('pattern')">Last Name is invalid
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('lastName').hasError('minlength') && !customerDetailsForm.get('lastName').hasError('pattern')">
+                          Last Name must be atleast one character</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('lastName').hasError('maxlength') && !customerDetailsForm.get('lastName').hasError('pattern')">
+                          Last Name is invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div [ngClass]="{'date-field':!getcustomerDetails?.dateOfbirth, 'date-disabled-field':getcustomerDetails?.dateOfbirth}">
+                      <mat-label class="input-label">Date of Birth*</mat-label>
+                      <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker" placeholder="Select Date of Birth" [min]="minDate" [max]="maxDate" formControlName="DOB"
+                          [readonly]='getcustomerDetails?.dateOfbirth' (mousedown)="picker.open(); $event.preventDefault()">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon *ngIf='getcustomerDetails?.dateOfbirth === null'>
+                            <img src="assets/images/calendar.png" alt="" class="active-img" />
+                          </mat-icon>
+                          <mat-icon matDatepickerToggleIcon *ngIf='getcustomerDetails?.dateOfbirth !== null'>
+                            <img src="assets/images/calender-disable-img.png" alt="" class="active-img" />
+                          </mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker (closed)="customerDetailsForm.get('DOB').markAsTouched()" [disabled]='getcustomerDetails?.dateOfbirth'>
+                        </mat-datepicker>
+                        <mat-error *ngIf="customerDetailsForm.get('DOB').hasError('required')">Date of Birth shouldn't be empty
+                        </mat-error>
+                        <!-- <mat-error *ngIf="customerDetailsForm.get('DOB').hasError('ageValid')">Your age should be minimum 18 years and maximum 60 years
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'select-field select-disabled': getcustomerDetails?.gender, 'select-field': !getcustomerDetails?.gender}">
+                      <div class="select-field">
+                        <mat-label class="select-label">Gender*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Gender" formControlName="gender" [disabled]="getcustomerDetails?.gender">
+                            <mat-option *ngFor="let obj of genderLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="customerDetailsForm.get('gender').hasError('required')">Gender shouldn't be empty
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': getcustomerDetails?.panNo && verifyPan == true, 'input-field': !getcustomerDetails?.panNo || verifyPan == false}">
+                      <mat-label class="input-label">PAN*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter PAN Number" class="textuppercase" maxlength="10" formControlName="PAN" #pan (input)="pan.value = pan.value.toUpperCase()"
+                          appAlphaNumeric class="verify-pan" (focusout)="panVerify($event.target.value)" [readOnly]="getcustomerDetails?.panNo && verifyPan == true"
+                        />
+                        <span *ngIf="verifyPan" class="verify-pan">
+                          <mat-icon class="pan-icon">check_circle</mat-icon>
+                        </span>
+                        <mat-error *ngIf="customerDetailsForm.get('PAN').hasError('required')">PAN shouldn't be empty
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('PAN').hasError('pattern')">Please enter valid 10 digits PAN Number</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('PAN').hasError('minlength') && !customerDetailsForm.get('PAN').hasError('pattern')">
+                          Please enter valid 10 digits PAN Number</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('PAN').hasError('maxlength') && !customerDetailsForm.get('PAN').hasError('pattern')">
+                          Please enter valid 10 digits PAN Number</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('PAN').hasError('panName') &&
+                          !customerDetailsForm
+                          .get('PAN').hasError('minlength') &&  !customerDetailsForm
+                          .get('PAN')
+                          .hasError('maxlength') &&  !customerDetailsForm
+                          .get('PAN')
+                          .hasError('pattern') &&  !customerDetailsForm
+                          .get('PAN')
+                          .hasError('required')
+                      ">
+                          Please enter valid 10 digits PAN Number</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Job Type*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Job Type" formControlName="jobType" (selectionChange)="showSelectJobType($event.value)">
+                          <mat-option *ngFor="let obj of jobTypeLkp" value={{obj.value}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('jobType').hasError('required')">Job Type shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': getcustomerDetails?.mobileNo, 'input-field': !getcustomerDetails?.mobileNo}">
+                      <div class="input-field">
+                        <mat-label class="input-label">Mobile Number*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Enter Mobile Number" formControlName="mobile" appOnlyNumbers maxlength="10" [readonly]='getcustomerDetails?.mobileNo'
+                          />
+                          <mat-error *ngIf="customerDetailsForm.get('mobile').hasError('required')">Mobile Number shouldn't be empty</mat-error>
+                          <mat-error *ngIf="customerDetailsForm.get('mobile').hasError('pattern')">Please enter valid 10 digit Mobile Number
+                          </mat-error>
+                          <mat-error *ngIf="customerDetailsForm.get('mobile').hasError('minlength') && !customerDetailsForm.get('mobile').hasError('pattern')">
+                            Please enter valid 10 digit Mobile Number</mat-error>
+                          <mat-error *ngIf="customerDetailsForm.get('mobile').hasError('misMatch') && !customerDetailsForm.get('mobile').hasError('required')&&!customerDetailsForm.get('mobile').hasError('pattern')">
+                            Please enter valid 10 digit Mobile Number</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': getcustomerDetails?.email, 'input-field': !getcustomerDetails?.email}">
+                      <div class="input-field">
+                        <mat-label class="input-label">Email Id*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Enter Email Id" formControlName="email" [readOnly]="!getcustomerDetails?.email" />
+                          <mat-error *ngIf="customerDetailsForm.get('email').hasError('required')">Email Id shouldn't be empty
+                          </mat-error>
+                          <mat-error *ngIf="customerDetailsForm.get('email').hasError('pattern')">You have entered Invalid email id
+                          </mat-error>
+                        </mat-form-field>
+                        <!-- <span class="input-text">Verification link will be sent</span> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-md-4" *ngIf='aadharVisible'>
+                    <div [ngClass]="{'input-field input-disabled': aadharVisibleHide, 'input-field': !aadharVisibleHide}">
+                      <div class="input-field">
+                        <mat-label class="input-label">Aadhaar/VID Number*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Enter Aadhaar/VID Number" formControlName="aadharNumber" appOnlyNumbers [readonly]='aadharVisibleHide'
+                            (input)='aadhaarValue($event.target.value)' (focusout)="aadhaarVidValidation()" [value]='aadharVal.toUpperCase()' maxlength="19" />
+                          <mat-error *ngIf="customerDetailsForm.get('aadharNumber').hasError('required')">Aadhaar/VID Number shouldn't be empty</mat-error>
+                          <mat-error *ngIf="this.getcustomerDetails.aadharNumber === null && customerDetailsForm.get('aadharNumber').hasError('minlength') && !invalidAadhaar">
+                            Please enter valid 12 or 16 digit Aadhaar/VID Number</mat-error>
+                        </mat-form-field>
+                        <mat-error *ngIf="this.getcustomerDetails.aadharNumber === null && invalidAadhaar === true && !customerDetailsForm.get('aadharNumber').hasError('required') && !customerDetailsForm.get('aadharNumber').hasError('minlength')">
+                          Please enter valid 12 or 16 digit Aadhaar/VID Number
+                        </mat-error>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': aadharVisibleHide, 'input-field': !aadharVisibleHide}">
+                      <div class="input-field">
+                        <mat-label class="input-label">Aadhaar/VID Number*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Enter Aadhaar/VID Number" formControlName="aadharNumber" appOnlyNumbers (input)='aadhaarValue($event.target.value)'
+                            (focusout)="aadhaarVidValidation()" (keypress)="allowOnlyNumbers($event)" [value]='aadharVal.toUpperCase()'
+                            maxlength="19" [readOnly]="aadharVisibleHide" />
+                          <mat-error *ngIf="customerDetailsForm.get('aadharNumber').hasError('required')">Aadhaar/VID Number shouldn't be empty</mat-error>
+                          <!-- <mat-error *ngIf="this.getcustomerDetails.aadharNumber === null && customerDetailsForm.get('aadharNumber').hasError('minlength') && !invalidAadhaar">
+                            Please enter valid 12 or 16 digit Aadhaar/VID Number</mat-error>
+                        </mat-form-field>
+                        <mat-error *ngIf="this.getcustomerDetails.aadharNumber === null && invalidAadhaar === true && !customerDetailsForm.get('aadharNumber').hasError('required') && !customerDetailsForm.get('aadharNumber').hasError('minlength')">
+                          Please enter valid 12 or 16 digit Aadhaar/VID Number
+                        </mat-error> -->
+                          <mat-error *ngIf="customerDetailsForm.get('aadharNumber').hasError('minlength') ">
+                            Please enter valid 12 digits Aadhaar Number or 16 digit VID Number</mat-error>
+                           
+                        </mat-form-field>
+                        <mat-error *ngIf=" invalidAadhaar === true && !customerDetailsForm.get('aadharNumber').hasError('required') && !customerDetailsForm.get('aadharNumber').hasError('minlength') && customerDetailsForm.get('aadharNumber').touched">
+                          Please enter valid 12 digits Aadhaar Number or 16 digit VID Number
+                        </mat-error>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Category*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Category" formControlName="category">
+                          <mat-option *ngFor="let obj of categotyLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('category').hasError('required')">Category shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Religion*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Religion" formControlName="religion">
+                          <mat-option *ngFor="let obj of religionLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('religion').hasError('required')">Religion shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Residential Status*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Residential Status" formControlName="residentialStatus">
+                          <mat-option *ngFor="let obj of residentialstatusLkp" value={{obj.key}}> {{obj.value}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('residentialStatus').hasError('required')">
+                          Residential status shouldn't be empty</mat-error>
+
+                      </mat-form-field>
+                      <!-- <mat-error *ngIf="residentInvalid">You have selected NRI, You are not eligible for digital personal loan</mat-error> -->
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Marital Status*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Marital Status" (selectionChange)="showSelectValue($event.value)" formControlName="maritalStatus">
+                          <mat-option *ngFor="let obj of maritalStatusLkp" value={{obj.value}}> {{obj.value}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('maritalStatus').hasError('required')">Marital status shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4" >
+                    <div class="input-field">
+                      <mat-label class="input-label">Name of Father*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Name of Father" formControlName="spouseName" maxlength="75" />
+                        <mat-error *ngIf="customerDetailsForm.get('spouseName').hasError('required')">
+                          Name of Father shouldn't empty</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('spouseName').hasError('pattern')">Name of Father is invalid
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('spouseName').hasError('minlength') && !customerDetailsForm.get('spouseName').hasError('pattern')">
+                          Name of Father must be atleast one character</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('spouseName').hasError('maxlength') && !customerDetailsForm.get('spouseName').hasError('pattern')">
+                          Name of Father is invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="basic-details-card">
+              <mat-card-content class="basic-details-card-content">
+                <h4>Permanent Address</h4>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': hasPermanentAddress, 'input-field': !hasPermanentAddress}">
+                      <mat-label class="input-label">Address Line 1*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Address Line 1" formControlName="AddressOne" maxlength="100" [readOnly]="hasPermanentAddress"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOne').hasError('required')">Address Line 1 shouldn't be empty</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOne').hasError('pattern')">Address Line 1 is Invalid
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOne').hasError('minlength') && !customerDetailsForm.get('AddressOne').hasError('pattern')">
+                          Address Line 1 is Invalid</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOne').hasError('maxlength') && !customerDetailsForm.get('AddressOne').hasError('pattern')">
+                          Address Line 1 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': hasPermanentAddress, 'input-field': !hasPermanentAddress}">
+                      <mat-label class="input-label">Address Line 2*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Address Line 2" formControlName="AddressTwo" maxlength="100" [readOnly]="hasPermanentAddress"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwo').hasError('required')">Address Line 2 shouldn't be empty</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwo').hasError('pattern')">Address Line 2 is Invalid
+                        </mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwo').hasError('minlength') && !customerDetailsForm.get('AddressTwo').hasError('pattern')">
+                          Address Line 2 is Invalid</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwo').hasError('maxlength') && !customerDetailsForm.get('AddressTwo').hasError('pattern')">
+                          Address Line 2 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'input-field input-disabled': hasName, 'input-field': !hasName}">
+                      <mat-label class="input-label">Pincode*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Pincode" appOnlyNumbers formControlName="pincode" (focusout)="validPinCode($event.target.value)"
+                          maxlength="6" [readOnly]="hasName" />
+                        <mat-error *ngIf="customerDetailsForm.get('pincode').hasError('required')">Pincode shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-error *ngIf="pincodeError === false && !customerDetailsForm.get('pincode').hasError('required')">
+                        You have entered Invalid Pincode</mat-error>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'select-field select-disabled': hasName, 'select-field': !hasName}">
+                      <mat-label class="select-label">City*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select City" formControlName="city" [disabled]="hasName">
+                          <mat-option *ngFor="let obj of cityLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('city').hasError('required')">
+                          City shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'select-field select-disabled': hasName, 'select-field': !hasName}">
+                      <mat-label class="select-label">District*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select District" formControlName="district" [disabled]="hasName">
+                          <mat-option *ngFor="let obj of districtLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('district').hasError('required')">
+                          District shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'select-field select-disabled': hasName, 'select-field': !hasName}">
+                      <mat-label class="select-label">State*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select State" formControlName="state" [disabled]="hasName">
+                          <mat-option *ngFor="let obj of stateLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('state').hasError('required')">
+                          State shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div [ngClass]="{'select-field select-disabled': hasName, 'select-field': !hasName}">
+                      <mat-label class="select-label">Country*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Country" formControlName="country" [disabled]="hasName">
+                          <mat-option *ngFor="let obj of countryLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('country').hasError('required')">
+                          Country shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="basic-details-card">
+              <mat-card-content class="basic-details-card-content">
+                <h4>Correspondence Address</h4>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="check-box-field same-check">
+                      <mat-checkbox class="add-text" (change)="sameAddress($event)" formControlName="checkBox">Same as above address</mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'input-field input-disabled': disableAction, 'input-field': !disableAction}"> -->
+                    <div class="input-field">
+                      <mat-label class="input-label">Address Line 1*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Address Line 1" formControlName="AddressOneTwo" maxlength="100" [readOnly]="disableAction"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOneTwo').hasError('required')">Address Line 1 shouldn't be empty</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOneTwo').hasError('pattern')">Address Line 1 is Invalid</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOneTwo').hasError('minlength') && !customerDetailsForm.get('AddressOneTwo').hasError('pattern')">
+                          Address Line 1 is Invalid</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressOneTwo').hasError('maxlength') && !customerDetailsForm.get('AddressOneTwo').hasError('pattern')">
+                          Address Line 1 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'input-field input-disabled': disableAction, 'input-field': !disableAction}"> -->
+                    <div class="input-field">
+                      <mat-label class="input-label">Address Line 2*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Address Line 2" formControlName="AddressTwoTwo" maxlength="100" [readOnly]="disableAction"
+                        />
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwoTwo').hasError('required')">Address Line 2 shouldn't be empty</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwoTwo').hasError('pattern')">Address Line 2 is Invalid</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwoTwo').hasError('minlength') && !customerDetailsForm.get('AddressTwoTwo').hasError('pattern')">
+                          Address Line 2 is Invalid</mat-error>
+                        <mat-error *ngIf="customerDetailsForm.get('AddressTwoTwo').hasError('maxlength') && !customerDetailsForm.get('AddressTwoTwo').hasError('pattern')">
+                          Address Line 2 is Invalid</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'input-field input-disabled': disableAction, 'input-field': !disableAction}"> -->
+                    <div class="input-field">
+                      <mat-label class="input-label">Pincode*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Pincode" appOnlyNumbers formControlName="pincodeTwo" (focusout)="validPincodeTwo($event.target.value)"
+                          maxlength="6" [readOnly]="disableAction" />
+                        <mat-error *ngIf="customerDetailsForm.get('pincodeTwo').hasError('required')">Pincode shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-error *ngIf="pincodeErrorTwo === false && !customerDetailsForm.get('pincodeTwo').hasError('required')">
+                        You have entered Invalid Pincode</mat-error>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'select-field select-disabled': disableAction, 'select-field': !disableAction}"> -->
+                    <div class="select-field">
+                      <mat-label class="select-label">City*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select City" formControlName="cityTwo" [disabled]="disableField">
+                          <mat-option *ngFor="let obj of cityLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('cityTwo').hasError('required')">
+                          City shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'select-field select-disabled': disableAction, 'select-field': !disableAction}"> -->
+                    <div class="select-field">
+                      <mat-label class="select-label">District*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select District" formControlName="district1" [disabled]="disableField">
+                          <mat-option *ngFor="let obj of districtLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('district1').hasError('required')">
+                          District shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'select-field select-disabled': disableAction, 'select-field': !disableAction}"> -->
+                    <div class="select-field">
+                      <mat-label class="select-label">State*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select State" formControlName="state1" [disabled]="disableField">
+                          <mat-option *ngFor="let obj of stateLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('state1').hasError('required')">
+                          State shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <div [ngClass]="{'select-field select-disabled': disableAction, 'select-field': !disableAction}"> -->
+                    <div class="select-field">
+                      <mat-label class="select-label">Country*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Country" formControlName="country1" [disabled]="disableField">
+                          <mat-option *ngFor="let obj of countryLkp" value={{obj.key}}> {{obj.value}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('country1').hasError('required')">
+                          Country shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="basic-details-card">
+              <mat-card-content class="basic-details-card-content">
+                <h4>Preferred Branch</h4>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="select-field">
+                      <mat-label class="select-label">Branch Name*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Branch Name" formControlName="branchName" (selectionChange)="onSelectBranch($event.value)">
+                          <mat-option *ngFor="let obj of getBranchDetails" value={{obj.branchId}}> {{obj.branchName}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="customerDetailsForm.get('branchName').hasError('required')">
+                          Branch Name shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="input-field">
+                      <mat-label class="input-label">Branch Address*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Address" formControlName="branchAddress1" readonly>
+                        <mat-error *ngIf="customerDetailsForm.get('branchAddress1').hasError('required')">Address shouldn't be empty</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div class="customer-details-btns">
+            <button mat-button class="secondary-button" (click)="back()" type="button">Back</button>
+            <button mat-button class="primary-button" type="submit">Proceed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

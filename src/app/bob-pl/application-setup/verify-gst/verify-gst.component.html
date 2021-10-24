@@ -1,0 +1,226 @@
+<div class="verify-gst-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/offers-for-u-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="verify-gst-info">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+
+          <h2 class="upload-bank-heading">Please provide your GST statements</h2>
+          <h3>
+            Your GST statement data and any personal data will be completely secure and undisclosed. Rest assured, your passwords or
+            any access details are not stored.
+          </h3>
+
+          <mat-card class="verify-gst-card">
+            <mat-card-content class="verify-gst-card-content">
+
+              <!-- BorrowerForm FormGroup Starts Here -->
+              <form [formGroup]="borrowerForm" autocomplete="off">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="select-field">
+                      <mat-label class="select-label">Select GST No*</mat-label>
+                      <mat-form-field appearance="outline">
+                        <mat-select placeholder="Please select GST No" formControlName="selectGstNo">
+                          <mat-option *ngFor="let gstDetail of gstDetails" value="{{ gstDetail.gstin }}" (click)="getGstUser(gstDetail)">
+                            {{ gstDetail.gstin }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="(borrowerForm.get('selectGstNo').hasError('required') && variable === false) || (borrowerForm.get('selectGstNo').hasError('required') && borrowerForm.get('selectGstNo').touched)">
+                          Select GST no shouldn't be empty
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Login/Upload Radio Buttons -->
+                <div class="row mb-4">
+                  <div class="col-md-8">
+                    <mat-radio-group aria-label="Select an option" class="existing-loan-text" (change)="changeRadio($event)" formControlName="loginUpload">
+                      <div class="check-box-field same-check">
+                        <mat-radio-button value="login" class="add-text" checked="true">Login</mat-radio-button>
+                      </div>
+                      <div class="check-box-field same-check">
+                        <mat-radio-button value="upload" class="add-text">Upload Document(s)</mat-radio-button>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                </div>
+
+                <!-- UserName and OTP Fields -->
+                <div class="login-form" *ngIf="uploadTwo">
+                  <div class="row">
+
+                    <!-- UserName Field -->
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <mat-label class="input-label">Username*</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput formControlName="username" placeholder="Please enter Username" autocomplete="off" [readonly]="userName" />
+                          <mat-error *ngIf="(borrowerForm.get('username').hasError('required') && variable === false) || (borrowerForm.get('username').hasError('required') && borrowerForm.get('username').touched)">
+                            Username shouldn't be empty
+                          </mat-error>
+                          <mat-error *ngIf="borrowerForm.get('username').hasError('pattern') && !borrowerForm.get('username').hasError('minlength') && !borrowerForm.get('username').hasError('required')">
+                            Username is Invalid
+                          </mat-error>
+                          <mat-error *ngIf="borrowerForm.get('username').hasError('minlength') && !borrowerForm.get('username').hasError('required') && !borrowerForm.get('username').hasError('pattern')">
+                            Username is Invalid
+                          </mat-error>
+                          <mat-error *ngIf="borrowerForm.get('username').hasError('maxlength') && !borrowerForm.get('username').hasError('pattern')">
+                            Username is Invalid
+                          </mat-error>
+                        </mat-form-field>
+                        <mat-error *ngIf="gstDown && !gstOtpError">
+                          Service is not available
+                        </mat-error>
+                        <mat-error *ngIf="gstDown && gstOtpError">
+                          {{gstOtpError}}
+                        </mat-error>
+                      </div>
+                    </div>
+
+                    <!-- OTP Field -->
+                    <div class="col-md-6">
+                      <div *ngIf="enterOtp && uploadTwo && variableOne" class="otp-input-field">
+                        <div class="otp-form-fields" (click)="changeValue()">
+                          <div class="input-field otp-field">
+                            <mat-label class="input-label otp-input-label">Enter OTP*</mat-label>
+                            <mat-form-field appearance="outline">
+                              <input matInput formControlName="otp1" placeholder="Please enter OTP" [type]="hideOtpValue ? 'password' : 'text'" (keypress)="numberOnly($event)"
+                                minlength="6" maxlength="6" class="error-box" autocomplete="off" />
+                              <mat-icon matSuffix (click)=" hideOtpValue = !hideOtpValue " class="eye-icon">
+                                {{ hideOtpValue ? 'visibility_off' : 'visibility'}}
+                              </mat-icon>
+                            </mat-form-field>
+                            <mat-error *ngIf="borrowerForm.get('otp1').hasError('required') && !invalidOtp && borrowerForm.get('otp1').touched">
+                              Please enter 6 digit OTP
+                            </mat-error>
+                            <mat-error *ngIf="invalidOtp && borrowerForm.get('otp1').touched" class="error-text">
+                              The OTP entered is incorrect. Please enter the correct OTP or try regenerating the OTP
+                            </mat-error>
+                            <mat-error *ngIf="gstOtpDown && !gstInvalidOtpError">
+                              Service is not available
+                            </mat-error>
+                            <mat-error *ngIf="gstOtpDown && gstInvalidOtpError">
+                              {{gstOtpError}}
+                            </mat-error>
+                          </div>
+                        </div>
+
+                        <div class="resend-otp-btn">
+                          <div *ngIf="enterOtp && counter != 0" class="timer">
+                            {{ counter | timer }}
+                          </div>
+                          <button (click)="openOtp()" mat-button class="resend-btn" *ngIf="counter == 0">
+                            Resend OTP
+                          </button>
+                        </div>
+                        <p class="expire-time" *ngIf="!valid">{{ message }}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Send OTP Button -->
+                  <div class="send-btn">
+                    <button *ngIf="!otpBtnAction" mat-button class="primary-button second-send-btn" (click)="getOtp($event)">
+                      Send OTP
+                    </button>
+                  </div>
+
+                </div>
+
+                <!-- Submit OTP Button -->
+                <mat-card-actions class="verify-gst-btns" *ngIf="enterOtp && uploadTwo && variableOne">
+                  <button mat-button class="primary-button" type="submit" (click)="validateOtp()">
+                    Submit OTP
+                  </button>
+                </mat-card-actions>
+
+                <div class="upload-document-info" *ngIf="!uploadTwo">
+                  <p>
+                    Please upload a GST Document for
+                    <b>{{ uploadFromDate }}</b> to
+                    <b>{{ uploadToDate }}</b>
+                  </p>
+
+                  <!-- File Upload Field -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div id="upload_button" class="upload-button">
+                        <label class="upload-file">
+                          <input type="file" id="uploadOne" (change)="handleFileInputOne($event)" formControlName="upload" />
+                          <div class="upload-icon">
+                            <span>Click here to
+                              <span class="upload">Upload</span> file</span>
+                          </div>
+                        </label>
+                        <div class="uploaded-file" *ngFor="let fileName of FilepushArray; index as i">
+                          <span>
+                            {{ fileName.file.name }}
+                          </span>
+                          <mat-icon *ngIf="validateFile" (click)="remove(i)" class="close-icon">close</mat-icon>
+                        </div>
+                      </div>
+                      <mat-error *ngIf="borrowerForm.get('upload').hasError('required') && (borrowerForm.get('upload').touched || borrowerForm.get('upload').dirty)">
+                        Please Upload File</mat-error>
+                      <mat-error *ngIf="isFile">File Format must be PDF</mat-error>
+                      <mat-error *ngIf="uploadStatementError">Please upload a valid GST Document</mat-error>
+                    </div>
+                  </div>
+
+                  <!-- Cancel And Proceed Buttons -->
+                  <div class="continue-btns">
+                    <button mat-button class="secondary-button" type="button" (click)="cancel()">Cancel</button>
+                    <button mat-button class="primary-button" type="submit" (click)="proceed()">Proceed</button>
+                  </div>
+
+                </div>
+
+              </form>
+
+              <!-- BorrowerForm FormGroup Ends Here -->
+              <p class="footer">
+                You will now be redirected to an external portal where you can upload your GST statement or allow access to your net banking
+                account through a secure online statement retrieval process run by a third party as part of verfication process
+                for your Personal Loan request.
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- SKIP Button -->
+          <div class="skip-btn text-center">
+            <button routerLink='/application-setup/utility-bill' mat-raised-button class="secondary-button">Skip</button>
+          </div>
+          <!-- <button *ngIf="!itrStatus" routerLink='/application-setup/provide-itr-statements' mat-raised-button
+            class="secondary-button">Back</button> -->
+
+          <ng-template #myDialog>
+            <div class="email-popup">
+              <p>Do you want to continue with GST ?</p>
+              <div mat-dialog-actions class="close-btns">
+                <button mat-button class="secondary-button" matDialogClose routerLink='/application-setup/utility-bill'>Skip</button>
+                <button mat-button class="primary-button" matDialogClose routerLink='/application-setup/verify-gst'>Yes</button>
+              </div>
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

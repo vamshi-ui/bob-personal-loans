@@ -1,0 +1,100 @@
+.login-page {
+  background-color: #ffffff;
+  padding: 0;
+
+  @media(max-width: 1023px) {
+    padding: 60px 0;
+  }
+
+  @media(max-width: 767px) {
+    padding: 36px 0;
+  }
+
+  .login-img {
+    img {
+      min-height: 100vh;
+    }
+  }
+
+  .login-card {
+    padding: 42px;
+    margin-top: 112px;
+    margin-left: 116px;
+    box-shadow: none;
+
+    @media(max-width: 1280px) {
+      margin-left: 90px;
+    }
+
+    @media(max-width: 1023px) {
+      padding: 48px 27%;
+    }
+
+    @media(max-width: 767px) {
+      margin: 20px 0 0;
+      padding: 36px 0 12px;
+    }
+
+    @media(max-width: 480px) {
+      margin: 0;
+      padding: 36px 0 12px;
+    }
+
+    .login-card-content {
+      margin-bottom: 0;
+
+      h2 {
+        color: #FF5900;
+        // font-family: "Helvetica Neue";
+        font-size: 34px;
+        font-weight: 500;
+        padding-bottom: 36px;
+
+        @media(max-width: 767px) {
+          color: #FF5900;
+          position: absolute;
+          top: -56px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      .row-height {
+        // min-height: 150px;
+      }
+
+      .login-checkbox {
+        // margin-top: 30px;
+        text-align: center;
+
+        @media(max-width: 767px) {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .login-btns {
+      text-align: center;
+    }
+
+    .documents-text {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+
+      .mat-icon {
+        color: #ff5900;
+        font-size: 28px;
+      }
+
+      p {
+        color: #000000;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'HelveticaNeue';
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+    }
+  }
+}

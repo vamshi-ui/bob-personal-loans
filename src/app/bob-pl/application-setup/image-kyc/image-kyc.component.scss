@@ -1,0 +1,149 @@
+.image-kyc-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  @media (max-width: 767px) {
+    padding: 0;
+  }
+
+  .image-kyc-data {
+    padding: 0 48px 36px 0px;
+    margin-top: 136px;
+
+    @media (max-width: 767px) {
+      padding: 0px 0 36px;
+      margin-top: 0;
+    }
+
+
+    .image-kyc-card {
+      padding: 36px 0px 0px;
+      box-shadow: none;
+
+      @media (max-width: 1023px) {
+        padding: 44px 120px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 0px 10px;
+      }
+
+      .image-kyc-card-content {
+        text-align: center;
+        width: 28%;
+        margin-left: calc(100% - 78%);
+        margin-bottom: 24px;
+
+        .preview-image {
+          margin-left: -30%;
+        }
+
+        .image-bg {
+          background-color: #fcd9cb;
+          padding: 24px 0;
+        }
+
+        h3 {
+          color: #162c75;
+          font-size: 24px;
+          margin-bottom: 24px;
+          font-weight: 500;
+
+          @media (max-width: 767px) {
+            font-size: 18px;
+          }
+        }
+
+        img {
+          margin: 0 auto;
+          width: 72%;
+
+          @media (max-width: 767px) {
+            width: 250px !important;
+          }
+        }
+      }
+
+      .img-kyc-trip {
+        text-align: center;
+
+        button {
+          background-color: #ffffff !important;
+          box-shadow: none !important;
+
+          &.camera-btn {
+            background: linear-gradient(222.14deg, #FF9E00 0%, #FF5900 46.7%, #D50001 100%);
+            box-shadow: none !important;
+            height: 60px;
+            width: 60px;
+            margin-top: 24px;
+
+            img {
+              width: 32px;
+            }
+          }
+
+          &:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+          }
+        }
+
+        .retake-btns {
+          margin: 36px 0 12px 0;
+          display: flex;
+          justify-content: center;
+        }
+
+        p {
+          color: #565656;
+          font-size: 16px;
+          font-weight: bold;
+          margin: 0;
+        }
+      }
+    }
+
+    .image-kyc-btns {
+      text-align: center;
+      margin: 16px auto;
+
+      @media (max-width: 1023px) {
+        margin: 30px auto;
+      }
+
+      .secondary-button {
+        margin-right: 0;
+      }
+
+      .back-btn {
+        margin-left: 24px;
+      }
+    }
+  }
+}
+
+.mat-fab.mat-accent,
+.mat-flat-button.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-raised-button.mat-accent {
+  background-color: none !important;
+  box-shadow: none !important;
+}
+
+.webcam-wrapper {
+  video {
+    @media (max-width: 767px) {
+      width: 250px !important;
+    }
+  }
+}
+
+.image-messages {
+  display: none;
+}
+
+.webcam-wrapper {
+  left: calc(100% - 122%);
+}

@@ -1,0 +1,118 @@
+<div class="simandate-details-page">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+  <div class="container">
+    <div class="main-step-wizard">
+      <app-step-wizard></app-step-wizard>
+    </div>
+    <h3>S I Mandate</h3>
+<form >
+    <div class="simandate-details-info">
+      <mat-card class="simandate-details-card">
+        <mat-card-content class="simandate-details-card-content">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Name</p>
+                <h4>{{siMandateData.name}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Bank Name</p>
+                <h4>{{siMandateData.bankName}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Account Number</p>
+                <h4>{{siMandateData.accountName}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Account Type</p>
+                <h4>{{siMandateData.accountType}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Amount</p>
+                <h4>{{siMandateData.amount}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Start Date</p>
+                <h4>{{siMandateData.startDate}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>End Date</p>
+                <h4>{{siMandateData.endDate}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Frequency</p>
+                <h4>{{siMandateData.frequency}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Purpose of E-mandate</p>
+                <h4>{{siMandateData.purposeOfMandate}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Corporate Name</p>
+                <h4>{{siMandateData.corporateName}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Utility Number</p>
+                <h4>{{siMandateData.UtilityNumber}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Reference No.</p>
+                <h4>{{siMandateData.referenceNo}}</h4>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="simandate-info">
+                <p>Monthly EMI Debit Date</p>
+                <h4>{{siMandateData.emiDebitDate}}</h4>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="simandate-details-btns">
+      <button mat-button class="primary-button" routerLink="/application-setup/disbursal">
+        Continue
+      </button>
+    </div>
+  </form>
+    <div class="simandate-footer">
+      <p>
+        Your E-mandate registration is successfully completed. Your reference ID
+        for SI mandate registration is
+      </p>
+      <p>XXXX</p>
+      <p>
+        In case of any issues/query related to e-mandate registration you may
+      </p>
+      <p>
+        write to xxxx@xxxx.xx or call xxxxxxxxxxx
+      </p>
+    </div>
+  </div>
+</div>

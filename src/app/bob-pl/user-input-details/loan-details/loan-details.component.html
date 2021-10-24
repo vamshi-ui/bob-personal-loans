@@ -1,0 +1,84 @@
+<div class="loan-details-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/loan-details-img.svg" class="vector-img" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+      <div class="col-md-9">
+
+        <mat-card class="loan-details-card">
+          <mat-card-title>
+            <h2 class="loan-details-heading">Hi {{name}}, let us know the requirement</h2>
+          </mat-card-title>
+          <mat-card-content class="loan-details-card-content">
+            <form [formGroup]="loanDetailsForm" autocomplete="off">
+            <div class="row space-wrapper">
+              <div class="col-md-5">
+                <div class="input-field">
+                  <mat-label class="input-label">Required loan amount*</mat-label>
+                  <mat-form-field class="loan-input loan-value" appearance="outline">
+                    <input class="currency-input" matInput value="{{ rangeValue | indianCurrency }}" maxlength="9"
+                      (keypress)="numberOnly($event)" (input)="Change($event.target.value)" formControlName="loanAmount" />
+                      <span matPrefix class="loan-sign">₹</span>
+                  </mat-form-field>
+                  <mat-error *ngIf="loanDetailsForm.get('loanAmount').hasError('pattern')">Required Loan amount is Invalid</mat-error>
+                  <mat-error *ngIf="gross && !loanDetailsForm.get('loanAmount').hasError('pattern')">Required Loan amount shouldn't be empty</mat-error>
+                  <mat-error *ngIf="grossIncome && !loanDetailsForm.get('loanAmount').hasError('pattern') && !gross">Minimum 50,000 and Maximum 10,00,000 are allowed</mat-error>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="slider letter-spacing">
+                  <mat-slider thumbLabel [displayWith]="formatThumbLabel" input #amount
+                    (input)="sliderValue(amount.value)" id="amount" [min]="min" [step]="1000" [max]="max"
+                    value="{{ loanDetailsForm.get('loanAmount').hasError('pattern') || grossIncome ? min: rangeValue }}">
+                  </mat-slider>
+                  <div class="range-value">
+                    <span class="start-value">₹ {{min |indianCurrency }} </span>
+                    <span class="end-value">₹ 10,00,000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row space-wrapper">
+              <div class="col-md-5">
+                <div class="input-field">
+                  <mat-label class="input-label">Loan Tenure*</mat-label>
+                  <mat-form-field class="loan-input" appearance="outline">
+                    <input matInput value="{{ minRangeValue }} Months" (keypress)="numberOnly($event)"
+                      (input)="MonthChange($event.target.value)" [readonly]="true" formControlName="loanTenure"  >
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-md-7">
+                <div class="slider">
+                  <mat-slider thumbLabel input #time [displayWith]="formatLabel" (input)="monthsliderValue(time.value)"
+                    id="time" [min]="minMonths" [step]="1" [max]="maxMonths" value="{{ minRangeValue }} " readOnly formControlName="loanTenure">
+                  </mat-slider>
+                  <div class="range-value">
+                    <span class="start-value">12 Months</span>
+                    <span class="end-value">60 Months</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          </mat-card-content>
+        </mat-card>
+        <div class="loan-details-footer">
+          <div class="loan-details-btns">
+            <!-- <button mat-button class="secondary-button" (click)="goBack()" type="button" >Back</button> -->
+            <button mat-button class="primary-button" (click)="submit()" type="submit">
+              Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,144 @@
+.autodebit-setup-page {
+  background-color: #ffffff;
+  padding: 0 0 36px 0;
+
+  .autodebit-setup-info {
+    padding: 0 0 36px 0;
+    margin-top: 136px;
+    @media (max-width: 767px) {
+      margin-top: 0;
+      padding: 0 0 36px 0;
+    }
+    .autodebit-heading {
+      @media (max-width: 767px) {
+        width: 56%;
+        top: 35%;
+        left: 40%;
+        text-align: center;
+      }
+      h2 {
+        @media (max-width: 767px) {
+          top: -31%;
+          left: 38%;
+          text-align: left;
+        }
+        }
+        p {
+          color: #565656;
+          font-size: 16px;
+          font-weight: 500;
+          font-family: 'HelveticaNeue';
+          margin-bottom: 36px;
+          @media (min-width: 1920px) {
+            font-size: 24px !important;
+          }
+          @media (min-width: 1536px) {
+            font-size: 20px;
+          }
+        }
+    }
+
+    .autodebit-setup-card {
+      padding: 0;
+      margin-top: 16px;
+      margin-bottom: 36px;
+      box-shadow: none;
+
+      .autodebit-setup-card-content {
+        .autodebit-card-info {
+          @media (max-width: 767px) {
+            padding: 0 20px 0 12px;
+          }
+          .emi-field {
+            margin-top: 20px;
+
+            p {
+              font-weight: 500;
+              font-size: 16px;
+              font-family: 'HelveticaNeue';
+              color: #565656;
+              margin-bottom: 12px;
+              @media (min-width: 1920px) {
+                font-size: 20px;
+              }
+            }
+
+            .emi-dates-buttons {
+              display: flex;
+
+              #date-btn {
+                margin-left: 0 !important;
+              }
+
+              .date-btn {
+                min-width: 37px !important;
+                height: 37px !important;
+                line-height: 37px;
+                padding: 0 !important;
+                border-radius: 50%;
+                margin: 10px !important;
+                @media (min-width: 1920px) {
+                  min-width: 50px !important;
+                  height: 50px !important;
+                  line-height: 50px;
+                  font-size: 20px;
+                }
+
+                &:focus {
+                  outline: none !important;
+                  box-shadow: none !important;
+                }
+
+                &.date-btn-active {
+                  background-color: #ff5900;
+                  color: #fff;
+                  box-shadow: none !important;
+                }
+
+                &.date-btn-inactive {
+                  border: 1px solid #ff5900 !important;
+                  color: #ff5900;
+                  box-shadow: none !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .autodebit-setup-btns {
+      text-align: center;
+     @media (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+      flex-direction: column-reverse;
+     }
+     button {
+      @media (max-width: 767px) {
+        margin: 30px auto 0;
+      }   
+     }
+      
+      a {
+        color: #565656;
+        margin-top: 24px;
+        font-size: 14px;
+        display: block;
+        font-family: 'HelveticaNeue';
+        font-weight: 500;
+        text-decoration: underline;
+        @media (min-width: 1920px) {
+          font-size: 21px !important;
+        }
+        @media (min-width: 1536px)  {
+          font-size: 17px;
+        }
+        @media (max-width: 767px) { 
+        font-weight: 400;
+        margin-top: 0;
+        }
+      }
+    }
+  }
+}

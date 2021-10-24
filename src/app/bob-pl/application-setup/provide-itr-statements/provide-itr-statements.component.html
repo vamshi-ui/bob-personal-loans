@@ -1,0 +1,72 @@
+<div class="provide-itr-statement">
+  <div class="mobile-step-wizard">
+    <app-step-wizard></app-step-wizard>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <div class="sidebar-images">
+          <img src="assets/images/Oval-orange.svg" alt="" class="orange-oval">
+          <img src="assets/images/bank-statements-img.svg" class="vector-img1" alt="">
+          <img src="assets/images/Oval-blue.svg" alt="" class="blue-vector-oval">
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="itr-statement">
+          <div class="main-step-wizard">
+            <app-step-wizard></app-step-wizard>
+          </div>
+
+          <h2 class="provide-heading-statement">Please provide your ITR Statements</h2>
+          <mat-card class="provide-statement-card">
+            <mat-card-content class="provide-statement-content">
+              <h3>
+                Your ITR statement data and any personal data will be completely secure and undisclosed. Rest assured,
+                your passwords or
+                any access details are not stored.
+              </h3>
+              <div class="provide-statement-buttons">
+                <div>
+                  <p class="login-bank">Login to Portal</p>
+                  <div class="login-icon">
+                    <a (click)="loginToItr()">
+                      <img src="assets/images/upload-icon-new.JPG" />
+                    </a>
+                  </div>
+                </div>
+                <div class="or">
+                  <span> OR </span>
+                </div>
+                <div>
+                  <a (click)="updateItr()"> Upload ITR Statement </a>
+                  <!-- <a (click)="updateItr()"> Upload ITR & Form 26AS Statement </a> -->
+                </div>
+              </div>
+              <p class="footer">
+                You will now be redirected to an external portal where you can upload your ITR statements or allow
+                access to your ITR protal
+                account through a secure online form retrieval process run by a third party as part of verfication
+                process for your Personal Loan request.
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- <ng-template #myDialog>
+            <div class="email-popup">
+              <p>Do you want to continue with</p>
+              <div mat-dialog-actions class="close-btns">
+                <button mat-button matDialogClose routerLink='/application-setup/provide-itr-statements'
+                  class="primary-button">ITR</button>
+                <span>(or)</span>
+                <button mat-button class="primary-button" matDialogClose
+                  routerLink='/application-setup/verify-gst'>GST</button>
+              </div>
+            </div>
+          </ng-template> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
